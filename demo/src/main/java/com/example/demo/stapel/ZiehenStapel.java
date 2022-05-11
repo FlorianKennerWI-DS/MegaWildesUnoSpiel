@@ -1,5 +1,6 @@
 package com.example.demo.stapel;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class ZiehenStapel {
@@ -12,7 +13,14 @@ public class ZiehenStapel {
 
 
     public void generieren(){
-        kartenStack.push("test");
+        ArrayList<String> blaueKarten = new ArrayList<String>();
+        ArrayList<String> grueneKarten = new ArrayList<String>();
+        ArrayList<String> gelbeKarten = new ArrayList<String>();
+        ArrayList<String> roteKarten = new ArrayList<String>();
+        ArrayList<String> alleKarten = new ArrayList<>(){
+        };
+
+
 
 
     }
