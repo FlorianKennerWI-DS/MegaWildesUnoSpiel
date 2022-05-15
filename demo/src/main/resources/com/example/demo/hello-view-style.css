@@ -1,0 +1,7 @@
+#startPane{
+    -fx-background-image: url("background.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 600 506;
+    -fx-background-position: center center;
+
+}
