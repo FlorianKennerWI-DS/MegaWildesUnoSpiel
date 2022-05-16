@@ -23,9 +23,9 @@ public class AblegeStapel {
     }
 
 
-    public void ablegen(){
+    public void ablegen(String obersteKarte){
         higherCount();
-
+        this.obersteKarte = obersteKarte;
         //TODO:
         // kompatible Farbe und Zahl hier ändern
         setKompatibleFarbe("Gruen");
