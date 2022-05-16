@@ -1,5 +1,6 @@
 package com.example.demo.stapel;
 
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -12,13 +13,21 @@ public class ZiehenStapel {
     }
 
 
-    public void generieren(){
-        ArrayList<String> blaueKarten = new ArrayList<String>();
-        ArrayList<String> grueneKarten = new ArrayList<String>();
-        ArrayList<String> gelbeKarten = new ArrayList<String>();
-        ArrayList<String> roteKarten = new ArrayList<String>();
-        ArrayList<String> alleKarten = new ArrayList<>(){
-        };
+    public static Stack<String> generieren(){
+        ArrayList<String> alleKarten = new ArrayList<String>(){};
+        alleKarten.add("a");
+        alleKarten.add("b");
+
+        int kartenAnzahl = alleKarten.size();
+        Stack<String> gemischterStapel = new Stack<>();
+
+        for (int i = 0; i < kartenAnzahl; i ++){
+            int index = ThreadLocalRandom.current().nextInt(0, alleKarten.size()) ;
+            gemischterStapel.push(alleKarten.get(index));
+            alleKarten.remove(index);
+        }
+        return gemischterStapel;
+
 
 
 
