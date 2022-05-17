@@ -9,6 +9,7 @@ TODO:
 - main Klasse, welche Spieler, Stapel, Reihenfolge etc. verwaltet
 - Fortgeschrittenes UI
 - Einarbeitung in Parallelität (?)
+- Fehlerbehandlung: Was passiert, wenn Ziehstapel leer?
 
 
 Done:
