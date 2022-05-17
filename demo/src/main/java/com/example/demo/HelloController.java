@@ -16,6 +16,7 @@ public class HelloController {
     private Label welcomeText;
     private Stage stage;
     private Scene scene;
+    private HelloApplication spiel = new HelloApplication();
 
     @FXML
     protected void onHelloButtonClick() {
@@ -23,9 +24,9 @@ public class HelloController {
     }
 
     public void switchToGameScene (ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load((getClass().getResource("gameScene.fxml")));
+        //Parent root = FXMLLoader.load((getClass().getResource("gameScene.fxml")));
         stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        scene = new Scene(spiel.createContent());
         stage.setScene(scene);
         stage.show();
     }
