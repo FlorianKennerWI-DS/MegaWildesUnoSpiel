@@ -6,12 +6,11 @@ public class Spieler {
     //Handkarten aus Klasse Karten?
     ArrayList<Karte> handkarten = new ArrayList<Karte>(); // zu Anfang 7 aber theoretisch unbegrenzt
 
-    //ziehen
-    public void ziehen(Spieler spieler) {
-        spieler.handkarten.add();   // neue Karte in Klammern
+    public void ziehen(Karte karte) {
+        handkarten.add(karte);   // Methode nehmen in Klammern aufrufen
     }
-    //ablegen
-    public void ablegen(Spieler spieler, Karte karte) {
-        spieler.handkarten.remove(karte);    // Stelle oder Inhalt in Klammern
+
+    public void ablegen(Karte karte) {
+        handkarten.remove(karte);    // Stelle oder Inhalt in Klammern -> Methode aufrufen
     }
 }
