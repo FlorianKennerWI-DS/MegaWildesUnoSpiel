@@ -5,12 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,7 +18,7 @@ public class HelloApplication extends Application {
     private HBox ablegestapel = new HBox(20);
     private Hand player;
 
-    public Parent createContent() {
+    public Parent createGamePane() {
         player = new Hand(playerCards.getChildren());
         Pane root = new Pane();
         Label moderateGame = new Label("Jij bent aan de beurt!");
@@ -33,29 +30,33 @@ public class HelloApplication extends Application {
         rootLayout.getChildren().addAll(new HBox(moderateGame, neighbor),ablegestapel, playerCards);
         root.getChildren().addAll(rootLayout);
         return root;
+    }
 
+    private Parent createStartPane(Stage stage) {
+        Pane startRoot = new AnchorPane();
+        MenuButton amountOfPlayers = new MenuButton("Select Amount of Players!");
+
+        //set background
+        Image img = new Image("demo/src/main/resources/com/example/demo/background.png"); //throws error if non-absolute path
+        BackgroundImage backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        startRoot.setBackground(new Background(backgroundImage));
+
+        Button startButton = new Button("Start!");
+        startButton.setOnAction((event) -> stage.setScene(new Scene(createGamePane(), 600 ,420)));
+
+        startRoot.getChildren().addAll(amountOfPlayers, startButton);
+        return startRoot;
     }
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root, 600, 420);
-        scene.getStylesheets().addAll(this.getClass().getResource("hello-view-style.css").toExternalForm());
+        Scene scene = new Scene(createStartPane(stage), 600, 420);
         stage.setTitle("UNO");
         stage.setScene(scene);
         stage.show();
     }
-
-    /*public void start (Stage stage) throws IOException {
-        Pane root = new Pane();
-        Scene scene = new Scene(root, 800, 600);
-        Button startButton = new Button("Start");
-
-        root.getChildren().add(startButton);
-        scene.getStylesheets().addAll(this.getClass().getResource("hello-view-style.css").toExternalForm());
-        stage.setScene(scene);
-        stage.show();
-    }*/
 
 
     public static void main(String[] args) {
