@@ -14,7 +14,7 @@ public class Card extends Parent {
     private static final int CARD_HEIGHT = 140;
 
     enum Color {
-        HEARTS, DIAMONDS, CLUBS, SPADES;
+        RED, BLUE, YELLOW, GREEN, BLACK;
 
         /*final Image image;
 
@@ -25,8 +25,7 @@ public class Card extends Parent {
     }
 
     enum Rank {
-        TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8), NINE(9), TEN(10),
-        JACK(10), QUEEN(10), KING(10), ACE(11);
+        ZERO(0),ONE(1),TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8), NINE(9), TEN(10)
 
         final int value;
         Rank(int value) {

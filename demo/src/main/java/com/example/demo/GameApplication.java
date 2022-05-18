@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,22 +11,23 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class GameApplication extends Application {
 
     private HBox playerCards = new HBox(20);
     private HBox ablegestapel = new HBox(20);
     private Hand player;
+    private Stage primaryStage;
 
     public Parent createGamePane() {
         player = new Hand(playerCards.getChildren());
         Pane root = new Pane();
         Label moderateGame = new Label("Jij bent aan de beurt!");
-        Label neighbor = new Label("Hallo :)");
+        Label ziehstapel = new Label("Ziehstapel :)");
 
         VBox rootLayout = new VBox(5);
         rootLayout.setPadding(new Insets(5, 5, 5, 5));
 
-        rootLayout.getChildren().addAll(new HBox(moderateGame, neighbor),ablegestapel, playerCards);
+        rootLayout.getChildren().addAll(moderateGame,new HBox(ziehstapel, ablegestapel), playerCards);
         root.getChildren().addAll(rootLayout);
         return root;
     }
@@ -37,7 +37,7 @@ public class HelloApplication extends Application {
         MenuButton amountOfPlayers = new MenuButton("Select Amount of Players!");
 
         //set background
-        Image img = new Image("demo/src/main/resources/com/example/demo/background.png"); //throws error if non-absolute path
+        Image img = new Image("..\\..\\..\\..\\resources\\com\\example\\demo\\background.png"); //throws error if non-absolute path
         BackgroundImage backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
@@ -53,6 +53,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Scene scene = new Scene(createStartPane(stage), 600, 420);
+        //Karten austeilen
         stage.setTitle("UNO");
         stage.setScene(scene);
         stage.show();

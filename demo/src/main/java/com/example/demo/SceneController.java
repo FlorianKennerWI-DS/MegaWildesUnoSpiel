@@ -14,7 +14,7 @@ public class SceneController {
     private Label welcomeText;
     private Stage stage;
     private Scene scene;
-    private HelloApplication spiel = new HelloApplication();
+    private GameApplication spiel = new GameApplication();
 
     @FXML
     protected void onHelloButtonClick() {
