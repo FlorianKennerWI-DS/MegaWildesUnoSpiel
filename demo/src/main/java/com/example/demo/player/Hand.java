@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.player;
 
+import com.example.demo.player.Card;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
