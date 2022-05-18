@@ -1,7 +1,9 @@
 package com.example.demo;
 
+import com.example.demo.player.Card;
 import com.example.demo.player.Hand;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -9,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,19 +21,20 @@ public class GameApplication extends Application {
     private HBox playerCards = new HBox(20);
     private HBox ablegestapel = new HBox(20);
     private Hand player;
-    private Stage primaryStage;
+    Label moderateGame;
 
     public Parent createGamePane() {
         player = new Hand(playerCards.getChildren());
+        player.takeCard(new Card(git Color.BLUE, Card.Rank.TWO));
         Pane root = new Pane();
-        Label moderateGame = new Label("Jij bent aan de beurt!");
-        Label ziehstapel = new Label("Ziehstapel :)");
+        moderateGame = new Label("Jij bent aan de beurt!");
+        Label ziehstapel = new Label("Ziehstapel :)"); //replace with HBox
 
         VBox rootLayout = new VBox(5);
         rootLayout.setPadding(new Insets(5, 5, 5, 5));
 
         rootLayout.getChildren().addAll(moderateGame,new HBox(ziehstapel, ablegestapel), playerCards);
-        root.getChildren().addAll(rootLayout);
+        root.getChildren().addAll(rootLayout); //add background
         return root;
     }
 
@@ -39,7 +43,7 @@ public class GameApplication extends Application {
         MenuButton amountOfPlayers = new MenuButton("Select Amount of Players!");
 
         //set background
-        Image img = new Image("C:\\Users\\Malena\\IdeaProjects\\MegaWildesUnoSpiel5\\demo\\src\\main\\resources\\com\\example\\demo\\background.png"); //throws error if non-absolute path
+        Image img = new Image(GameApplication.class.getResourceAsStream("background.png"));
         BackgroundImage backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
@@ -58,7 +62,6 @@ public class GameApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Scene scene = new Scene(createStartPane(), 600, 420);
-        //Karten austeilen
         stage.setTitle("UNO");
         stage.setScene(scene);
         stage.show();
