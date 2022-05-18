@@ -1,7 +1,9 @@
 package com.example.demo;
 
+import com.example.demo.player.Hand;
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -32,12 +34,12 @@ public class GameApplication extends Application {
         return root;
     }
 
-    private Parent createStartPane(Stage stage) {
+    private Parent createStartPane() {
         Pane startRoot = new AnchorPane();
         MenuButton amountOfPlayers = new MenuButton("Select Amount of Players!");
 
         //set background
-        Image img = new Image("..\\..\\..\\..\\resources\\com\\example\\demo\\background.png"); //throws error if non-absolute path
+        Image img = new Image("C:\\Users\\Malena\\IdeaProjects\\MegaWildesUnoSpiel5\\demo\\src\\main\\resources\\com\\example\\demo\\background.png"); //throws error if non-absolute path
         BackgroundImage backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
@@ -45,14 +47,17 @@ public class GameApplication extends Application {
         startRoot.setBackground(new Background(backgroundImage));
 
         Button startButton = new Button("Start!");
-        startButton.setOnAction((event) -> stage.setScene(new Scene(createGamePane(), 600 ,420)));
+        startButton.setOnAction((event) -> {
+            Stage stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(createGamePane(), 600 ,420));
+        });
 
         startRoot.getChildren().addAll(amountOfPlayers, startButton);
         return startRoot;
     }
     @Override
     public void start(Stage stage) throws IOException {
-        Scene scene = new Scene(createStartPane(stage), 600, 420);
+        Scene scene = new Scene(createStartPane(), 600, 420);
         //Karten austeilen
         stage.setTitle("UNO");
         stage.setScene(scene);
