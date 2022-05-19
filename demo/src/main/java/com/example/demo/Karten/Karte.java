@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Karte {
 
-    static String farbe;
-    static int zahl;
+    String farbe;
+    int zahl;
 
     public Karte (String farbe, int zahl) {
         this.farbe = farbe;

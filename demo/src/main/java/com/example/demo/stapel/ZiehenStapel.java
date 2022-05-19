@@ -13,8 +13,10 @@ public class ZiehenStapel {
     public Karte nehmen(){
         return kartenStack.pop();
     }
+
     public static Stack<Karte> generieren(){
-        ArrayList<Karte> alleKarten = new ArrayList<Karte>(){};
+        ArrayList<Karte> alleKarten = new ArrayList<>(){};
+
         alleKarten.add(new Karte("Blau", 0));
         alleKarten.add(new Karte("Blau", 1));
         alleKarten.add(new Karte("Blau", 1));
@@ -94,8 +96,6 @@ public class ZiehenStapel {
         alleKarten.add(new Karte("Rot", 8));
         alleKarten.add(new Karte("Rot", 9));
         alleKarten.add(new Karte("Rot", 9));
-
-
 
 
         int kartenAnzahl = alleKarten.size();
