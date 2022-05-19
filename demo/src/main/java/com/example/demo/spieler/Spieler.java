@@ -1,5 +1,7 @@
 package com.example.demo.spieler;
 
+import com.example.demo.Karten.Karte;
+
 import java.util.ArrayList;
 import com.example.demo.Karten.Karte;
 public class Spieler {
@@ -18,6 +20,6 @@ public class Spieler {
         if (handkarten.size() == 0){
             return false;
         }
-        else return true
+        else return true;
     }
 }
