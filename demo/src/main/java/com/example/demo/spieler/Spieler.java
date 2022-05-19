@@ -1,10 +1,14 @@
 package com.example.demo.spieler;
 
+
+import com.example.demo.Karten.Karte;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import java.util.ArrayList;
+import com.example.demo.Karten.Karte;
 public class Spieler {
     //Handkarten aus Klasse Karten
     ArrayList<Karte> rot = new ArrayList<Karte>();
@@ -42,4 +46,12 @@ public class Spieler {
             handkarten.get(rot).remove(karte);
         }
     }
+
+    public boolean hatKarten(){
+        if (handkarten.size() == 0){
+            return false;
+        }
+        else return true;
+    }
+}
 }
