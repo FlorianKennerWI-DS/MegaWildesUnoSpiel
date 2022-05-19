@@ -12,6 +12,7 @@ public class Karte {
         this.zahl =  zahl;
     }
 
+
     public String toString() {
         return (farbe + " " + Integer.toString(zahl));
     }
