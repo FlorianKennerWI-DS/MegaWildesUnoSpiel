@@ -26,7 +26,7 @@ public class GameApplication extends Application {
 
     public Parent createGamePane() {
         player = new Hand(playerCards.getChildren());
-        player.takeCard(new CardVisible(Color.BLUE, CardVisible.Rank.TWO));
+        player.takeCard(new CardVisible(Color.BLUE, 2));
         Pane root = new Pane();
         moderateGame = new Label("Jij bent aan de beurt!");
         Label ziehstapel = new Label("Ziehstapel :)"); //replace with HBox

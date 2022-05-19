@@ -20,7 +20,7 @@ public class CardVisible extends Parent {
             this.image = new Image(Card.class.getResourceAsStream(name().toLowerCase().concat(".png")),
                     32, 32, true, true);
         }
-    }*/
+    }
 
     public enum Rank {
         ZERO(0),ONE(1),TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8), NINE(9), TEN(10), SPECIAL(-1);
@@ -33,7 +33,7 @@ public class CardVisible extends Parent {
         String displayName() {
             return ordinal() < 9 ? String.valueOf(value) : name().substring(0, 1);
         }
-    }
+    }*/
 
     public final Color color;
     public final CardVisible.Rank rank;
