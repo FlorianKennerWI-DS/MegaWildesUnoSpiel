@@ -5,9 +5,18 @@ import java.util.Random;
 public class Karte {
 
     static String farbe;
-    static int Zahl;
+    static int zahl;
 
-public static void Stapel() {
+    public Karte (String farbe, int zahl) {
+        this.farbe = farbe;
+        this.zahl =  zahl;
+    }
+
+    public String toString() {
+        return (farbe + " " + Integer.toString(zahl));
+    }
+
+/*public static void Stapel() {
             String[] Stapel = new String [76]; //Kartenstapel muss generiert werden
 
             Stapel[0] = "Rot 0";
@@ -102,7 +111,7 @@ public static void Stapel() {
             }
 
 
-        }
+        }*/
 
     }
 
