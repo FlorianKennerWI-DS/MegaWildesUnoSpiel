@@ -21,7 +21,7 @@ public class Hand {
         this.cards = cards;
     }
 
-    public void takeCard(Card card) {
+    public void takeCard(CardVisible card) {
         cards.add(card);
     }
 
