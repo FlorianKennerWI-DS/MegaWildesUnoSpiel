@@ -1,7 +1,7 @@
 package com.example.demo.spieler;
 
 import java.util.ArrayList;
-
+import com.example.demo.Karten.Karte;
 public class Spieler {
     //Handkarten aus Klasse Karten?
     ArrayList<Karte> handkarten = new ArrayList<Karte>(); // zu Anfang 7 aber theoretisch unbegrenzt
@@ -12,5 +12,12 @@ public class Spieler {
 
     public void ablegen(Karte karte) {
         handkarten.remove(karte);    // Stelle oder Inhalt in Klammern -> Methode aufrufen
+    }
+
+    public boolean hatKarten(){
+        if (handkarten.size() == 0){
+            return false;
+        }
+        else return true
     }
 }
