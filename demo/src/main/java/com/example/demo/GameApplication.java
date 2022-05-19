@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.player.Card;
+import com.example.demo.player.CardVisible;
 import com.example.demo.player.Hand;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -25,7 +26,7 @@ public class GameApplication extends Application {
 
     public Parent createGamePane() {
         player = new Hand(playerCards.getChildren());
-        player.takeCard(new Card(git Color.BLUE, Card.Rank.TWO));
+        player.takeCard(new CardVisible(Color.BLUE, CardVisible.Rank.TWO));
         Pane root = new Pane();
         moderateGame = new Label("Jij bent aan de beurt!");
         Label ziehstapel = new Label("Ziehstapel :)"); //replace with HBox
