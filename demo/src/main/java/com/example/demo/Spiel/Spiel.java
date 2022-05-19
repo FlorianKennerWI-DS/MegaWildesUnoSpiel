@@ -45,15 +45,29 @@ public class Spiel {
         return false;
     }
 
-    public static void main (String[] args) {
-        Spiel spiel = new Spiel(2);
-        while (!spiel.jemandIstFertig()){
-
+    public void spielen () {
+        while (jemandIstFertig()){
+            Spieler amZug = spielende.get(derzeitigerSpieler);
+            if (amZug instanceof Computer) {
+                //computer.waehleAktion()
+                if ("ziehen".equals(amZug.waehleAktion())) { //Typ casten?
+                    amZug.ziehen(ziehenStapel.nehmen());
+                } else {
+                    ablegeStapel.ablegen(amZug.ablegen()); //TODO spieler.ablegen returned karte
+            } else {
+                    //enableActions()
+                }
             //TODO: Check ob nächster spieler ist computer
             //          --> Dann dieser aktion
             //      Anosonten auf eingabe warten
             //
 
         }
+    }
+    }
+
+    public static void main (String[] args) {
+        Spiel spiel = new Spiel(2);
+        spiel.spielen();
     }
 }
