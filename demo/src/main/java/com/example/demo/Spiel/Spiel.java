@@ -38,12 +38,22 @@ public class Spiel {
 
     private boolean jemandIstFertig() {
         for (Spieler spieler:spielende) {
-            if spieler
+            if (!spieler.hatKarten()){
+                return true;
+            }
         }
+        return false;
     }
 
     public static void main (String[] args) {
         Spiel spiel = new Spiel(2);
-        while ()
+        while (!spiel.jemandIstFertig()){
+
+            //TODO: Check ob nächster spieler ist computer
+            //          --> Dann dieser aktion
+            //      Anosonten auf eingabe warten
+            //
+
+        }
     }
 }
