@@ -20,7 +20,7 @@ public class Spiel {
         kartenAusteilen();
     }
 
-    public void generiereSpieler(int spielerAnzahl) {
+    private void generiereSpieler(int spielerAnzahl) {
         menschlicherSpieler = new Spieler();
         spielende.add(menschlicherSpieler);
         for (int i = 0; i < spielerAnzahl; i++) {
@@ -28,7 +28,7 @@ public class Spiel {
         }
     }
 
-    public void kartenAusteilen() {
+    private void kartenAusteilen() {
         for (Spieler spieler:spielende) {
             for (int j =0; j<7;j++) {
                 spieler.ziehen(ziehenStapel.nehmen());
@@ -36,8 +36,14 @@ public class Spiel {
         }
     }
 
+    private boolean jemandIstFertig() {
+        for (Spieler spieler:spielende) {
+            if spieler
+        }
+    }
+
     public static void main (String[] args) {
         Spiel spiel = new Spiel(2);
-        while (spiel.spielende[spiel.derzeitigerSpieler].hatKarten)
+        while ()
     }
 }
