@@ -5,14 +5,21 @@ import com.example.demo.Karten.Karte;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
 import java.util.Stack;
+import java.text.ParseException;
 
 public class ZiehenStapel {
     private Stack<Karte> kartenStack = new Stack<>();
     public int laenge;
 
     public Karte nehmen(){
-        return kartenStack.pop();
-    }
+        if(laenge ==0){
+            throw new IllegalArgumentException("Stapel leer");
+        }
+        else
+            return kartenStack.pop();
+
+        }
+
 
     public static Stack<Karte> generieren(){
         ArrayList<Karte> alleKarten = new ArrayList<>(){};
