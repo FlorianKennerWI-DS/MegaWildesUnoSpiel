@@ -17,6 +17,7 @@ public class Spieler {
     ArrayList<Karte> gruen = new ArrayList<Karte>();
     ArrayList<Karte> schwarz = new ArrayList<Karte>();
     ArrayList<ArrayList<Karte>> handkarten = new ArrayList<ArrayList<Karte>>();
+
     handkarten.add(schwarz);
     public void ziehen(Karte karte) {   //Zahlen mit Sortieralgorithmen
         if (karte.getFarbe().equals("Rot")) {
