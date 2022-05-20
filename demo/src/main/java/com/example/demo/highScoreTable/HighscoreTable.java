@@ -13,9 +13,9 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class HighscoreTable {
-    private HashMap<String, ArrayList<Integer>> alleSpieler = new HashMap<String, ArrayList<Integer>>();
+    private static HashMap<String, ArrayList<Integer>> alleSpieler = new HashMap<String, ArrayList<Integer>>();
 
-    public  void einlesen() {
+    public static void einlesen() {
         String zeile = null;
         String spielerName;
         int position;
