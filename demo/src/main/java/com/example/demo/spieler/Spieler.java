@@ -12,11 +12,20 @@ import com.example.demo.Karten.Karte;
 public class Spieler {
     //Handkarten aus Klasse Karten
     ArrayList<ArrayList<Karte>> handkarten = new ArrayList<ArrayList<Karte>>();
+    String name;
+
+    public String getName() {
+        return name;
+    }
 
     public Spieler () {
         for (int i = 0; i<5;i++) {
             handkarten.add(new ArrayList<Karte>());
         }
+    }
+
+    public ArrayList<ArrayList<Karte>> getHandkarten() {
+        return handkarten;
     }
 
     public void ziehen(Karte karte) {   //Zahlen mit Sortieralgorithmen

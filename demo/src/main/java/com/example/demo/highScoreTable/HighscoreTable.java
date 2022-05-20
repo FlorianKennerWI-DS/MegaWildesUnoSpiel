@@ -1,10 +1,15 @@
 package com.example.demo.highScoreTable;
 
+import com.example.demo.spieler.Computer;
+import com.example.demo.spieler.Spieler;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public class HighscoreTable {
@@ -43,7 +48,6 @@ public class HighscoreTable {
                 }
                 zeile = meinReader.readLine();
             }
-            System.out.println(alleSpieler);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,8 +65,30 @@ public class HighscoreTable {
             alleDurschnittsPositionen.put(name, eintelneDurchschnittsPosition);
         }
     }
-/*
+
     public void spielAbspeichern(ArrayList<Spieler> spielende){
-        
-    }*/
+        Path meineDatei = Paths.get("./GameData.csv");
+        int Position = 0;
+        String name = "";
+        // sorting the spielende ArrayList by the number of Cards on their hands
+        spielende.sort(Comparator.comparingInt(s -> s.getHandkarten().size()));
+
+        try {
+            BufferedWriter writer = Files.newBufferedWriter(meineDatei, StandardOpenOption.APPEND);
+
+            // searching the position of the human player
+            for (int index = 0; index < spielende.size(); index++){
+                if (!(spielende.get(index) instanceof Computer)){
+                    Position = index + 1;
+                    name = spielende.get(index).getName();
+                }
+            }
+
+            // writing the player name and position in the GameData.csv file
+            writer.write(name + "," + Position);
+            writer.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
