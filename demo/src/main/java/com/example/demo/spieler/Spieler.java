@@ -11,40 +11,36 @@ import java.util.ArrayList;
 import com.example.demo.Karten.Karte;
 public class Spieler {
     //Handkarten aus Klasse Karten
-    ArrayList<Karte> rot = new ArrayList<Karte>();
-    ArrayList<Karte> blau = new ArrayList<Karte>();
-    ArrayList<Karte> gelb = new ArrayList<Karte>();
-    ArrayList<Karte> gruen = new ArrayList<Karte>();
-    ArrayList<Karte> schwarz = new ArrayList<Karte>();
     ArrayList<ArrayList<Karte>> handkarten = new ArrayList<ArrayList<Karte>>();
 
-    handkarten.add(schwarz);
+    public Spieler () {
+        for (int i = 0; i<5;i++) {
+            handkarten.add(new ArrayList<Karte>());
+        }
+    }
+
     public void ziehen(Karte karte) {   //Zahlen mit Sortieralgorithmen
         if (karte.getFarbe().equals("Rot")) {
-            handkarten.get(rot).add(karte);
+            handkarten.get(0).add(karte);
         }
         if (karte.getFarbe().equals("Blau")) {
-            blau.add(karte.getZahl());
-            handkarten.add(blau);
+            handkarten.get(1).add(karte);
         }
         if (karte.getFarbe().equals("Gelb")) {
-            gelb.add(karte.getZahl());
-            handkarten.add(gelb);
+            handkarten.get(2).add(karte);
         }
         if (karte.getFarbe().equals("Gruen")) {
-            gruen.add(karte.getZahl());
-            handkarten.add(gruen);
+            handkarten.get(3).add(karte);
         }
         if (karte.getFarbe().equals("Schwarz")) {
-            schwarz.add(karte.getZahl());
-            handkarten.add(schwarz);
+            handkarten.get(4).add(karte);
         }
     }
 
     public void ablegen(Karte karte) {
         //handkarten.remove(karte.getFarbe(), karte);
         if (karte.getFarbe().equals("Rot")) {
-            handkarten.get(rot).remove(karte);
+            handkarten.remove(karte);
         }
     }
 
