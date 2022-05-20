@@ -15,22 +15,7 @@ public class AblegeStapel {
     }
 
     public void setObersteKarte(Karte obersteKarte) {
-        this.obersteKarte = obersteKarte;
-    }
-
-    public void setKompatibleFarbe(String kompatibleFarbe) {
-        this.kompatibleFarbe = kompatibleFarbe;
-    }
-
-    public void setKompatibleZahl(int kompatibleZahl) {
-        this.kompatibleZahl = kompatibleZahl;
-    }
-
-
-    public void ablegen(Karte abgelegteKarte){
         higherCount();
-        setObersteKarte(abgelegteKarte);
-        setKompatibleZahl(abgelegteKarte.getZahl());
-        setKompatibleFarbe(abgelegteKarte.getFarbe());
+        this.obersteKarte = obersteKarte;
     }
 }
