@@ -1,10 +1,20 @@
 package com.example.demo.Karten;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class Karte {
 
     String farbe;
+    public static HashMap<String, int> farbID;
+    static {
+        farbID = new HashMap<String, int>();
+        farbID.put("Rot", 0);
+        farbID.put("Blau", 1);
+        farbID.put("Gelb", 2);
+        farbID.put("Gruen", 3);
+        farbID.put("Schwarz", 4)
+    }
     int zahl;
 
     public String getFarbe() {
