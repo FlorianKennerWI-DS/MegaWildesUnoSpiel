@@ -15,7 +15,9 @@ public class Spieler {
     }
 
     public void ziehen(Karte karte) {   //Zahlen mit Sortieralgorithmen
-        if (karte.getFarbe().equals("Rot")) {
+        int farbIndex = Karte.farbID.get(karte.getFarbe());
+        handkarten.get(farbIndex).add(karte);
+        /*if (karte.getFarbe().equals("Rot")) {
             handkarten.get(0).add(karte);
             HandkartenSortierung.sort(handkarten.get(0));
         }
@@ -34,11 +36,13 @@ public class Spieler {
         if (karte.getFarbe().equals("Schwarz")) {
             handkarten.get(4).add(karte);
             HandkartenSortierung.sort(handkarten.get(4));
-        }
+        }*/
     }
 
     public void ablegen(Karte karte) {
-        if (karte.getFarbe().equals("Rot")) {
+        int farbIndex = Karte.farbID.get(karte.getFarbe());
+        handkarten.get(farbIndex).remove(karte);
+        /*if (karte.getFarbe().equals("Rot")) {
             handkarten.get(0).remove(karte);
         }
         if (karte.getFarbe().equals("Blau")) {
@@ -52,7 +56,7 @@ public class Spieler {
         }
         if (karte.getFarbe().equals("Schwarz")) {
             handkarten.get(4).remove(karte);
-        }
+        }*/
     }
 
     public boolean hatKarten(){
