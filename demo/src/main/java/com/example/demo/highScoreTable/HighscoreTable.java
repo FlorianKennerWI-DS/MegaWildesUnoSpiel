@@ -65,7 +65,7 @@ public class HighscoreTable {
             alleDurschnittsPositionen.put(name, eintelneDurchschnittsPosition);
         }
     }
-
+/*
     public static void spielAbspeichern(ArrayList<Spieler> spielende){
         Path meineDatei = Paths.get("./GameData.csv");
         int Position = 0;
@@ -90,5 +90,5 @@ public class HighscoreTable {
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
+    }*/
 }

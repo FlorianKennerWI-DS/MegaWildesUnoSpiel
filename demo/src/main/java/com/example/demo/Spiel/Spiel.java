@@ -21,10 +21,10 @@ public class Spiel {
     }
 
     private void generiereSpieler(int spielerAnzahl) {
-        menschlicherSpieler = new Spieler();
+        menschlicherSpieler = new Spieler("test");
         spielende.add(menschlicherSpieler);
         for (int i = 0; i < spielerAnzahl; i++) {
-            spielende.add(new Spieler()); //add computergegner
+            spielende.add(new Spieler("com")); //add computergegner
         }
     }
 
@@ -44,7 +44,7 @@ public class Spiel {
         }
         return false;
     }
-
+/*
     public void spielen () {
         while (jemandIstFertig()){
             Spieler amZug = spielende.get(derzeitigerSpieler);
@@ -69,5 +69,5 @@ public class Spiel {
     public static void main (String[] args) {
         Spiel spiel = new Spiel(2);
         spiel.spielen();
-    }
+    }*/
 }
