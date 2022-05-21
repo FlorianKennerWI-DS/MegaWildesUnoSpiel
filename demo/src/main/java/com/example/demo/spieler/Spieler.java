@@ -30,13 +30,12 @@ public class Spieler {
     }
 
     public void ziehen(Karte karte) {
-        if (!nochNeuereHandkarten.get(karte.getFarbe()).containsKey(karte.getZahl())){
-            nochNeuereHandkarten.get(karte.getFarbe()).put(karte.getZahl(),new ArrayList<Karte>() );
+        if (!nochNeuereHandkarten.get(karte.getFarbe()).containsKey(karte.getZahl())) {
+            nochNeuereHandkarten.get(karte.getFarbe()).put(karte.getZahl(), new ArrayList<Karte>());
             nochNeuereHandkarten.get(karte.getFarbe()).get(karte.getZahl()).add(karte);
         }
-        else{
             nochNeuereHandkarten.get(karte.getFarbe()).get(karte.getZahl()).add(karte);
-        }
+
     }
 
     public Karte ablegen(Karte karte) {
@@ -64,12 +63,12 @@ public class Spieler {
     public boolean hatKarten(){
         for (var entry : nochNeuereHandkarten.entrySet()){
             for (var secondEntry : entry.getValue().entrySet()){
-                if (secondEntry.getValue().size() == 0){
-                    return false;
+                if (secondEntry.getValue().size() != 0){
+                    return true;
                 }
             }
         }
-        return  true;
+        return  false;
     }
 }
 
