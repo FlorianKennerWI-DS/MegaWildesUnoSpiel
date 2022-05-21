@@ -1,14 +1,9 @@
 package com.example.demo.spieler;
 
-
 import com.example.demo.Karten.Karte;
-import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import com.example.demo.spieler.HandkartenSortierung;
 
-import java.util.ArrayList;
-import com.example.demo.Karten.Karte;
 public class Spieler {
     //Handkarten aus Klasse Karten
     ArrayList<ArrayList<Karte>> handkarten = new ArrayList<ArrayList<Karte>>();
@@ -29,28 +24,53 @@ public class Spieler {
     }
 
     public void ziehen(Karte karte) {   //Zahlen mit Sortieralgorithmen
-        if (karte.getFarbe().equals("Rot")) {
+        int farbIndex = Karte.farbID.get(karte.getFarbe());
+        handkarten.get(farbIndex).add(karte);
+        //HandkartenSortierung.sort(handkarten.get(farbIndex));
+        /*if (karte.getFarbe().equals("Rot")) {
             handkarten.get(0).add(karte);
+            HandkartenSortierung.sort(handkarten.get(0));
         }
         if (karte.getFarbe().equals("Blau")) {
             handkarten.get(1).add(karte);
+            HandkartenSortierung.sort(handkarten.get(1));
         }
         if (karte.getFarbe().equals("Gelb")) {
             handkarten.get(2).add(karte);
+            HandkartenSortierung.sort(handkarten.get(2));
         }
         if (karte.getFarbe().equals("Gruen")) {
             handkarten.get(3).add(karte);
+            HandkartenSortierung.sort(handkarten.get(3));
         }
         if (karte.getFarbe().equals("Schwarz")) {
             handkarten.get(4).add(karte);
-        }
+            HandkartenSortierung.sort(handkarten.get(4));
+        }*/
     }
 
     public void ablegen(Karte karte) {
-        //handkarten.remove(karte.getFarbe(), karte);
-        if (karte.getFarbe().equals("Rot")) {
-            handkarten.remove(karte);
+        int farbIndex = Karte.farbID.get(karte.getFarbe());
+        handkarten.get(farbIndex).remove(karte);
+        /*if (karte.getFarbe().equals("Rot")) {
+            handkarten.get(0).remove(karte);
         }
+        if (karte.getFarbe().equals("Blau")) {
+            handkarten.get(1).remove(karte);
+        }
+        if (karte.getFarbe().equals("Gelb")) {
+            handkarten.get(2).remove(karte);
+        }
+        if (karte.getFarbe().equals("Gruen")) {
+            handkarten.get(3).remove(karte);
+        }
+        if (karte.getFarbe().equals("Schwarz")) {
+            handkarten.get(4).remove(karte);
+        }*/
+    }
+
+    public String printKarten() {
+        return handkarten.toString();
     }
 
     public boolean hatKarten(){
@@ -60,4 +80,4 @@ public class Spieler {
         else return true;
     }
 }
-}
+
