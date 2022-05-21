@@ -20,36 +20,35 @@ public class HighscoreTable {
         String zeile = null;
         Path meineDatei = Paths.get("./GameData.csv");
         try {
-            // check if file with highscoredata exists, if not create it and write first line
-            if (!Files.exists(meineDatei)){
-                Files.createFile(meineDatei);
-                BufferedWriter initialerWriter = Files.newBufferedWriter(meineDatei);
-                initialerWriter.write("Name,Position");
-                initialerWriter.close();
+        // check if file with highscoredata exists, if not create it and write first line
+        if (!Files.exists(meineDatei)){
+            Files.createFile(meineDatei);
+            BufferedWriter initialerWriter = Files.newBufferedWriter(meineDatei);
+            initialerWriter.write("Name,Position");
+            initialerWriter.close();
+        }
+        BufferedReader meinReader = Files.newBufferedReader(meineDatei);
+        meinReader.readLine();
+        zeile = meinReader.readLine();
+
+        while (zeile != null){
+            StringTokenizer zeilenToken = new StringTokenizer(zeile, ",");
+            String spielerName = zeilenToken.nextToken();
+            int position = Integer.parseInt(zeilenToken.nextToken());
+
+            // check if name already exists in alleSpieler
+            if (alleSpieler.containsKey(spielerName)){
+                alleSpieler.get(spielerName).add(position);
             }
-            BufferedReader meinReader = Files.newBufferedReader(meineDatei);
-            meinReader.readLine();
+
+            // else add name as key and position as value
+            else {
+                alleSpieler.put(spielerName, new ArrayList<>());
+                alleSpieler.get(spielerName).add(position);
+            }
             zeile = meinReader.readLine();
-
-            while (zeile != null){
-                StringTokenizer zeilenToken = new StringTokenizer(zeile, ",");
-                String spielerName = zeilenToken.nextToken();
-                int position = Integer.parseInt(zeilenToken.nextToken());
-
-                // check if name already exists in alleSpieler
-                if (alleSpieler.containsKey(spielerName)){
-                    alleSpieler.get(spielerName).add(position);
-                }
-
-                // else add name as key and position as value
-                else {
-                    alleSpieler.put(spielerName, new ArrayList<>());
-                    alleSpieler.get(spielerName).add(position);
-                }
-                zeile = meinReader.readLine();
-            }
-            meinReader.close();
-        } catch (Exception e) {
+        }
+        meinReader.close();}catch (Exception e){
             e.printStackTrace();
         }
 
