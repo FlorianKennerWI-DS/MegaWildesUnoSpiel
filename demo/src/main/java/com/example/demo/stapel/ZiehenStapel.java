@@ -20,7 +20,7 @@ public class ZiehenStapel {
 
 
 
-    public static Stack<Karte> generieren(){
+    public void generieren(){
         ArrayList<Karte> alleKarten = new ArrayList<>(){};
 
         alleKarten.add(new Karte("Blau", 0));
@@ -112,12 +112,7 @@ public class ZiehenStapel {
             gemischterStapel.push(alleKarten.get(index));
             alleKarten.remove(index);
         }
-        return gemischterStapel;
-
-
-
-
-
+        kartenStack =  gemischterStapel;
     }
 }
 

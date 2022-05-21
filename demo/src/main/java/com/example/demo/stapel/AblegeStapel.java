@@ -1,16 +1,20 @@
 package com.example.demo.stapel;
-
+import com.example.demo.Karten.Karte;
 public class AblegeStapel {
     private int count;
-    private String obersteKarte;
+    private Karte obersteKarte;
     private String kompatibleFarbe;
-    private String kompatibleZahl;
+
+    public Karte getObersteKarte() {
+        return obersteKarte;
+    }
+    private int kompatibleZahl;
 
     public void higherCount() {
         this.count ++;
     }
 
-    public void setObersteKarte(String obersteKarte) {
+    public void setObersteKarte(Karte obersteKarte) {
         this.obersteKarte = obersteKarte;
     }
 
@@ -18,15 +22,15 @@ public class AblegeStapel {
         this.kompatibleFarbe = kompatibleFarbe;
     }
 
-    public void setKompatibleZahl(String kompatibleZahl) {
+    public void setKompatibleZahl(int kompatibleZahl) {
         this.kompatibleZahl = kompatibleZahl;
     }
 
 
-    public void ablegen(){
+    public void ablegen(Karte abgelegteKarte){
         higherCount();
-
-        //TODO:
-        // kompatible Farbe und Zahl hier ändern
+        setObersteKarte(abgelegteKarte);
+        setKompatibleZahl(abgelegteKarte.getZahl());
+        setKompatibleFarbe(abgelegteKarte.getFarbe());
     }
 }
