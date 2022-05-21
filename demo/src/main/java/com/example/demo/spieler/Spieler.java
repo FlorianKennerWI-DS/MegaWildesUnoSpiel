@@ -2,46 +2,48 @@ package com.example.demo.spieler;
 
 import com.example.demo.Karten.Karte;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.example.demo.spieler.HandkartenSortierung;
 
 public class Spieler {
+    String name;
     //Handkarten aus Klasse Karten
     ArrayList<ArrayList<Karte>> handkarten = new ArrayList<ArrayList<Karte>>();
 
-    public Spieler () {
+    HashMap<String, ArrayList<Karte>> neueHandKarten = new HashMap<>();
+    HashMap<String, HashMap<Integer, ArrayList<Karte>>> nochNeuereHandkarten = new HashMap<String, HashMap<Integer, ArrayList<Karte>>>();
+
+    public Spieler (String name) {
+        this.name = name;
         for (int i = 0; i<5;i++) {
             handkarten.add(new ArrayList<Karte>());
         }
+
+        nochNeuereHandkarten.put("Blau", new HashMap<Integer, ArrayList<Karte>>());
+        nochNeuereHandkarten.put("Gruen", new HashMap<Integer, ArrayList<Karte>>());
+        nochNeuereHandkarten.put("Rot", new HashMap<Integer, ArrayList<Karte>>());
+        nochNeuereHandkarten.put("Gelb", new HashMap<Integer, ArrayList<Karte>>());
+        nochNeuereHandkarten.put("Schwarz", new HashMap<Integer, ArrayList<Karte>>());
+
+
     }
 
-    public void ziehen(Karte karte) {   //Zahlen mit Sortieralgorithmen
-        int farbIndex = Karte.farbID.get(karte.getFarbe());
-        handkarten.get(farbIndex).add(karte);
-        /*if (karte.getFarbe().equals("Rot")) {
-            handkarten.get(0).add(karte);
-            HandkartenSortierung.sort(handkarten.get(0));
+    public void ziehen(Karte karte) {
+        if (!nochNeuereHandkarten.get(karte.getFarbe()).containsKey(karte.getZahl())){
+            nochNeuereHandkarten.get(karte.getFarbe()).put(karte.getZahl(),new ArrayList<Karte>() );
+            nochNeuereHandkarten.get(karte.getFarbe()).get(karte.getZahl()).add(karte);
         }
-        if (karte.getFarbe().equals("Blau")) {
-            handkarten.get(1).add(karte);
-            HandkartenSortierung.sort(handkarten.get(1));
+        else{
+            nochNeuereHandkarten.get(karte.getFarbe()).get(karte.getZahl()).add(karte);
         }
-        if (karte.getFarbe().equals("Gelb")) {
-            handkarten.get(2).add(karte);
-            HandkartenSortierung.sort(handkarten.get(2));
-        }
-        if (karte.getFarbe().equals("Gruen")) {
-            handkarten.get(3).add(karte);
-            HandkartenSortierung.sort(handkarten.get(3));
-        }
-        if (karte.getFarbe().equals("Schwarz")) {
-            handkarten.get(4).add(karte);
-            HandkartenSortierung.sort(handkarten.get(4));
-        }*/
     }
 
-    public void ablegen(Karte karte) {
-        int farbIndex = Karte.farbID.get(karte.getFarbe());
-        handkarten.get(farbIndex).remove(karte);
+    public Karte ablegen(Karte karte) {
+        Karte abgelegteKarte = nochNeuereHandkarten.get(karte.getFarbe()).get(karte.getZahl()).get(0);
+        nochNeuereHandkarten.get(karte.getFarbe()).get(karte.getZahl()).remove(0);
+        return abgelegteKarte;
+    }
         /*if (karte.getFarbe().equals("Rot")) {
             handkarten.get(0).remove(karte);
         }
@@ -57,13 +59,17 @@ public class Spieler {
         if (karte.getFarbe().equals("Schwarz")) {
             handkarten.get(4).remove(karte);
         }*/
-    }
+
 
     public boolean hatKarten(){
-        if (handkarten.size() == 0){
-            return false;
+        for (var entry : nochNeuereHandkarten.entrySet()){
+            for (var secondEntry : entry.getValue().entrySet()){
+                if (secondEntry.getValue().size() == 0){
+                    return false;
+                }
+            }
         }
-        else return true;
+        return  true;
     }
 }
 
