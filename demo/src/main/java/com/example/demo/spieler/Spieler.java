@@ -14,6 +14,10 @@ public class Spieler {
     HashMap<String, ArrayList<Karte>> neueHandKarten = new HashMap<>();
     HashMap<String, HashMap<Integer, ArrayList<Karte>>> nochNeuereHandkarten = new HashMap<String, HashMap<Integer, ArrayList<Karte>>>();
 
+    public String getName() {
+        return name;
+    }
+
     public Spieler (String name) {
         this.name = name;
         for (int i = 0; i<5;i++) {
@@ -72,5 +76,16 @@ public class Spieler {
         }
         return  false;
     }
-}
+
+    public int kartenZaehlen(){
+        int anzahlKarten = 0;
+        for (var entry : nochNeuereHandkarten.entrySet()){
+            for (var secondEntry : entry.getValue().entrySet()){
+                if (secondEntry.getValue().size() != 0){
+                    anzahlKarten = anzahlKarten + secondEntry.getValue().size();
+                }
+            }
+        }
+        return anzahlKarten;
+}}
 
