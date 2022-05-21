@@ -1,24 +1,29 @@
-package com.example.demo;
+package com.example.demo.Spiel;
 
-import com.example.demo.Spiel.Spiel;
-import com.example.demo.player.Card;
+import com.example.demo.GameApplication;
 import com.example.demo.player.CardVisible;
 import com.example.demo.player.Hand;
+import com.example.demo.spieler.Spieler;
+import com.example.demo.stapel.AblegeStapel;
+import com.example.demo.stapel.ZiehenStapel;
 import javafx.application.Application;
-import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class GameApplication extends Application {
+public class SpielApplication extends Application {
 
     private HBox playerCards = new HBox(20);
     private HBox ablegestapel = new HBox(20);
@@ -40,6 +45,13 @@ public class GameApplication extends Application {
         return root;
     }
 
+    private void startGame(Event event) {
+        Stage stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
+        Spiel spiel = new Spiel(2);
+        System.out.println(spiel.menschlicherSpieler.printKarten());
+        stage.setScene(new Scene(createGamePane(), 600 ,420));
+    }
+
     private Parent createStartPane() {
         Pane startRoot = new AnchorPane();
         MenuButton amountOfPlayers = new MenuButton("Select Amount of Players!");
@@ -54,8 +66,7 @@ public class GameApplication extends Application {
 
         Button startButton = new Button("Start!");
         startButton.setOnAction((event) -> {
-            Stage stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(createGamePane(), 600 ,420));
+            startGame(event);
         });
 
         startRoot.getChildren().addAll(amountOfPlayers, startButton);
@@ -63,7 +74,6 @@ public class GameApplication extends Application {
     }
     @Override
     public void start(Stage stage) throws IOException {
-        Spiel spiel = new Spiel(2);
         Scene scene = new Scene(createStartPane(), 600, 420);
         stage.setTitle("UNO");
         stage.setScene(scene);
