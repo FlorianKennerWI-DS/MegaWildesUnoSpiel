@@ -6,7 +6,10 @@ public class Testing {
     public static void main(String[] args) {
         Spieler s1 = new Spieler("Florian");
         s1.ziehen(new Karte("Blau", 2));
-        s1.ziehen(new Karte("Blau", 2));
+        s1.ziehen(new Karte("Blau", 1));
+        s1.ziehen(new Karte("Gruen", 3));
+        s1.ziehen(new Karte("Blau", 4));
+        s1.ziehen(new Karte("Gruen", 1));
         System.out.println(s1.getNochNeuereHandkarten());
         System.out.println(s1.hatKarten());
 
@@ -17,6 +20,8 @@ public class Testing {
         System.out.println(s1.getNochNeuereHandkarten());
         System.out.println(s1.hatKarten());
 
+        s1.handKartenToArrayList();
+        System.out.println(s1.handkartenArrayList);
         // Testing the Computer
 
         Computer c1 = new Computer(1);
