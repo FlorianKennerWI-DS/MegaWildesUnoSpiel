@@ -4,6 +4,10 @@ public class AblegeStapel {
     private int count;
     private Karte obersteKarte;
     private String kompatibleFarbe;
+
+    public Karte getObersteKarte() {
+        return obersteKarte;
+    }
     private int kompatibleZahl;
 
     public void higherCount() {
@@ -11,25 +15,7 @@ public class AblegeStapel {
     }
 
     public void setObersteKarte(Karte obersteKarte) {
-        this.obersteKarte = obersteKarte;
-    }
-
-    public void setKompatibleFarbe(String kompatibleFarbe) {
-        this.kompatibleFarbe = kompatibleFarbe;
-    }
-
-    public void setKompatibleZahl(int kompatibleZahl) {
-        this.kompatibleZahl = kompatibleZahl;
-    }
-
-
-    public void ablegen(Karte abgelegteKarte){
         higherCount();
-
-        //TODO:
-        // kompatible Farbe und Zahl hier ändern
-        setObersteKarte(abgelegteKarte);
-        setKompatibleZahl(abgelegteKarte.getZahl());
-        setKompatibleFarbe(abgelegteKarte.getFarbe());
+        this.obersteKarte = obersteKarte;
     }
 }
