@@ -1,7 +1,7 @@
 package com.example.demo.spieler;
 
 import java.util.ArrayList;
-import com.example.demo.Karten.Karte;
+import com.example.demo.karten.Karte;
 
 public class HandkartenSortierung {
 

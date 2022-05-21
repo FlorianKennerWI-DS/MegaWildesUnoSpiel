@@ -1,7 +1,4 @@
-package com.example.demo.Karten;
-
-import java.util.HashMap;
-import java.util.Random;
+package com.example.demo.karten;
 
 public class Karte {
 

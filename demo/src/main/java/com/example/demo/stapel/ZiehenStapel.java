@@ -1,8 +1,7 @@
 package com.example.demo.stapel;
 
-import com.example.demo.Karten.Karte;
-import com.example.demo.StapelLeer.Stapelleer;
-
+import com.example.demo.karten.Karte;
+import com.example.demo.stapelLeer.StapelLeer;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
 import java.util.Stack;
@@ -11,10 +10,10 @@ public class ZiehenStapel {
     public static Stack<Karte> kartenStack = new Stack<>();
     public int laenge;
 
-    public Karte nehmen() throws Stapelleer {
+    public Karte nehmen() throws StapelLeer {
 
             if (laenge == 0) {
-                throw new Stapelleer("Stapel leer");
+                throw new StapelLeer("Stapel leer");
             } else
                 return kartenStack.pop();
         }
@@ -103,7 +102,6 @@ public class ZiehenStapel {
         alleKarten.add(new Karte("Rot", 8));
         alleKarten.add(new Karte("Rot", 9));
         alleKarten.add(new Karte("Rot", 9));
-
 
         int kartenAnzahl = alleKarten.size();
         Stack<Karte> gemischterStapel = new Stack<>();

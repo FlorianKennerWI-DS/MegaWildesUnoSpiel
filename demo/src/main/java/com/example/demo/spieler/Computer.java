@@ -1,6 +1,5 @@
 package com.example.demo.spieler;
-import com.example.demo.Karten.Karte;
-import com.example.demo.stapel.AblegeStapel;
+import com.example.demo.karten.Karte;
 
 public class Computer extends Spieler {
 
@@ -13,14 +12,14 @@ public class Computer extends Spieler {
         boolean passendeFarbe = false;
         boolean passendeZahl = false;
         Karte passendeKarte = null ;
-        for (var entry : nochNeuereHandkarten.get(obersteKarte.getFarbe()).entrySet()){
+        for (var entry : handkarten.get(obersteKarte.getFarbe()).entrySet()){
             if (entry.getValue().size() > 0){
                 passendeFarbe = true;
                 passendeKarte = entry.getValue().get(0);
             }
         }
 
-        for (var entry : nochNeuereHandkarten.entrySet()){
+        for (var entry : handkarten.entrySet()){
             for (var secondEntry : entry.getValue().entrySet()){
                 if (secondEntry.getValue().get(0).getZahl() == obersteKarte.getZahl()){
                     passendeZahl = true;

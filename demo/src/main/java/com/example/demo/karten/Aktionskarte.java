@@ -1,4 +1,4 @@
-package com.example.demo.Karten;
+package com.example.demo.karten;
 
 public class Aktionskarte extends Karte  {
 

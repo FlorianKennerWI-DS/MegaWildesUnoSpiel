@@ -1,15 +1,10 @@
 package com.example.demo.highScoreTable;
 
-import com.example.demo.spieler.Computer;
-import com.example.demo.spieler.Spieler;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public class HighscoreTable {
@@ -17,7 +12,7 @@ public class HighscoreTable {
     private static HashMap<String, Integer> alleDurschnittsPositionen = new HashMap<String, Integer>();
 
     public static void einlesen() {
-        String zeile = null;
+        String zeile;
         Path meineDatei = Paths.get("./GameData.csv");
         try {
         // check if file with highscoredata exists, if not create it and write first line
@@ -61,8 +56,8 @@ public class HighscoreTable {
             for (int aktuellerPlatz : entry.getValue()){
                 positionsSumme = positionsSumme + aktuellerPlatz;
             }
-            int eintelneDurchschnittsPosition = positionsSumme / entry.getValue().size();
-            alleDurschnittsPositionen.put(name, eintelneDurchschnittsPosition);
+            int einzelneDurchschnittsPosition = positionsSumme / entry.getValue().size();
+            alleDurschnittsPositionen.put(name, einzelneDurchschnittsPosition);
         }
     }
 /*

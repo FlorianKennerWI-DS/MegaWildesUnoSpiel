@@ -1,15 +1,13 @@
-package com.example.demo.Spiel;
+package com.example.demo.spiel;
 
 import com.example.demo.spieler.Computer;
-import com.example.demo.StapelLeer.Stapelleer;
 import com.example.demo.spieler.Spieler;
 import com.example.demo.stapel.AblegeStapel;
 import com.example.demo.stapel.ZiehenStapel;
-
 import java.util.ArrayList;
 
 public class Spiel {
-    ArrayList<Spieler> spielende = new ArrayList<Spieler>();
+    ArrayList<Spieler> spielerListe = new ArrayList<Spieler>();
     AblegeStapel ablegeStapel = new AblegeStapel();
     ZiehenStapel ziehenStapel = new ZiehenStapel();
     Spieler menschlicherSpieler;
@@ -23,27 +21,23 @@ public class Spiel {
     }
 
     private void generiereSpieler(int spielerAnzahl) {
-        menschlicherSpieler = new Spieler("Mensch");
-        spielende.add(menschlicherSpieler);
+        menschlicherSpieler = new Spieler();
+        spielerListe.add(menschlicherSpieler);
         for (int i = 0; i < spielerAnzahl; i++) {
-            spielende.add(new Computer(i)); //add computergegner
+            spielerListe.add(new Spieler()); //add computergegner
         }
     }
 
     private void kartenAusteilen() {
-        for (Spieler spieler:spielende) {
+        for (Spieler spieler:spielerListe) {
             for (int j =0; j<7;j++) {
-                try {
-                    spieler.ziehen(ziehenStapel.nehmen());
-                } catch (Stapelleer e) {
-                    System.out.println(e.getMessage());
-                }
+                spieler.ziehen(ziehenStapel.nehmen());
             }
         }
     }
 
     private boolean jemandIstFertig() {
-        for (Spieler spieler:spielende) {
+        for (Spieler spieler:spielerListe) {
             if (!spieler.hatKarten()){
                 return true;
             }
@@ -51,18 +45,14 @@ public class Spiel {
         return false;
     }
 
-    /*public void spielen () {
+    public void spielen () {
         while (jemandIstFertig()){
-            Spieler amZug = spielende.get(derzeitigerSpieler);
+            Spieler amZug = spielerListe.get(derzeitigerSpieler);
             if (amZug instanceof Computer) {
                 //computer.waehleAktion()
-                try{if ("ziehen".equals(amZug.waehleAktion())) { //Typ casten?
+                if ("ziehen".equals(amZug.waehleAktion())) { //Typ casten?
                     amZug.ziehen(ziehenStapel.nehmen());
-                }
-                } catch (Stapelleer e) {
-                    System.out.println(e.getMessage());
-                }
-                }else {
+                } else {
                     ablegeStapel.ablegen(amZug.ablegen()); //TODO spieler.ablegen returned karte
             } else {
                     //enableActions()
@@ -74,10 +64,10 @@ public class Spiel {
 
         }
     }
-    }*/
+    }
 
     public static void main (String[] args) {
         Spiel spiel = new Spiel(2);
-        //spiel.spielen();
+        spiel.spielen();
     }
 }
