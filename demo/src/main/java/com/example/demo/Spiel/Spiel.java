@@ -1,5 +1,6 @@
 package com.example.demo.Spiel;
 
+import com.example.demo.spieler.Computer;
 import com.example.demo.spieler.Spieler;
 import com.example.demo.stapel.AblegeStapel;
 import com.example.demo.stapel.ZiehenStapel;
@@ -21,10 +22,10 @@ public class Spiel {
     }
 
     private void generiereSpieler(int spielerAnzahl) {
-        menschlicherSpieler = new Spieler("test");
+        menschlicherSpieler = new Spieler("Mensch");
         spielende.add(menschlicherSpieler);
         for (int i = 0; i < spielerAnzahl; i++) {
-            spielende.add(new Spieler("com")); //add computergegner
+            spielende.add(new Computer(i)); //add computergegner
         }
     }
 
@@ -44,8 +45,8 @@ public class Spiel {
         }
         return false;
     }
-/*
-    public void spielen () {
+
+    /*public void spielen () {
         while (jemandIstFertig()){
             Spieler amZug = spielende.get(derzeitigerSpieler);
             if (amZug instanceof Computer) {
@@ -64,10 +65,10 @@ public class Spiel {
 
         }
     }
-    }
+    }*/
 
     public static void main (String[] args) {
         Spiel spiel = new Spiel(2);
-        spiel.spielen();
-    }*/
+        //spiel.spielen();
+    }
 }
