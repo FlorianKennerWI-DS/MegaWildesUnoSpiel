@@ -1,5 +1,6 @@
 package com.example.demo.Spiel;
 
+import com.example.demo.StapelLeer.Stapelleer;
 import com.example.demo.spieler.Spieler;
 import com.example.demo.stapel.AblegeStapel;
 import com.example.demo.stapel.ZiehenStapel;
@@ -50,9 +51,13 @@ public class Spiel {
             Spieler amZug = spielende.get(derzeitigerSpieler);
             if (amZug instanceof Computer) {
                 //computer.waehleAktion()
-                if ("ziehen".equals(amZug.waehleAktion())) { //Typ casten?
+                try{if ("ziehen".equals(amZug.waehleAktion())) { //Typ casten?
                     amZug.ziehen(ziehenStapel.nehmen());
-                } else {
+                }
+                } catch (Stapelleer e) {
+                    System.out.println(e.getMessage());
+                }
+                }else {
                     ablegeStapel.ablegen(amZug.ablegen()); //TODO spieler.ablegen returned karte
             } else {
                     //enableActions()
