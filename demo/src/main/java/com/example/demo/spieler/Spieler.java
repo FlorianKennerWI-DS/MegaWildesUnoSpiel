@@ -32,7 +32,6 @@ public class Spieler {
     public void ziehen(Karte karte) {
         if (!nochNeuereHandkarten.get(karte.getFarbe()).containsKey(karte.getZahl())) {
             nochNeuereHandkarten.get(karte.getFarbe()).put(karte.getZahl(), new ArrayList<Karte>());
-            nochNeuereHandkarten.get(karte.getFarbe()).get(karte.getZahl()).add(karte);
         }
             nochNeuereHandkarten.get(karte.getFarbe()).get(karte.getZahl()).add(karte);
 
@@ -59,6 +58,9 @@ public class Spieler {
             handkarten.get(4).remove(karte);
         }*/
 
+    public HashMap<String, HashMap<Integer, ArrayList<Karte>>> getNochNeuereHandkarten() {
+        return nochNeuereHandkarten;
+    }
 
     public boolean hatKarten(){
         for (var entry : nochNeuereHandkarten.entrySet()){

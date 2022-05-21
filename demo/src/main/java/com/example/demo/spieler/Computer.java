@@ -10,10 +10,35 @@ public class Computer extends Spieler {
     }
 
     public Karte karteFinden(Karte obersteKarte) throws Exception {
+        boolean passendeFarbe = false;
+        boolean passendeZahl = false;
+        Karte passendeKarte = null ;
+        for (var entry : nochNeuereHandkarten.get(obersteKarte.getFarbe()).entrySet()){
+            if (entry.getValue().size() > 0){
+                passendeFarbe = true;
+                passendeKarte = entry.getValue().get(0);
+            }
+        }
+
+        for (var entry : nochNeuereHandkarten.entrySet()){
+            for (var secondEntry : entry.getValue().entrySet()){
+                if (secondEntry.getValue().get(0).getZahl() == obersteKarte.getZahl()){
+                    passendeZahl = true;
+                    passendeKarte = secondEntry.getValue().get(0);
+                }
+            }
+        }
+        if (!passendeFarbe && !passendeZahl){
+            throw new Exception();
+        }
+        return ablegen(passendeKarte);
+
+        /**
+
         if (!nochNeuereHandkarten.get(obersteKarte.getFarbe()).containsKey(obersteKarte.getZahl())) {
             throw new Exception();
         }
-        if (nochNeuereHandkarten.get(obersteKarte.getZahl()).containsKey(obersteKarte.getFarbe()) && nochNeuereHandkarten.get(obersteKarte.getFarbe()).get(obersteKarte.getZahl()).size() == 0) {
+        else if (nochNeuereHandkarten.get(obersteKarte.getFarbe()).get(obersteKarte.getZahl()).size() == 0) {
             throw new Exception();
         }
         return ablegen(nochNeuereHandkarten.get(obersteKarte.getFarbe()).get(obersteKarte.getZahl()).get(0));
@@ -22,8 +47,8 @@ public class Computer extends Spieler {
         //    ablegen(handkarten.get()); }
         // macht es hier mehr Sinn die Farbe und dann evtl Zahl der obersten Karte abzufragen oder
         // die Karte mit der kompatibleFarbe und kompatibleZahl aus AblegeStapel zu vergleichen?
-    }
-}
+    }**/
+}}
     /**
     public Karte ablegen() throws Exception{
         Karte abgelegteKarte = null;
