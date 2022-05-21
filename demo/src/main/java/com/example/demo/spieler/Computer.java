@@ -1,11 +1,58 @@
 package com.example.demo.spieler;
+import com.example.demo.Karten.Karte;
+import com.example.demo.stapel.AblegeStapel;
 
 public class Computer extends Spieler {
 
-    public void karteFinden() {
-        // alle durchgehen
-        if(obersteKarte.getFarbe().equals(handkarten.firstKey())) {
-            ablegen(handkarten.get());
+
+    public Computer(int i) {
+        super("com" + Integer.toString(i));
+    }
+
+    public Karte karteFinden(Karte obersteKarte) throws Exception {
+        boolean passendeFarbe = false;
+        boolean passendeZahl = false;
+        Karte passendeKarte = null ;
+        for (var entry : nochNeuereHandkarten.get(obersteKarte.getFarbe()).entrySet()){
+            if (entry.getValue().size() > 0){
+                passendeFarbe = true;
+                passendeKarte = entry.getValue().get(0);
+            }
         }
+
+        for (var entry : nochNeuereHandkarten.entrySet()){
+            for (var secondEntry : entry.getValue().entrySet()){
+                if (secondEntry.getValue().get(0).getZahl() == obersteKarte.getZahl()){
+                    passendeZahl = true;
+                    passendeKarte = secondEntry.getValue().get(0);
+                }
+            }
+        }
+        if (!passendeFarbe && !passendeZahl){
+            throw new Exception();
+        }
+        return ablegen(passendeKarte);
+
+        /**
+
+        if (!nochNeuereHandkarten.get(obersteKarte.getFarbe()).containsKey(obersteKarte.getZahl())) {
+            throw new Exception();
+        }
+        else if (nochNeuereHandkarten.get(obersteKarte.getFarbe()).get(obersteKarte.getZahl()).size() == 0) {
+            throw new Exception();
+        }
+        return ablegen(nochNeuereHandkarten.get(obersteKarte.getFarbe()).get(obersteKarte.getZahl()).get(0));
+        // alle durchgehen
+        //if(AblegeStapel.getObersteKarte().getFarbe().equals(handkarten.get(0))) {
+        //    ablegen(handkarten.get()); }
+        // macht es hier mehr Sinn die Farbe und dann evtl Zahl der obersten Karte abzufragen oder
+        // die Karte mit der kompatibleFarbe und kompatibleZahl aus AblegeStapel zu vergleichen?
+    }**/
+}}
+    /**
+    public Karte ablegen() throws Exception{
+        Karte abgelegteKarte = null;
+        if (handkarten.get())
     }
 }
+*/

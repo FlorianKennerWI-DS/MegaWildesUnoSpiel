@@ -1,57 +1,76 @@
 package com.example.demo.spieler;
 
-
 import com.example.demo.Karten.Karte;
-import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.HashMap;
 
-import java.util.ArrayList;
-import com.example.demo.Karten.Karte;
+import com.example.demo.spieler.HandkartenSortierung;
+
 public class Spieler {
+    String name;
     //Handkarten aus Klasse Karten
-    ArrayList<Karte> rot = new ArrayList<Karte>();
-    ArrayList<Karte> blau = new ArrayList<Karte>();
-    ArrayList<Karte> gelb = new ArrayList<Karte>();
-    ArrayList<Karte> gruen = new ArrayList<Karte>();
-    ArrayList<Karte> schwarz = new ArrayList<Karte>();
     ArrayList<ArrayList<Karte>> handkarten = new ArrayList<ArrayList<Karte>>();
-    handkarten.add(schwarz);
-    public void ziehen(Karte karte) {   //Zahlen mit Sortieralgorithmen
-        if (karte.getFarbe().equals("Rot")) {
-            handkarten.get(rot).add(karte);
+
+    HashMap<String, ArrayList<Karte>> neueHandKarten = new HashMap<>();
+    HashMap<String, HashMap<Integer, ArrayList<Karte>>> nochNeuereHandkarten = new HashMap<String, HashMap<Integer, ArrayList<Karte>>>();
+
+    public Spieler (String name) {
+        this.name = name;
+        for (int i = 0; i<5;i++) {
+            handkarten.add(new ArrayList<Karte>());
         }
-        if (karte.getFarbe().equals("Blau")) {
-            blau.add(karte.getZahl());
-            handkarten.add(blau);
-        }
-        if (karte.getFarbe().equals("Gelb")) {
-            gelb.add(karte.getZahl());
-            handkarten.add(gelb);
-        }
-        if (karte.getFarbe().equals("Gruen")) {
-            gruen.add(karte.getZahl());
-            handkarten.add(gruen);
-        }
-        if (karte.getFarbe().equals("Schwarz")) {
-            schwarz.add(karte.getZahl());
-            handkarten.add(schwarz);
-        }
+
+        nochNeuereHandkarten.put("Blau", new HashMap<Integer, ArrayList<Karte>>());
+        nochNeuereHandkarten.put("Gruen", new HashMap<Integer, ArrayList<Karte>>());
+        nochNeuereHandkarten.put("Rot", new HashMap<Integer, ArrayList<Karte>>());
+        nochNeuereHandkarten.put("Gelb", new HashMap<Integer, ArrayList<Karte>>());
+        nochNeuereHandkarten.put("Schwarz", new HashMap<Integer, ArrayList<Karte>>());
+
+
     }
 
-    public void ablegen(Karte karte) {
-        //handkarten.remove(karte.getFarbe(), karte);
-        if (karte.getFarbe().equals("Rot")) {
-            handkarten.get(rot).remove(karte);
+    public void ziehen(Karte karte) {
+        if (!nochNeuereHandkarten.get(karte.getFarbe()).containsKey(karte.getZahl())) {
+            nochNeuereHandkarten.get(karte.getFarbe()).put(karte.getZahl(), new ArrayList<Karte>());
         }
+            nochNeuereHandkarten.get(karte.getFarbe()).get(karte.getZahl()).add(karte);
+
+    }
+
+    public Karte ablegen(Karte karte) {
+        Karte abgelegteKarte = nochNeuereHandkarten.get(karte.getFarbe()).get(karte.getZahl()).get(0);
+        nochNeuereHandkarten.get(karte.getFarbe()).get(karte.getZahl()).remove(0);
+        return abgelegteKarte;
+    }
+        /*if (karte.getFarbe().equals("Rot")) {
+            handkarten.get(0).remove(karte);
+        }
+        if (karte.getFarbe().equals("Blau")) {
+            handkarten.get(1).remove(karte);
+        }
+        if (karte.getFarbe().equals("Gelb")) {
+            handkarten.get(2).remove(karte);
+        }
+        if (karte.getFarbe().equals("Gruen")) {
+            handkarten.get(3).remove(karte);
+        }
+        if (karte.getFarbe().equals("Schwarz")) {
+            handkarten.get(4).remove(karte);
+        }*/
+
+    public HashMap<String, HashMap<Integer, ArrayList<Karte>>> getNochNeuereHandkarten() {
+        return nochNeuereHandkarten;
     }
 
     public boolean hatKarten(){
-        if (handkarten.size() == 0){
-            return false;
+        for (var entry : nochNeuereHandkarten.entrySet()){
+            for (var secondEntry : entry.getValue().entrySet()){
+                if (secondEntry.getValue().size() != 0){
+                    return true;
+                }
+            }
         }
-        else return true;
+        return  false;
     }
 }
-}
+
