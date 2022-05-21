@@ -48,6 +48,7 @@ public class HighscoreTable {
                 }
                 zeile = meinReader.readLine();
             }
+            meinReader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,12 +67,12 @@ public class HighscoreTable {
         }
     }
 
-    public void spielAbspeichern(ArrayList<Spieler> spielende){
+    public static void spielAbspeichern(ArrayList<Spieler> spielende){
         Path meineDatei = Paths.get("./GameData.csv");
         int Position = 0;
         String name = "";
         // sorting the spielende ArrayList by the number of Cards on their hands
-        spielende.sort(Comparator.comparingInt(s -> s.getHandkarten().size()));
+        spielende.sort(Comparator.comparingInt(s -> s.getHandkarten().size())); // implemented getHandkarten to Spieler Klasse
 
         try {
             BufferedWriter writer = Files.newBufferedWriter(meineDatei, StandardOpenOption.APPEND);

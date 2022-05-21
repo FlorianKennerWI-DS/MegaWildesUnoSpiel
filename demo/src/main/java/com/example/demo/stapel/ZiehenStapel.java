@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class ZiehenStapel {
-    private Stack<Karte> kartenStack = new Stack<>();
+    public static Stack<Karte> kartenStack = new Stack<>();
     public int laenge;
 
     public Karte nehmen(){
         return kartenStack.pop();
     }
 
-    public void generieren(){
+    public static void generieren(){
         ArrayList<Karte> alleKarten = new ArrayList<>(){};
 
         alleKarten.add(new Karte("Blau", 0));

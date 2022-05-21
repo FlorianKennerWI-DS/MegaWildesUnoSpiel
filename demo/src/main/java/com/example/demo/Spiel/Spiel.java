@@ -1,5 +1,7 @@
 package com.example.demo.Spiel;
 
+import com.example.demo.highScoreTable.HighscoreTable;
+import com.example.demo.spieler.Computer;
 import com.example.demo.spieler.Spieler;
 import com.example.demo.stapel.AblegeStapel;
 import com.example.demo.stapel.ZiehenStapel;
@@ -15,7 +17,7 @@ public class Spiel {
     int step = 1; //direction in which to work through arraylist
 
     public Spiel(int spielerAnzahl) {
-        ziehenStapel.generieren();
+        ZiehenStapel.generieren();
         generiereSpieler(spielerAnzahl);
         kartenAusteilen();
     }
@@ -63,6 +65,7 @@ public class Spiel {
             //
 
         }
+            HighscoreTable.spielAbspeichern(spielende);
     }
     }
 
