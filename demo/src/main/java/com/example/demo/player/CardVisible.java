@@ -9,8 +9,8 @@ import javafx.scene.text.Text;
 
 public class CardVisible extends Parent {
 
-    private static final int CARD_WIDTH = 100;
-    private static final int CARD_HEIGHT = 140;
+    /*private static final int CARD_WIDTH = 100;
+    private static final int CARD_HEIGHT = 140;*/
 
     /*public enum Color {
         BLUE, YELLOW, GREEN, BLACK;
@@ -35,7 +35,7 @@ public class CardVisible extends Parent {
         }
     }*/
 
-    public final Color color;
+    /*public final Color color;
     public final CardVisible.Rank rank;
     public final int value;
 
@@ -61,7 +61,7 @@ public class CardVisible extends Parent {
         text2.setX(10);
         text2.setY(CARD_HEIGHT - 10);
 
-        Circle circle = new Circle();
+        Circle circle = new Circle();*/
 
         /*ImageView view = new ImageView(color.image);
         view.setRotate(180);
@@ -69,12 +69,12 @@ public class CardVisible extends Parent {
         view.setY(CARD_HEIGHT - 32);
 
         getChildren().addAll(bg, new ImageView(color.image), view, text1, text2);*/
-        getChildren().addAll(bg, text1, text2, circle);
+        /*getChildren().addAll(bg, text1, text2, circle);
     }
 
     @Override
     public String toString() {
         return rank.toString() + " of " + color.toString();
-    }
+    }*/
 }
 

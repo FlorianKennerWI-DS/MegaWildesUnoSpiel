@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+/*
 public class SceneController {
     @FXML
     private Label welcomeText;
@@ -28,4 +28,4 @@ public class SceneController {
         stage.setScene(scene);
         stage.show();
     }
-}
+}*/

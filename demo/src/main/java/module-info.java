@@ -4,7 +4,7 @@ module com.example.demo {
 
 
     opens com.example.demo to javafx.fxml;
-    exports com.example.demo;
+    //exports com.example.demo;
     exports com.example.demo.player;
     opens com.example.demo.player to javafx.fxml;
 }

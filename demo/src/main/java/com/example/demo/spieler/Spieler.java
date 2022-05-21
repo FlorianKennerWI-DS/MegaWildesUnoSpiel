@@ -17,6 +17,7 @@ public class Spieler {
     public void ziehen(Karte karte) {   //Zahlen mit Sortieralgorithmen
         int farbIndex = Karte.farbID.get(karte.getFarbe());
         handkarten.get(farbIndex).add(karte);
+        //HandkartenSortierung.sort(handkarten.get(farbIndex));
         /*if (karte.getFarbe().equals("Rot")) {
             handkarten.get(0).add(karte);
             HandkartenSortierung.sort(handkarten.get(0));
@@ -57,6 +58,10 @@ public class Spieler {
         if (karte.getFarbe().equals("Schwarz")) {
             handkarten.get(4).remove(karte);
         }*/
+    }
+
+    public String printKarten() {
+        return handkarten.toString();
     }
 
     public boolean hatKarten(){

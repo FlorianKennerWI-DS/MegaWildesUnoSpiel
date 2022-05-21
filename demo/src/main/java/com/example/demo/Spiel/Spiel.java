@@ -1,5 +1,6 @@
 package com.example.demo.Spiel;
 
+import com.example.demo.spieler.Computer;
 import com.example.demo.spieler.Spieler;
 import com.example.demo.stapel.AblegeStapel;
 import com.example.demo.stapel.ZiehenStapel;
@@ -45,7 +46,7 @@ public class Spiel {
         return false;
     }
 
-    public void spielen () {
+    /*public void spielen () {
         while (jemandIstFertig()){
             Spieler amZug = spielende.get(derzeitigerSpieler);
             if (amZug instanceof Computer) {
@@ -53,8 +54,8 @@ public class Spiel {
                 if ("ziehen".equals(amZug.waehleAktion())) { //Typ casten?
                     amZug.ziehen(ziehenStapel.nehmen());
                 } else {
-                    ablegeStapel.ablegen(amZug.ablegen()); //TODO spieler.ablegen returned karte
-            } else {
+                    ablegeStapel.setObersteKarte(amZug.ablegen()); //TODO spieler.ablegen returned karte
+            }} else {
                     //enableActions()
                 }
             //TODO: Check ob nächster spieler ist computer
@@ -63,11 +64,10 @@ public class Spiel {
             //
 
         }
-    }
-    }
+    }*/
 
     public static void main (String[] args) {
         Spiel spiel = new Spiel(2);
-        spiel.spielen();
+        System.out.println(spiel.menschlicherSpieler.printKarten());
     }
 }

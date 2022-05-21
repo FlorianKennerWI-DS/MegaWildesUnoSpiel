@@ -16,7 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+/*
 public class GameApplication extends Application {
 
     private HBox playerCards = new HBox(20);
@@ -72,4 +72,4 @@ public class GameApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
-}
+}*/
