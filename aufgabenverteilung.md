@@ -2,8 +2,14 @@ TODO:
 - Kim: Class Karten
 - Annika: Class Spieler
 - Malena: Visualisierung
-- Florian: Klasse spiel
+- Florian: Klasse Stapel
 - Recherche bzgl Uno: Anzahl der Karten, Bilder der Karten für Visualisierung
+
+- weitere Aufgaben:
+- main Klasse, welche Spieler, Stapel, Reihenfolge etc. verwaltet
+- Fortgeschrittenes UI
+- Einarbeitung in Parallelität (?)
+- Fehlerbehandlung: Was passiert, wenn Ziehstapel leer?
 
 
 Done:
