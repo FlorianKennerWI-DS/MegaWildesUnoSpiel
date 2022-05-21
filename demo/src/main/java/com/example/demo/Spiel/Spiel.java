@@ -33,7 +33,11 @@ public class Spiel {
     private void kartenAusteilen() {
         for (Spieler spieler:spielende) {
             for (int j =0; j<7;j++) {
-                spieler.ziehen(ziehenStapel.nehmen());
+                try {
+                    spieler.ziehen(ziehenStapel.nehmen());
+                } catch (Stapelleer e) {
+                    System.out.println(e.getMessage());
+                }
             }
         }
     }
