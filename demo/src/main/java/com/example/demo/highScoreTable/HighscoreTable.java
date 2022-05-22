@@ -17,7 +17,7 @@ public class HighscoreTable {
     private static HashMap<String, Integer> alleDurschnittsPositionen = new HashMap<String, Integer>();
 
     public static void einlesen() {
-        String zeile = null;
+        String zeile;
         Path meineDatei = Paths.get("./GameData.csv");
         try {
         // check if file with highscoredata exists, if not create it and write first line

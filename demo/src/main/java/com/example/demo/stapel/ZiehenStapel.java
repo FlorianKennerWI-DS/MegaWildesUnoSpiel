@@ -1,22 +1,22 @@
 package com.example.demo.stapel;
 
-import com.example.demo.Karten.Karte;
-import com.example.demo.StapelLeer.Stapelleer;
-
+import com.example.demo.karten.Karte;
+import com.example.demo.stapelLeer.StapelLeer;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
 import java.util.Stack;
 
 public class ZiehenStapel {
     public Stack<Karte> kartenStack = new Stack<>();
+    public int laenge;
 
-    public Karte nehmen() throws Stapelleer {
-            if (kartenStack.size() == 0) {
-                throw new Stapelleer("Stapel leer");
-            } else
-                return kartenStack.pop();
+    public Karte nehmen() throws StapelLeer {
+
+        if (kartenStack.size() == 0) {
+            throw new Stapelleer("Stapel leer");
+        } else
+            return kartenStack.pop();
         }
-
 
 
     public void generieren(){
@@ -109,11 +109,11 @@ public class ZiehenStapel {
         alleKarten.add(new Karte("Rot", 9));
         alleKarten.add(new Karte("Rot", 9));*/
 
-
         int kartenAnzahl = alleKarten.size();
         Stack<Karte> gemischterStapel = new Stack<>();
 
         for (int i = 0; i < kartenAnzahl; i ++){
+
             int index = ThreadLocalRandom.current().nextInt(0, alleKarten.size()) ;
             gemischterStapel.push(alleKarten.get(index));
             alleKarten.remove(index);

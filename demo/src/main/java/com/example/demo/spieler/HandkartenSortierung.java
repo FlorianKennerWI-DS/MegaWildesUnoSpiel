@@ -1,14 +1,15 @@
 package com.example.demo.spieler;
 
 import java.util.ArrayList;
-import com.example.demo.Karten.Karte;
+import com.example.demo.karten.Karte;
 
 public class HandkartenSortierung {
 
-    static public void sort(ArrayList<Karte> elements) {
+    public static void sort(ArrayList<Karte> elements) {
         quicksort(elements, 0, elements.get(elements.size() - 1).getZahl());
     }
-    static private void quicksort(ArrayList<Karte> elements, int left, int right) {
+
+    private static void quicksort(ArrayList<Karte> elements, int left, int right) {
 
         if (elements.get(left).getZahl() >= elements.get(right).getZahl()) return;
 
@@ -17,7 +18,7 @@ public class HandkartenSortierung {
         quicksort(elements, pivotPos + 1, right);
     }
 
-    static public int partition(ArrayList<Karte> elements, int left, int right) {
+    public static int partition(ArrayList<Karte> elements, int left, int right) {
         int pivot = elements.get(right).getZahl();
 
         int i = left;

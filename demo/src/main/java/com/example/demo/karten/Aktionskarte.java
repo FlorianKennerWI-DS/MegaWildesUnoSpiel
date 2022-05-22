@@ -1,8 +1,7 @@
-package com.example.demo.Karten;
-/*
-public class Aktionskarte extends Karte  {
+package com.example.demo.karten;
 
-   int id;
+public class Aktionskarte extends Karte  {
+   private int id;
 
    public Aktionskarte(String farbe, int zahl, Action action) {
       super(farbe, zahl);
@@ -17,15 +16,13 @@ public class Aktionskarte extends Karte  {
       {
          return Action.actions[id];
       }
-
    }
 
    public Action action;
     public Aktionskarte (Action action){
        super();
        this.action = action;
-
     }
 
 
-}*/
+}

@@ -1,5 +1,5 @@
-package com.example.demo.Karten;
 
+package com.example.demo.karten;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -24,6 +24,9 @@ public class Karte extends Parent {
         colors.put("Blau", Color.BLUE);
         colors.put("Schwarz", Color.BLACK);
     }
+
+
+
 
     public String getFarbe() {
         return farbe;
@@ -61,6 +64,5 @@ public class Karte extends Parent {
     public String toString() {
         return (farbe + " " + Integer.toString(zahl));
     }
-
     }
 
