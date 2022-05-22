@@ -22,7 +22,14 @@ public class ZiehenStapel {
     public void generieren(){
         ArrayList<Karte> alleKarten = new ArrayList<>(){};
 
-        alleKarten.add(new Karte("Blau", 0));
+        for (String farbe : new String[]{"Gruen", "Rot", "Gelb", "Blau"}) {
+            for (int i = 0; i<=9;i++) {
+                alleKarten.add(new Karte(farbe, i));
+                alleKarten.add(new Karte(farbe, i));
+            }
+        }
+
+        /*alleKarten.add(new Karte("Blau", 0));
         alleKarten.add(new Karte("Blau", 1));
         alleKarten.add(new Karte("Blau", 1));
         alleKarten.add(new Karte("Blau", 2));
@@ -100,7 +107,7 @@ public class ZiehenStapel {
         alleKarten.add(new Karte("Rot", 8));
         alleKarten.add(new Karte("Rot", 8));
         alleKarten.add(new Karte("Rot", 9));
-        alleKarten.add(new Karte("Rot", 9));
+        alleKarten.add(new Karte("Rot", 9));*/
 
 
         int kartenAnzahl = alleKarten.size();

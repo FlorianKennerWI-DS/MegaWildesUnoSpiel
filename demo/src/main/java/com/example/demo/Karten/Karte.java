@@ -13,8 +13,17 @@ public class Karte extends Parent {
 
     String farbe;
     int zahl;
+    Color farbeUI;
     private static final int CARD_WIDTH = 100;
     private static final int CARD_HEIGHT = 140;
+    private final static HashMap<String, Color> colors = new HashMap<>();
+    static {
+        colors.put("Gruen", Color.GREEN);
+        colors.put("Gelb", Color.YELLOW);
+        colors.put("Rot", Color.RED);
+        colors.put("Blau", Color.BLUE);
+        colors.put("Schwarz", Color.BLACK);
+    }
 
     public String getFarbe() {
         return farbe;
@@ -27,11 +36,12 @@ public class Karte extends Parent {
     public Karte (String farbe, int zahl) {
         this.farbe = farbe;
         this.zahl =  zahl;
+        this.farbeUI = colors.get(farbe);
 
         Rectangle bg = new Rectangle(CARD_WIDTH, CARD_HEIGHT);
         bg.setArcWidth(20);
         bg.setArcHeight(20);
-        bg.setFill(Color.BLUE);
+        bg.setFill(farbeUI);
 
         Text text1 = new Text(Integer.toString(zahl));
         text1.setFont(Font.font(18));
