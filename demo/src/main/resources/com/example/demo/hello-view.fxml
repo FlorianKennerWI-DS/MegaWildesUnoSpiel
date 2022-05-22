@@ -20,5 +20,6 @@
         </items>
       </MenuButton>
       <Button layoutX="280.0" layoutY="353.0" mnemonicParsing="false" onAction="#switchToGameScene" text="Start" />
+      <Label fx:id="startLabel" layoutX="280.0" layoutY="118.0" text="Label" />
    </children>
 </AnchorPane>

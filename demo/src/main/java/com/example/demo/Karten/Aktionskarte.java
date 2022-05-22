@@ -1,5 +1,5 @@
 package com.example.demo.Karten;
-
+/*
 public class Aktionskarte extends Karte  {
 
    int id;
@@ -28,4 +28,4 @@ public class Aktionskarte extends Karte  {
     }
 
 
-}
+}*/
