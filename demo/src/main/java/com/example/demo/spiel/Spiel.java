@@ -14,7 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Background;
+import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 
@@ -55,29 +55,35 @@ public class Spiel {
         return new Karte("Gelb", 1);
     }
 
-    public ObservableList<Node> handKartenToButtons() {
+    public ObservableList<Node> buttonsFuerMenschlichenSpieler() {
         ObservableList<Node> result = FXCollections.observableArrayList();
-        menschlicherSpieler = new Spieler("Florian");
-        menschlicherSpieler.ziehen(new Karte("Blau", 1));
-        menschlicherSpieler.ziehen(new Karte("Gruen", 2));
-        menschlicherSpieler.ziehen(new Karte("Gelb", 2));
         menschlicherSpieler.handKartenToArrayList();
-        ablegeStapel.setObersteKarte(new Karte("Gelb", 1));
         System.out.println(menschlicherSpieler.getHandkartenArrayList());
-
         for (Karte karte: menschlicherSpieler.getHandkartenArrayList()){
             Button button = new Button(Integer.toString(karte.getZahl()));
-            button.setOnAction(actionEvent -> ablegeStapel.setObersteKarte(menschlicherSpieler.ablegen(karte)));
-
+            button.setOnAction(actionEvent -> amZugPruefen(karte));
             button.setDisable(!ablegeStapel.getObersteKarte().kompatibilitaetPruefen(karte));
             button.setMinSize(60, 100);
-
+            button.setFont(new Font(20));
             button.setStyle(String.format("-fx-background-color: %s;-fx-background-radius: 10px", Karte.hexColors.get(karte.getFarbe())));
             result.add(button);
 
         }
 
         return result;
+    }
+
+    public void menschlicherSpielerZiehen(){
+        //  if (!(spielerListe.get(derzeitigerSpieler) instanceof Computer)){
+        menschlicherSpieler.ziehen(new Karte("Blau", 1));//}
+        menschlicherSpieler.handKartenToArrayList();
+        System.out.println(menschlicherSpieler.getHandkartenArrayList());
+    }
+
+    public void amZugPruefen(Karte karte){
+        if (!(spielerListe.get(derzeitigerSpieler) instanceof Computer)){
+            ablegeStapel.setObersteKarte(menschlicherSpieler.ablegen(karte));
+        }
     }
 
     private void generiereSpieler(int spielerAnzahl) {
@@ -132,7 +138,7 @@ public class Spiel {
 
                 }
 
-            } //else {
+            } derzeitigerSpieler++;  //else {
                     //enableActions()
                 // }
             //TODO: Check ob nächster spieler ist computer

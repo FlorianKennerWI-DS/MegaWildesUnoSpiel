@@ -21,6 +21,8 @@ public class SceneController {
     public HBox boxBeideStapel;
     @FXML
     public Button testButton;
+
+    public Button ziehenButton;
     public HBox boxHandkarten;
     public Label moderationText;
     public Button bindButton;
@@ -30,6 +32,7 @@ public class SceneController {
     private Stage stage;
     private Scene scene;
     private static Spiel spiel;
+
 
     @FXML
 
@@ -54,9 +57,13 @@ public class SceneController {
         moderationText.textProperty().bind(new SimpleStringProperty( "Spieler " + spiel.getSpielerName()+" ist dran"));
         kartenStand.textProperty().bind(new SimpleStringProperty(spiel.getKartenStand()));
         boxBeideStapel.getChildren().addAll(spiel.showLetzteKarte());
-        boxHandkarten.getChildren().addAll(spiel.handKartenToButtons());
+        boxHandkarten.getChildren().addAll(spiel.buttonsFuerMenschlichenSpieler());
         boxHandkarten.setSpacing(2);
 
+    }
+
+    public void ziehenButton(){
+        spiel.menschlicherSpielerZiehen();
     }
 
 }

@@ -8,6 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.SceneController">
    <children>
+      <Button fx:id="ziehenButton" layoutX="498.0" layoutY="253.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="75.0" text="Ziehen" />
       <Label fx:id="kartenStand" layoutX="14.0" layoutY="14.0" text="Label" />
       <Label fx:id="moderationText" layoutX="286.0" layoutY="14.0" text="Label" />
       <HBox fx:id="boxBeideStapel" layoutY="98.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="600.0">
