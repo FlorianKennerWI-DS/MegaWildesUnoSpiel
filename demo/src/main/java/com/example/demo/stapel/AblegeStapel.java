@@ -2,6 +2,7 @@ package com.example.demo.stapel;
 
 import com.example.demo.karten.Karte;
 
+
 public class AblegeStapel {
     private int count;
     private Karte obersteKarte;

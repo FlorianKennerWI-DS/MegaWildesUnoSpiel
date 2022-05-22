@@ -13,7 +13,7 @@ public class ZiehenStapel {
     public Karte nehmen() throws StapelLeer {
 
         if (kartenStack.size() == 0) {
-            throw new Stapelleer("Stapel leer");
+            throw new StapelLeer("Stapel leer");
         } else
             return kartenStack.pop();
         }

@@ -3,15 +3,19 @@ package com.example.demo.spiel;
 
 import com.example.demo.nichtablegen.NichtAblegen;
 
-import com.example.demo.Karten.Karte;
+import com.example.demo.karten.Karte;
 
 import com.example.demo.spieler.Computer;
 import com.example.demo.spieler.Spieler;
 import com.example.demo.stapel.AblegeStapel;
 import com.example.demo.stapel.ZiehenStapel;
 import com.example.demo.stapelLeer.StapelLeer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Spiel {
     public ArrayList<Spieler> spielerListe = new ArrayList<Spieler>();
@@ -36,7 +40,7 @@ public class Spiel {
     public String getKartenStand() {
         StringBuilder result = new StringBuilder();
         for (Spieler spieler: spielerListe) {
-            result.append("Spieler "+spieler.getName()+": "+spieler.getKartenZahl()+" Karten");
+            result.append("Spieler "+spieler.getName()+": "+spieler.kartenZaehlen()+" Karten");
             result.append(System.getProperty("line.separator"));
         }
         return result.toString();
@@ -55,10 +59,10 @@ public class Spiel {
 
     private void generiereSpieler(int spielerAnzahl) {
 
-        menschlicherSpieler = new Spieler();
+        menschlicherSpieler = new Spieler("");
         spielerListe.add(menschlicherSpieler);
         for (int i = 0; i < spielerAnzahl; i++) {
-            spielerListe.add(new Spieler()); //add computergegner
+            spielerListe.add(new Computer(i)); //add computergegner
         }
     }
 
@@ -90,25 +94,21 @@ public class Spiel {
         while (!jemandIstFertig()){
             Spieler amZug = spielerListe.get(derzeitigerSpieler);
             if (amZug instanceof Computer) {
-                Computer.waehleAktion();{
                     try {
                         //computer.waehleAktion()
-                        if (!(ablegeStapel.ablegen(Computer.ablegen()))) {
-                            throw new NichtAblegen("Kann keine Karte ablegen");
-
+                        ablegeStapel.setObersteKarte(((Computer) amZug).karteFinden(ablegeStapel.getObersteKarte()));
                         }
 
-                        }catch(NichtAblegen e){
+                        catch(NichtAblegen e){
                             System.out.println(e.getMessage());
-                            Computer.ziehen(ziehenStapel.nehmen());
-                    }
+                            try {
+                                amZug.ziehen(ziehenStapel.nehmen());}
+                            catch (StapelLeer stapelLeerE){
+                                stapelLeerE.getMessage();
+                    }}
 
                 }
 
-                try{if ("ziehen".equals(amZug.waehleAktion())) { //Typ casten?
-                    amZug.ziehen(ziehenStapel.nehmen());
-                } else {
-                    ablegeStapel.ablegen(amZug.ablegen()); //TODO spieler.ablegen returned karte
             } //else {
                     //enableActions()
                 // }
@@ -117,7 +117,7 @@ public class Spiel {
             //      Anosonten auf eingabe warten
         }
     }
-    }/*
+    /*
 
     public static void main (String[] args) {
         Spiel spiel = new Spiel(2);

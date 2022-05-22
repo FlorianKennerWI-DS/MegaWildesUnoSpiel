@@ -21,7 +21,7 @@ public class Testing {
         System.out.println(s1.hatKarten());
 
         s1.handKartenToArrayList();
-        System.out.println(s1.handkartenArrayList);
+        System.out.println(s1.handkarten);
         // Testing the Computer
 
         Computer c1 = new Computer(1);

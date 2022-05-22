@@ -77,5 +77,6 @@ public class Spieler {
         }}
 
 
+    // TODO: get Kartenzahl
 }
 

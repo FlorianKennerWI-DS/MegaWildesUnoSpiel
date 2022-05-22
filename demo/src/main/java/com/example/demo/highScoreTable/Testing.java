@@ -1,6 +1,6 @@
 package com.example.demo.highScoreTable;
 
-import com.example.demo.Karten.Karte;
+import com.example.demo.karten.Karte;
 import com.example.demo.spieler.Computer;
 import com.example.demo.spieler.Spieler;
 
