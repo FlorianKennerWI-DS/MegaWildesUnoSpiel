@@ -1,5 +1,6 @@
 package com.example.demo.Spiel;
 
+import com.example.demo.nichtablegen.NichtAblegen;
 import com.example.demo.spieler.Computer;
 import com.example.demo.StapelLeer.Stapelleer;
 import com.example.demo.spieler.Spieler;
@@ -51,11 +52,22 @@ public class Spiel {
         return false;
     }
 
-    /*public void spielen () {
+    public void spielen () {
         while (jemandIstFertig()){
             Spieler amZug = spielende.get(derzeitigerSpieler);
             if (amZug instanceof Computer) {
-                //computer.waehleAktion()
+                Computer.waehleAktion();{
+                    try {
+                        if (!(ablegeStapel.ablegen(Computer.ablegen()))) {
+                            throw new NichtAblegen("Kann keine Karte ablegen");
+
+                        }
+                        }catch(NichtAblegen e){
+                            System.out.println(e.getMessage());
+                    }
+                    }else { Computer.ziehen(ziehenStapel.nehmen()); }
+                }
+
                 try{if ("ziehen".equals(amZug.waehleAktion())) { //Typ casten?
                     amZug.ziehen(ziehenStapel.nehmen());
                 }
@@ -74,7 +86,7 @@ public class Spiel {
 
         }
     }
-    }*/
+    }
 
     public static void main (String[] args) {
         Spiel spiel = new Spiel(2);
