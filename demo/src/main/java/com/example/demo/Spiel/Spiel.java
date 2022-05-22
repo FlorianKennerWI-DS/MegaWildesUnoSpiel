@@ -1,10 +1,14 @@
 package com.example.demo.Spiel;
 
+import com.example.demo.Karten.Karte;
 import com.example.demo.spieler.Computer;
 import com.example.demo.StapelLeer.Stapelleer;
 import com.example.demo.spieler.Spieler;
 import com.example.demo.stapel.AblegeStapel;
 import com.example.demo.stapel.ZiehenStapel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 
 import java.util.ArrayList;
 
@@ -16,10 +20,35 @@ public class Spiel {
     int derzeitigerSpieler = 0;
     int step = 1; //direction in which to work through arraylist
 
+
     public Spiel(int spielerAnzahl) {
         ziehenStapel.generieren();
         generiereSpieler(spielerAnzahl);
         kartenAusteilen();
+    }
+
+    public String getSpielerName() {
+        return spielende.get(derzeitigerSpieler).getName();
+    }
+
+    public String getKartenStand() {
+        StringBuilder result = new StringBuilder();
+        for (Spieler spieler: spielende) {
+            result.append("Spieler "+spieler.getName()+": "+spieler.getKartenZahl()+" Karten");
+            result.append(System.getProperty("line.separator"));
+        }
+        return result.toString();
+    }
+
+    public Karte showLetzteKarte() {
+        return new Karte("Gruen", 3);
+    }
+
+    public ObservableList<Node> getHandKarten() {
+        ObservableList<Node> result = FXCollections.observableArrayList();
+        result.add(new Karte("Gruen", 3));
+        result.add(new Karte("Blau", 7));
+        return result;
     }
 
     private void generiereSpieler(int spielerAnzahl) {
@@ -76,8 +105,4 @@ public class Spiel {
     }
     }*/
 
-    public static void main (String[] args) {
-        Spiel spiel = new Spiel(2);
-        //spiel.spielen();
-    }
 }

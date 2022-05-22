@@ -25,8 +25,14 @@ public class Spieler {
         nochNeuereHandkarten.put("Rot", new HashMap<Integer, ArrayList<Karte>>());
         nochNeuereHandkarten.put("Gelb", new HashMap<Integer, ArrayList<Karte>>());
         nochNeuereHandkarten.put("Schwarz", new HashMap<Integer, ArrayList<Karte>>());
+    }
 
+    public String getName() {
+        return name;
+    }
 
+    public int getKartenZahl() {
+        return 3; //TODO change to real amount of cards
     }
 
     public void ziehen(Karte karte) {

@@ -1,13 +1,20 @@
 package com.example.demo.Karten;
 
+import javafx.scene.Parent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+
 import java.util.HashMap;
 import java.util.Random;
 
-public class Karte {
+public class Karte extends Parent {
 
     String farbe;
-
     int zahl;
+    private static final int CARD_WIDTH = 100;
+    private static final int CARD_HEIGHT = 140;
 
     public String getFarbe() {
         return farbe;
@@ -20,6 +27,25 @@ public class Karte {
     public Karte (String farbe, int zahl) {
         this.farbe = farbe;
         this.zahl =  zahl;
+
+        Rectangle bg = new Rectangle(CARD_WIDTH, CARD_HEIGHT);
+        bg.setArcWidth(20);
+        bg.setArcHeight(20);
+        bg.setFill(Color.BLUE);
+
+        Text text1 = new Text(Integer.toString(zahl));
+        text1.setFont(Font.font(18));
+        text1.setFill(Color.WHITE);
+        text1.setX(CARD_WIDTH - text1.getLayoutBounds().getWidth() - 10);
+        text1.setY(text1.getLayoutBounds().getHeight());
+
+        Text text2 = new Text(text1.getText());
+        text2.setFont(Font.font(18));
+        text2.setFill(Color.WHITE);
+        text2.setX(10);
+        text2.setY(CARD_HEIGHT - 10);
+
+        getChildren().addAll(bg, text1, text2);
     }
 
     public String toString() {

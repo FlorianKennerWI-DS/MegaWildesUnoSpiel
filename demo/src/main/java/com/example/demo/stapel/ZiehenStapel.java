@@ -8,12 +8,10 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class ZiehenStapel {
-    public static Stack<Karte> kartenStack = new Stack<>();
-    public int laenge;
+    public Stack<Karte> kartenStack = new Stack<>();
 
     public Karte nehmen() throws Stapelleer {
-
-            if (laenge == 0) {
+            if (kartenStack.size() == 0) {
                 throw new Stapelleer("Stapel leer");
             } else
                 return kartenStack.pop();
@@ -21,7 +19,7 @@ public class ZiehenStapel {
 
 
 
-    public static void generieren(){
+    public void generieren(){
         ArrayList<Karte> alleKarten = new ArrayList<>(){};
 
         alleKarten.add(new Karte("Blau", 0));
