@@ -25,7 +25,8 @@ public class Karte extends Parent {
         colors.put("Schwarz", Color.BLACK);
     }
 
-
+    public Karte() {
+    }
 
 
     public String getFarbe() {
@@ -63,6 +64,16 @@ public class Karte extends Parent {
 
     public String toString() {
         return (farbe + " " + Integer.toString(zahl));
+    }
+
+    public boolean kompatibilitaetPruefen(Karte karte){
+        if (farbe.equals(karte.getFarbe())){
+            return true;
+        }
+        if (zahl == karte.getZahl()){
+            return true;
+        }
+        return false;
     }
     }
 
