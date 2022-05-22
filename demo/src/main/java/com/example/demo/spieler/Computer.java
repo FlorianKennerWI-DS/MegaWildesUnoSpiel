@@ -1,7 +1,7 @@
 package com.example.demo.spieler;
 
 import com.example.demo.karten.Karte;
-import com.example.demo.nichtablegen.NichtAblegen;
+import com.example.demo.customExceptions.NichtAblegenException;
 
 public class Computer extends Spieler {
 
@@ -9,7 +9,7 @@ public class Computer extends Spieler {
         super("com" + Integer.toString(i));
     }
 
-    public Karte karteFinden(Karte obersteKarte) throws NichtAblegen {
+    public Karte karteFinden(Karte obersteKarte) throws NichtAblegenException {
 
         boolean passendeFarbe = false;
         boolean passendeZahl = false;
@@ -32,7 +32,7 @@ public class Computer extends Spieler {
             }
         }
         if (!passendeFarbe && !passendeZahl){
-            throw new NichtAblegen();
+            throw new NichtAblegenException();
         }
         return ablegen(passendeKarte);
 

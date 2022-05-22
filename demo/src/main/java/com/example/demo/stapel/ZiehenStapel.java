@@ -1,7 +1,7 @@
 package com.example.demo.stapel;
 
 import com.example.demo.karten.Karte;
-import com.example.demo.stapelLeer.StapelLeer;
+import com.example.demo.customExceptions.StapelLeerException;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
 import java.util.Stack;
@@ -10,10 +10,10 @@ public class ZiehenStapel {
     public Stack<Karte> kartenStack = new Stack<>();
     public int laenge;
 
-    public Karte nehmen() throws StapelLeer {
+    public Karte nehmen() throws StapelLeerException {
 
         if (kartenStack.size() == 0) {
-            throw new StapelLeer("Stapel leer");
+            throw new StapelLeerException("Stapel leer");
         } else
             return kartenStack.pop();
         }

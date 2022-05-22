@@ -1,7 +1,7 @@
 package com.example.demo.spiel;
 
 
-import com.example.demo.nichtablegen.NichtAblegen;
+import com.example.demo.customExceptions.NichtAblegenException;
 
 import com.example.demo.karten.Karte;
 
@@ -9,13 +9,12 @@ import com.example.demo.spieler.Computer;
 import com.example.demo.spieler.Spieler;
 import com.example.demo.stapel.AblegeStapel;
 import com.example.demo.stapel.ZiehenStapel;
-import com.example.demo.stapelLeer.StapelLeer;
+import com.example.demo.customExceptions.StapelLeerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class Spiel {
     public ArrayList<Spieler> spielerListe = new ArrayList<Spieler>();
@@ -72,7 +71,7 @@ public class Spiel {
             for (int j =0; j<7;j++) {
                 try {
                     spieler.ziehen(ziehenStapel.nehmen());
-                } catch (StapelLeer e) {
+                } catch (StapelLeerException e) {
                     System.out.println(e.getMessage());
                 }
 
@@ -99,12 +98,12 @@ public class Spiel {
                         ablegeStapel.setObersteKarte(((Computer) amZug).karteFinden(ablegeStapel.getObersteKarte()));
                         }
 
-                        catch(NichtAblegen e){
+                        catch(NichtAblegenException e){
                             System.out.println(e.getMessage());
                             try {
                                 amZug.ziehen(ziehenStapel.nehmen());}
-                            catch (StapelLeer stapelLeerE){
-                                stapelLeerE.getMessage();
+                            catch (StapelLeerException stapelLeerExceptionE){
+                                stapelLeerExceptionE.getMessage();
                     }}
 
                 }
