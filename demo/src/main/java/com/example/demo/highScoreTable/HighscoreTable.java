@@ -21,12 +21,7 @@ public class HighscoreTable {
         Path meineDatei = Paths.get("./GameData.csv");
         try {
         // check if file with highscoredata exists, if not create it and write first line
-        if (!Files.exists(meineDatei)){
-            Files.createFile(meineDatei);
-            BufferedWriter initialerWriter = Files.newBufferedWriter(meineDatei);
-            initialerWriter.write("Name,Position");
-            initialerWriter.close();
-        }
+        dateiPfadPruefen(meineDatei);
         BufferedReader meinReader = Files.newBufferedReader(meineDatei);
         meinReader.readLine();
         zeile = meinReader.readLine();
@@ -61,18 +56,19 @@ public class HighscoreTable {
             for (int aktuellerPlatz : entry.getValue()){
                 positionsSumme = positionsSumme + aktuellerPlatz;
             }
-            int eintelneDurchschnittsPosition = positionsSumme / entry.getValue().size();
-            alleDurschnittsPositionen.put(name, eintelneDurchschnittsPosition);
+            int einzelneDurchschnittsPosition = positionsSumme / entry.getValue().size();
+            alleDurschnittsPositionen.put(name, einzelneDurchschnittsPosition);
         }
     }
-/*
+
     public static void spielAbspeichern(ArrayList<Spieler> spielende){
         Path meineDatei = Paths.get("./GameData.csv");
         int Position = 0;
         String name = "";
         // sorting the spielende ArrayList by the number of Cards on their hands
-        spielende.sort(Comparator.comparingInt(s -> s.getHandkarten().size())); // implemented getHandkarten to Spieler Klasse
-
+        spielende.sort(Comparator.comparingInt(s -> s.kartenZaehlen())); // implemented getHandkarten to Spieler Klasse
+        System.out.println(spielende);
+        dateiPfadPruefen(meineDatei);
         try {
             BufferedWriter writer = Files.newBufferedWriter(meineDatei, StandardOpenOption.APPEND);
 
@@ -85,10 +81,24 @@ public class HighscoreTable {
             }
 
             // writing the player name and position in the GameData.csv file
-            writer.write(name + "," + Position);
+            writer.write("\n" +name + "," + Position);
             writer.close();
         }catch (Exception e){
             e.printStackTrace();
         }
-    }*/
+    }
+
+    public static void dateiPfadPruefen(Path pfad){
+        try {
+            // check if file with highscoredata exists, if not create it and write first line
+            if (!Files.exists(pfad)) {
+                Files.createFile(pfad);
+                BufferedWriter initialerWriter = Files.newBufferedWriter(pfad);
+                initialerWriter.write("Name,Position");
+                initialerWriter.close();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 }
