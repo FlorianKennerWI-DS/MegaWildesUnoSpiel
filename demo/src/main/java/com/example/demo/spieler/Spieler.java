@@ -6,7 +6,6 @@ import java.util.HashMap;
 
 public class Spieler {
     private String name;
-    //Handkarten aus Klasse Karten
     private ArrayList<Karte> handkartenArrayList = new ArrayList<Karte>();
     public HashMap<String, HashMap<Integer, ArrayList<Karte>>> handkarten = new HashMap<String, HashMap<Integer, ArrayList<Karte>>>();
 
@@ -67,7 +66,7 @@ public class Spieler {
         return anzahlKarten;
     }
 
-    public void handKartenToArrayList(){
+    public void handKartenToArrayList(){    // wofür ist die Methode?
         for (var entry : handkarten.entrySet()){
             for (var secondEntry : entry.getValue().entrySet()){
                 for (int i = 0; i < secondEntry.getValue().size(); i ++){

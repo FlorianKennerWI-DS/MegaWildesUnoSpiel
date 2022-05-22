@@ -1,13 +1,12 @@
-
 package com.example.demo.karten;
+
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
 import java.util.HashMap;
-import java.util.Random;
+
 
 public class Karte extends Parent {
 
@@ -24,9 +23,6 @@ public class Karte extends Parent {
         colors.put("Blau", Color.BLUE);
         colors.put("Schwarz", Color.BLACK);
     }
-
-
-
 
     public String getFarbe() {
         return farbe;

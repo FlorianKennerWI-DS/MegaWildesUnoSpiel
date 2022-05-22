@@ -9,7 +9,7 @@ public class Computer extends Spieler {
         super("com" + Integer.toString(i));
     }
 
-    public Karte karteFinden(Karte obersteKarte) throws NichtAblegenException {
+    public Karte karteFinden(Karte obersteKarte) throws NichtAblegenException {     // virtueller Spieler sucht Karte zum Ablegen
 
         boolean passendeFarbe = false;
         boolean passendeZahl = false;

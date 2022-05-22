@@ -9,7 +9,7 @@ public class Aktionskarte extends Karte  {
    }
 
    enum Action{  // Action als vordefinierte Variable
-      zweiziehen, aussetzen, richtungswechsel, farbewünschen, vierziehen;
+      zweiziehen, aussetzen, richtungswechsel, farbewünschen, vierziehen;     // besondere Aktionsattribute
 
       public static final  Action[] actions= Action.values();
       public Action getAction (int id)

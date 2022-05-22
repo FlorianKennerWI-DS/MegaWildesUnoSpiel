@@ -1,10 +1,7 @@
 package com.example.demo.spiel;
 
-
 import com.example.demo.customExceptions.NichtAblegenException;
-
 import com.example.demo.karten.Karte;
-
 import com.example.demo.spieler.Computer;
 import com.example.demo.spieler.Spieler;
 import com.example.demo.stapel.AblegeStapel;
@@ -13,7 +10,6 @@ import com.example.demo.customExceptions.StapelLeerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-
 import java.util.ArrayList;
 
 public class Spiel {
@@ -22,11 +18,12 @@ public class Spiel {
     public ZiehenStapel ziehenStapel = new ZiehenStapel();
     Spieler menschlicherSpieler;
     int derzeitigerSpieler = 0;
-    int step = 1; //direction in which to work through arraylist
+    int step = 1; // Richtung in der durch die ArrayList gegangen wird
 
 
     public Spiel(int spielerAnzahl) {
 
+        // Spielvorbereitung
         ziehenStapel.generieren();
         generiereSpieler(spielerAnzahl);
         kartenAusteilen();
@@ -36,7 +33,7 @@ public class Spiel {
         return spielerListe.get(derzeitigerSpieler).getName();
     }
 
-    public String getKartenStand() {
+    public String getKartenStand() {    // gibt Anzahl der Karten pro Spieler aus
         StringBuilder result = new StringBuilder();
         for (Spieler spieler: spielerListe) {
             result.append("Spieler "+spieler.getName()+": "+spieler.kartenZaehlen()+" Karten");
@@ -45,7 +42,7 @@ public class Spiel {
         return result.toString();
     }
 
-    public Karte showLetzteKarte() {
+    public Karte showLetzteKarte() {    // was macht die Methode?
         return new Karte("Gruen", 3);
     }
 
