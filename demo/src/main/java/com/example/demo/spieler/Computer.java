@@ -1,5 +1,6 @@
 package com.example.demo.spieler;
 import com.example.demo.Karten.Karte;
+import com.example.demo.nichtablegen.NichtAblegen;
 import com.example.demo.stapel.AblegeStapel;
 
 public class Computer extends Spieler {
@@ -29,7 +30,7 @@ public class Computer extends Spieler {
             }
         }
         if (!passendeFarbe && !passendeZahl){
-            throw new Exception();
+            throw new NichtAblegen();
         }
         return ablegen(passendeKarte);
 
