@@ -8,7 +8,7 @@ import java.util.Stack;
 
 public class ZiehenStapel {
     public static Stack<Karte> kartenStack = new Stack<>();
-    public int laenge;
+    public static int laenge;
 
     public Karte nehmen() throws StapelLeer {
 
@@ -18,9 +18,8 @@ public class ZiehenStapel {
                 return kartenStack.pop();
         }
 
-
-
     public static void generieren(){
+
         ArrayList<Karte> alleKarten = new ArrayList<>(){};
 
         alleKarten.add(new Karte("Blau", 0));
@@ -107,6 +106,7 @@ public class ZiehenStapel {
         Stack<Karte> gemischterStapel = new Stack<>();
 
         for (int i = 0; i < kartenAnzahl; i ++){
+
             int index = ThreadLocalRandom.current().nextInt(0, alleKarten.size()) ;
             gemischterStapel.push(alleKarten.get(index));
             alleKarten.remove(index);

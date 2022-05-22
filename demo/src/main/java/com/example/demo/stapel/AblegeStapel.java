@@ -10,7 +10,7 @@ public class AblegeStapel {
         return obersteKarte;
     }
 
-    public void higherCount() {
+    private void higherCount() {
         this.count ++;
     }
 

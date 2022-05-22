@@ -22,6 +22,7 @@ public class HighscoreTable {
             initialerWriter.write("Name,Position");
             initialerWriter.close();
         }
+
         BufferedReader meinReader = Files.newBufferedReader(meineDatei);
         meinReader.readLine();
         zeile = meinReader.readLine();
@@ -41,8 +42,10 @@ public class HighscoreTable {
                 alleSpieler.put(spielerName, new ArrayList<>());
                 alleSpieler.get(spielerName).add(position);
             }
+
             zeile = meinReader.readLine();
         }
+
         meinReader.close();}catch (Exception e){
             e.printStackTrace();
         }

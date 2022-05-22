@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Spieler {
-    String name;
+    public String name;
     //Handkarten aus Klasse Karten
-    HashMap<String, HashMap<Integer, ArrayList<Karte>>> handkarten = new HashMap<String, HashMap<Integer, ArrayList<Karte>>>();
+    public HashMap<String, HashMap<Integer, ArrayList<Karte>>> handkarten = new HashMap<String, HashMap<Integer, ArrayList<Karte>>>();
 
     public Spieler (String name) {
         this.name = name;
@@ -20,6 +20,7 @@ public class Spieler {
     }
 
     public void ziehen(Karte karte) {
+
         if (!handkarten.get(karte.getFarbe()).containsKey(karte.getZahl())) {
             handkarten.get(karte.getFarbe()).put(karte.getZahl(), new ArrayList<Karte>());
         }
@@ -27,6 +28,7 @@ public class Spieler {
     }
 
     public Karte ablegen(Karte karte) {
+
         Karte abgelegteKarte = handkarten.get(karte.getFarbe()).get(karte.getZahl()).get(0);
         handkarten.get(karte.getFarbe()).get(karte.getZahl()).remove(0);
         return abgelegteKarte;
@@ -37,6 +39,7 @@ public class Spieler {
     }
 
     public boolean hatKarten(){
+
         for (var entry : handkarten.entrySet()){
             for (var secondEntry : entry.getValue().entrySet()){
                 if (secondEntry.getValue().size() != 0){

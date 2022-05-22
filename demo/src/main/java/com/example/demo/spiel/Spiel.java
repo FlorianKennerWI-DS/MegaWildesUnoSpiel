@@ -7,20 +7,22 @@ import com.example.demo.stapel.ZiehenStapel;
 import java.util.ArrayList;
 
 public class Spiel {
-    ArrayList<Spieler> spielerListe = new ArrayList<Spieler>();
-    AblegeStapel ablegeStapel = new AblegeStapel();
-    ZiehenStapel ziehenStapel = new ZiehenStapel();
+    public ArrayList<Spieler> spielerListe = new ArrayList<Spieler>();
+    public AblegeStapel ablegeStapel = new AblegeStapel();
+    public ZiehenStapel ziehenStapel = new ZiehenStapel();
     Spieler menschlicherSpieler;
     int derzeitigerSpieler = 0;
     int step = 1; //direction in which to work through arraylist
 
     public Spiel(int spielerAnzahl) {
-        ziehenStapel.generieren();
+
+        ZiehenStapel.generieren();
         generiereSpieler(spielerAnzahl);
         kartenAusteilen();
     }
 
     private void generiereSpieler(int spielerAnzahl) {
+
         menschlicherSpieler = new Spieler();
         spielerListe.add(menschlicherSpieler);
         for (int i = 0; i < spielerAnzahl; i++) {
@@ -29,6 +31,7 @@ public class Spiel {
     }
 
     private void kartenAusteilen() {
+
         for (Spieler spieler:spielerListe) {
             for (int j =0; j<7;j++) {
                 spieler.ziehen(ziehenStapel.nehmen());
@@ -37,6 +40,7 @@ public class Spiel {
     }
 
     private boolean jemandIstFertig() {
+
         for (Spieler spieler:spielerListe) {
             if (!spieler.hatKarten()){
                 return true;
@@ -46,6 +50,7 @@ public class Spiel {
     }
 
     public void spielen () {
+
         while (jemandIstFertig()){
             Spieler amZug = spielerListe.get(derzeitigerSpieler);
             if (amZug instanceof Computer) {
@@ -54,19 +59,18 @@ public class Spiel {
                     amZug.ziehen(ziehenStapel.nehmen());
                 } else {
                     ablegeStapel.ablegen(amZug.ablegen()); //TODO spieler.ablegen returned karte
-            } else {
+            } //else {
                     //enableActions()
-                }
+                // }
             //TODO: Check ob nächster spieler ist computer
             //          --> Dann dieser aktion
             //      Anosonten auf eingabe warten
-            //
-
         }
     }
     }
 
     public static void main (String[] args) {
+
         Spiel spiel = new Spiel(2);
         spiel.spielen();
     }

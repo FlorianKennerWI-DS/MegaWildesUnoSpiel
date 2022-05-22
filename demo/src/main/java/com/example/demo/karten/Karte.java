@@ -1,10 +1,8 @@
 package com.example.demo.karten;
 
 public class Karte {
-
-    String farbe;
-
-    int zahl;
+    public String farbe;
+    public int zahl;
 
     public String getFarbe() {
         return farbe;
@@ -22,6 +20,5 @@ public class Karte {
     public String toString() {
         return (farbe + " " + Integer.toString(zahl));
     }
-
     }
 
