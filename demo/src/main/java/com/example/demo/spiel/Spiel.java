@@ -123,4 +123,4 @@ public class Spiel {
         Spiel spiel = new Spiel(2);
         //spiel.spielen();
     }*/
-}
+
