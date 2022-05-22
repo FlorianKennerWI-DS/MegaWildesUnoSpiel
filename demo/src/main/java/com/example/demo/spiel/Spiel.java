@@ -13,6 +13,8 @@ import com.example.demo.customExceptions.StapelLeerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
 
 import java.util.ArrayList;
 
@@ -30,6 +32,10 @@ public class Spiel {
         ziehenStapel.generieren();
         generiereSpieler(spielerAnzahl);
         kartenAusteilen();
+        try {
+            ablegeStapel.setObersteKarte(ziehenStapel.nehmen());
+        }
+        catch(Exception e){}
     }
 
     public String getSpielerName() {
@@ -46,13 +52,31 @@ public class Spiel {
     }
 
     public Karte showLetzteKarte() {
-        return new Karte("Gruen", 3);
+        return new Karte("Gelb", 1);
     }
 
-    public ObservableList<Node> getHandKarten() {
+    public ObservableList<Node> handKartenToButtons() {
         ObservableList<Node> result = FXCollections.observableArrayList();
-        result.add(new Karte("Gruen", 3));
-        result.add(new Karte("Blau", 7));
+        menschlicherSpieler = new Spieler("Florian");
+        menschlicherSpieler.ziehen(new Karte("Blau", 1));
+        menschlicherSpieler.ziehen(new Karte("Gruen", 2));
+        menschlicherSpieler.ziehen(new Karte("Gelb", 2));
+        menschlicherSpieler.handKartenToArrayList();
+        ablegeStapel.setObersteKarte(new Karte("Gelb", 1));
+        System.out.println(menschlicherSpieler.getHandkartenArrayList());
+
+        for (Karte karte: menschlicherSpieler.getHandkartenArrayList()){
+            Button button = new Button(Integer.toString(karte.getZahl()));
+            button.setOnAction(actionEvent -> ablegeStapel.setObersteKarte(menschlicherSpieler.ablegen(karte)));
+
+            button.setDisable(!ablegeStapel.getObersteKarte().kompatibilitaetPruefen(karte));
+            button.setMinSize(60, 100);
+
+            button.setStyle(String.format("-fx-background-color: %s;-fx-background-radius: 10px", Karte.hexColors.get(karte.getFarbe())));
+            result.add(button);
+
+        }
+
         return result;
     }
 

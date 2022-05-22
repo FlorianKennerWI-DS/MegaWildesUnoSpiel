@@ -54,7 +54,9 @@ public class SceneController {
         moderationText.textProperty().bind(new SimpleStringProperty( "Spieler " + spiel.getSpielerName()+" ist dran"));
         kartenStand.textProperty().bind(new SimpleStringProperty(spiel.getKartenStand()));
         boxBeideStapel.getChildren().addAll(spiel.showLetzteKarte());
-        boxHandkarten.getChildren().addAll(spiel.getHandKarten());
+        boxHandkarten.getChildren().addAll(spiel.handKartenToButtons());
+        boxHandkarten.setSpacing(2);
+
     }
 
 }

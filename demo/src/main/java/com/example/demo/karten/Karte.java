@@ -7,7 +7,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.util.HashMap;
-import java.util.Random;
 
 public class Karte extends Parent {
 
@@ -16,7 +15,7 @@ public class Karte extends Parent {
     Color farbeUI;
     private static final int CARD_WIDTH = 100;
     private static final int CARD_HEIGHT = 140;
-    private final static HashMap<String, Color> colors = new HashMap<>();
+    public final static HashMap<String, Color> colors = new HashMap<>();
     static {
         colors.put("Gruen", Color.GREEN);
         colors.put("Gelb", Color.YELLOW);
@@ -25,9 +24,21 @@ public class Karte extends Parent {
         colors.put("Schwarz", Color.BLACK);
     }
 
+    public final static HashMap<String, String> hexColors = new HashMap<>();
+    static {
+        hexColors.put("Gruen", "#008000");
+        hexColors.put("Gelb", "#ffff00");
+        hexColors.put("Rot","#e50000");
+        hexColors.put("Blau", "#0000ff");
+        hexColors.put("Schwarz", "#000000");
+    }
+
     public Karte() {
     }
 
+    public Color getFarbeUI() {
+        return farbeUI;
+    }
 
     public String getFarbe() {
         return farbe;

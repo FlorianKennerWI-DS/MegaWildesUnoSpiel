@@ -14,6 +14,10 @@ public class Spieler {
         return name;
     }
 
+    public ArrayList<Karte> getHandkartenArrayList() {
+        return handkartenArrayList;
+    }
+
     public Spieler (String name) {
         this.name = name;
 
@@ -36,6 +40,8 @@ public class Spieler {
 
         Karte abgelegteKarte = handkarten.get(karte.getFarbe()).get(karte.getZahl()).get(0);
         handkarten.get(karte.getFarbe()).get(karte.getZahl()).remove(0);
+        handKartenToArrayList();
+        System.out.println(getHandkartenArrayList());
         return abgelegteKarte;
     }
 
