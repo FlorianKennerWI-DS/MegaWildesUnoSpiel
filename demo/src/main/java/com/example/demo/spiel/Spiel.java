@@ -31,7 +31,9 @@ public class Spiel {
 
     public StringProperty aktuellerSpielerName = new SimpleStringProperty();
     public StringProperty getKartenStand = new SimpleStringProperty();
+    public ListProperty menschlicherSpielerKarten = new SimpleListProperty();
 
+    public ObservableList<Node> spielerButtons = FXCollections.observableArrayList();
     Spieler menschlicherSpieler;
     int derzeitigerSpieler = 0;
     int step = 1; //direction in which to work through arraylist
@@ -44,6 +46,7 @@ public class Spiel {
         generiereSpieler(spielerAnzahl);
         kartenAusteilen();
         getKartenStand.setValue(setKartenStand());
+        menschlicherSpielerKarten.setValue(spielerButtons);
         try {
             ablegeStapel.setObersteKarte(ziehenStapel.nehmen());
             System.out.println(ablegeStapel.getObersteKarte());
@@ -71,9 +74,8 @@ public class Spiel {
         return ablegeStapel.getObersteKarte();
     }
 
-    public ObservableList<Node> buttonsFuerMenschlichenSpieler() {
-        ObservableList<Node> result = FXCollections.observableArrayList();
-        menschlicherSpieler.handKartenToArrayList();
+    public void buttonsFuerMenschlichenSpieler() {
+        spielerButtons.clear();
         System.out.println(menschlicherSpieler.getHandkartenArrayList());
         for (Karte karte: menschlicherSpieler.getHandkartenArrayList()){
             Button button = new Button(Integer.toString(karte.getZahl()));
@@ -85,9 +87,8 @@ public class Spiel {
             button.setMinSize(60, 100);
             button.setFont(new Font(20));
             button.setStyle(String.format("-fx-background-color: %s;-fx-background-radius: 10px", Karte.hexColors.get(karte.getFarbe())));
-            result.add(button);
+            spielerButtons.add(button);
         }
-        return result;
     }
 
     public void menschlicherSpielerZiehen(){
@@ -95,6 +96,8 @@ public class Spiel {
         menschlicherSpieler.ziehen(new Karte("Blau", 1));//}
         menschlicherSpieler.handKartenToArrayList();
         System.out.println(menschlicherSpieler.getHandkartenArrayList());
+        menschlicherSpieler.handKartenToArrayList();
+
         naechsterSpieler();
     }
 
@@ -164,10 +167,11 @@ public class Spiel {
                             catch (StapelLeerException stapelLeerExceptionE){
                                 stapelLeerExceptionE.getMessage();
                     }}
-
+                naechsterSpieler();
                 }
 
-            } derzeitigerSpieler++;  //else {
+            }
+            //else {
                     //enableActions()
                 // }
             //TODO: Check ob nächster spieler ist computer

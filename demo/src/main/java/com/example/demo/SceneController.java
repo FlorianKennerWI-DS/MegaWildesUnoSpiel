@@ -53,4 +53,12 @@ public class SceneController {
         stage.setScene(scene);
         stage.show();
     }
+    public void switchToHighScoreScene (ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("highScoreScene.fxml"))));
+        stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 }

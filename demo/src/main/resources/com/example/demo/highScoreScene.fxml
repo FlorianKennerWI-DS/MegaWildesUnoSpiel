@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HighscoreController">
+   <children>
+      <ListView fx:id="highScoreListView" layoutX="188.0" layoutY="56.0" prefHeight="314.0" prefWidth="224.0" />
+      <Label layoutX="188.0" layoutY="20.0" prefHeight="18.0" prefWidth="224.0" text="Highscoreliste">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

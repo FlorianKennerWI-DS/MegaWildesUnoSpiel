@@ -34,6 +34,7 @@ public class Spieler {
             handkarten.get(karte.getFarbe()).put(karte.getZahl(), new ArrayList<Karte>());
         }
         handkarten.get(karte.getFarbe()).get(karte.getZahl()).add(karte);
+        handKartenToArrayList();
     }
 
     public Karte ablegen(Karte karte) {
@@ -42,6 +43,7 @@ public class Spieler {
         handkarten.get(karte.getFarbe()).get(karte.getZahl()).remove(0);
         handKartenToArrayList();
         System.out.println(getHandkartenArrayList());
+        handKartenToArrayList();
         return abgelegteKarte;
     }
 
