@@ -15,6 +15,7 @@ import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -27,7 +28,6 @@ public class Spiel {
     private ArrayList<Spieler> spielerListe = new ArrayList<Spieler>();
     private AblegeStapel ablegeStapel = new AblegeStapel();
     private ZiehenStapel ziehenStapel = new ZiehenStapel();
-
 
     public StringProperty aktuellerSpielerName = new SimpleStringProperty();
     public StringProperty getKartenStand = new SimpleStringProperty();
@@ -49,15 +49,19 @@ public class Spiel {
         menschlicherSpielerKarten.setValue(spielerButtons);
         try {
             ablegeStapel.setObersteKarte(ziehenStapel.nehmen());
+            System.out.println(ablegeStapel.getObersteKarte());
         }
-        catch(Exception e){}
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        //menschlicherSpielerKarten.setValue(buttonsFuerMenschlichenSpieler());
     }
 
-    public String getAktSpieler() {
+    private String getAktSpieler() {
         return "Spieler "+spielerListe.get(derzeitigerSpieler).getName()+" ist dran.";
     }
 
-    public String setKartenStand() {
+    private String setKartenStand() {
         StringBuilder result = new StringBuilder();
         for (Spieler spieler: spielerListe) {
             result.append("Spieler "+spieler.getName()+": "+spieler.kartenZaehlen()+" Karten");
@@ -67,7 +71,7 @@ public class Spiel {
     }
 
     public Karte showLetzteKarte() {
-        return new Karte("Gelb", 1);
+        return ablegeStapel.getObersteKarte();
     }
 
     public void buttonsFuerMenschlichenSpieler() {
@@ -77,9 +81,7 @@ public class Spiel {
             Button button = new Button(Integer.toString(karte.getZahl()));
             button.setOnAction(actionEvent -> {
                 amZugPruefen(karte);
-                UpdateThread update = new UpdateThread(button);
-                naechsterSpieler();
-                update.start();
+                System.out.println("clicked");
             });
             button.setDisable(!ablegeStapel.getObersteKarte().kompatibilitaetPruefen(karte));
             button.setMinSize(60, 100);

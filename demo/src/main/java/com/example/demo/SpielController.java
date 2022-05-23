@@ -50,7 +50,6 @@ public class SpielController  {
         moderationText.textProperty().bind(  spiel.aktuellerSpielerName);
         kartenStand.textProperty().bind(spiel.getKartenStand);
         boxBeideStapel.getChildren().addAll(spiel.showLetzteKarte());
-        boxHandkarten.
         ObservableList<Node> buttonsHandkarten = spiel.buttonsFuerMenschlichenSpieler();
         Platform.runLater(()-> {
             boxHandkarten.getChildren().removeAll();

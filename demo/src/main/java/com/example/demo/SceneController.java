@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import com.example.demo.spiel.Spiel;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -18,6 +19,8 @@ import java.util.Objects;
 
 
 public class SceneController {
+    public MenuButton spielerZahlSelector;
+    public TextField nameFeld;
     @FXML
     private HBox boxBeideStapel;
     @FXML
@@ -41,13 +44,6 @@ public class SceneController {
 
     private int spielerZahl;
 
-    public int getSpielerZahl() {
-        return spielerZahl;
-    }
-
-    public String getSpielerName() {
-        return spielerName;
-    }
 
     private String spielerName;
 
@@ -73,6 +69,12 @@ public class SceneController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+    }
+
+    public void setSpielerZahlundName(ActionEvent event) {
+        spielerName = nameFeld.getText();
+        //
 
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.mvc.View?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
@@ -12,7 +13,7 @@
       <Label fx:id="kartenStand" layoutX="14.0" layoutY="14.0" text="Label" />
       <Label fx:id="moderationText" layoutX="286.0" layoutY="14.0" text="Label" />
       <HBox fx:id="boxBeideStapel" layoutY="98.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="600.0" />
-      <HBox fx:id="boxHandkarten" layoutY="292.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="94.0" prefWidth="600.0">
+      <HBox fx:id="boxHandkarten" layoutY="292.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#updateHandkartenView" prefHeight="94.0" prefWidth="600.0">
          <children>
             <ButtonBar fx:id="test" prefHeight="94.0" prefWidth="90.0" />
          </children></HBox>
