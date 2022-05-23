@@ -4,23 +4,29 @@ import com.example.demo.spiel.Spiel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 
-public class SceneController {
-    public MenuButton spielerZahlSelector;
+public class SceneController implements Initializable {
     public TextField nameFeld;
+    public ChoiceBox spielerZahlChoiceBox ;
+    public Label mitspielerLabel;
     @FXML
     private HBox boxBeideStapel;
     @FXML
@@ -44,13 +50,13 @@ public class SceneController {
 
     private int spielerZahl;
 
-
     private String spielerName;
 
 
     @FXML
 
     public void switchToGameScene (ActionEvent event) throws IOException {
+        setSpielerZahlundName();
         Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("spielScene.fxml"))));
         stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -72,9 +78,23 @@ public class SceneController {
 
     }
 
-    public void setSpielerZahlundName(ActionEvent event) {
+    public void setSpielerZahlundName() {
         spielerName = nameFeld.getText();
+        spielerZahl = (int ) spielerZahlChoiceBox.getValue();
+        System.out.println(spielerName);
+        System.out.println(spielerZahl);
         //
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        spielerZahlChoiceBox.getItems().add(1);
+        spielerZahlChoiceBox.getItems().add(2);
+        spielerZahlChoiceBox.getItems().add(3);
+        spielerZahlChoiceBox.getItems().add(4);
+        spielerZahlChoiceBox.getItems().add(5);
+        //mitspielerLabel.setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, CornerRadii.EMPTY, Insets.EMPTY)));;
 
     }
 }

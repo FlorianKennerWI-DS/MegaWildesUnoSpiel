@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -15,15 +14,11 @@
          <font>
             <Font size="36.0" />
          </font></Label>
-      <MenuButton layoutX="218.0" layoutY="319.0" mnemonicParsing="false" text="Select Amount of Players">
-        <items>
-          <MenuItem mnemonicParsing="false" text="1" />
-          <MenuItem mnemonicParsing="false" text="2" />
-        </items>
-      </MenuButton>
       <Button layoutX="280.0" layoutY="353.0" mnemonicParsing="false" onAction="#switchToGameScene" text="Start" />
       <Button fx:id="highScoreSceneButton" layoutX="184.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchToHighScoreScene" prefHeight="26.0" prefWidth="232.0" text="Highscore Liste anzeigen" />
       <TextField fx:id="nameFeld" layoutX="233.0" layoutY="278.0" text="Name eingeben" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <ChoiceBox fx:id="spielerZahlChoiceBox" accessibleRole="MENU_BUTTON" layoutX="234.0" layoutY="312.0" prefWidth="150.0" />
+      <Label fx:id="mitspielerLabel" layoutX="259.0" layoutY="313.0" prefHeight="26.0" prefWidth="98.0" text="Mitspielerzahl" wrapText="true" />
    </children>
 </AnchorPane>
