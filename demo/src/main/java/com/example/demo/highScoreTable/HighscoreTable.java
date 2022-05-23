@@ -34,7 +34,7 @@ public class   HighscoreTable {
         while (zeile != null){
             StringTokenizer zeilenToken = new StringTokenizer(zeile, ",");
             String spielerName = zeilenToken.nextToken();
-            int position = Integer.parseInt(zeilenToken.nextToken());
+            int position = Integer.parseInt(zeilenToken.nextToken().toString());
 
             // check if name already exists in alleSpieler
             if (alleSpieler.containsKey(spielerName)){

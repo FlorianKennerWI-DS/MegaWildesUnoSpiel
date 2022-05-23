@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SpielController implements Initializable {
+public class SpielController  {
     @FXML
     private HBox boxBeideStapel;
     @FXML
@@ -43,7 +43,7 @@ public class SpielController implements Initializable {
         spiel.menschlicherSpielerZiehen();
     }
 
-
+/*
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         spiel = new Spiel(3);
@@ -59,5 +59,5 @@ public class SpielController implements Initializable {
         });
         //boxHandkarten.getChildren().addAll(spiel.buttonsFuerMenschlichenSpieler());
         boxHandkarten.setSpacing(2);
-    }
+    }*/
 }
