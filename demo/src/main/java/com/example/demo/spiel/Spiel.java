@@ -11,6 +11,7 @@ import com.example.demo.spieler.Spieler;
 import com.example.demo.stapel.AblegeStapel;
 import com.example.demo.stapel.ZiehenStapel;
 import com.example.demo.customExceptions.StapelLeerException;
+import javafx.application.Platform;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -37,7 +38,7 @@ public class Spiel {
 
 
     Spieler menschlicherSpieler;
-    int derzeitigerSpieler = 0;
+    int derzeitigerSpielerIndex = 0;
     int step = 1; //direction in which to work through arraylist
     int anfang = 0; //0 or spielerliste.size() falls Reihenfolge falschrum
 
@@ -65,7 +66,7 @@ public class Spiel {
     }
 
     private String getAktSpieler() {
-        return "Spieler "+spielerListe.get(derzeitigerSpieler).getName()+" ist dran.";
+        return "Spieler "+spielerListe.get(derzeitigerSpielerIndex).getName()+" ist dran.";
     }
 
     private String setKartenStand() {
@@ -99,14 +100,14 @@ public class Spiel {
     }
 
     public void menschlicherSpielerZiehen(){
-        //  if (!(spielerListe.get(derzeitigerSpieler) instanceof Computer)){
+        //  if (!(spielerListe.get(derzeitigerSpielerIndex) instanceof Computer)){
         menschlicherSpieler.ziehen(new Karte("Blau", 1));//}
         menschlicherSpieler.handKartenToArrayList();
         naechsterSpieler();
     }
 
     public void amZugPruefen(Karte karte){
-        if (!(spielerListe.get(derzeitigerSpieler) instanceof Computer)){
+        if (!(spielerListe.get(derzeitigerSpielerIndex) instanceof Computer)){
             ablegeStapel.setObersteKarte(menschlicherSpieler.ablegen(karte));
             naechsterSpieler();
             //buttonsFuerMenschlichenSpieler();
@@ -114,17 +115,24 @@ public class Spiel {
     }
 
     private void naechsterSpieler() {
-        //int anfang + spielerliste.size()*step == derzeitigerSpieler -> fuer aktionskarte
-        if (derzeitigerSpieler == (spielerListe.size()-1)) {
-            derzeitigerSpieler = anfang;
+        //int anfang + spielerliste.size()*step == derzeitigerSpielerIndex -> fuer aktionskarte
+        if (derzeitigerSpielerIndex == (spielerListe.size()-1)) {
+            derzeitigerSpielerIndex = anfang;
         } else {
-            derzeitigerSpieler = derzeitigerSpieler + step;
+            derzeitigerSpielerIndex = derzeitigerSpielerIndex + step;
         }
 
         //observables updaten
         aktuellerSpielerName.setValue(getAktSpieler());
         getKartenStand.setValue(setKartenStand());
         buttonsFuerMenschlichenSpieler();
+        spielObersteKarteBeobachten.setValue(ablegeStapel.obersteKarteBeobachten);
+
+        //Zug des Computer-Gegners iniziieren
+        if (spielerListe.get(derzeitigerSpielerIndex) instanceof Computer) {
+            System.out.println("Computer is now playing");
+            spielen();
+        }
     }
 
     private void generiereSpieler(int spielerAnzahl) {
@@ -161,8 +169,25 @@ public class Spiel {
     }
 
     public void spielen () {
-        while (!jemandIstFertig()){
-            Spieler amZug = spielerListe.get(derzeitigerSpieler);
+        Spieler amZug = spielerListe.get(derzeitigerSpielerIndex);
+        if (amZug instanceof Computer) {
+            try {
+                ablegeStapel.setObersteKarte(((Computer) amZug).karteFinden(ablegeStapel.getObersteKarte()));
+            } catch (NichtAblegenException e){
+                e.getMessage();
+                try {
+                    amZug.ziehen(ziehenStapel.nehmen());
+                } catch (StapelLeerException e2) {
+                    e2.getMessage();
+                }
+            }
+        }
+        naechsterSpieler();
+    }
+
+    public void spielen2 () {
+        Spieler amZug = spielerListe.get(derzeitigerSpielerIndex);
+        while (!jemandIstFertig() && amZug instanceof Computer){
             if (amZug instanceof Computer) {
                     try {
                         //computer.waehleAktion()
@@ -177,21 +202,17 @@ public class Spiel {
                                 stapelLeerExceptionE.getMessage();
                     }}
                 naechsterSpieler();
+            } /*else {
+                Platform.runLater(() -> System.out.println("new Thread"));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-
+            }*/
+            amZug = spielerListe.get(derzeitigerSpielerIndex);
             }
-            //else {
-                    //enableActions()
-                // }
-            //TODO: Check ob nächster spieler ist computer
-            //          --> Dann dieser aktion
-            //      Anosonten auf eingabe warten
         }
     }
-    /*
 
-    public static void main (String[] args) {
-        Spiel spiel = new Spiel(2);
-        //spiel.spielen();
-    }*/
 

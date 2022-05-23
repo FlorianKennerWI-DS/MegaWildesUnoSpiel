@@ -15,6 +15,7 @@ public class Computer extends Spieler {
         boolean passendeZahl = false;
         Karte passendeKarte = null ;
 
+        //suche nach Karte derselben Farbe
         for (var entry : handkarten.get(obersteKarte.getFarbe()).entrySet()){
             if (entry.getValue().size() > 0){
                 passendeFarbe = true;
@@ -22,15 +23,21 @@ public class Computer extends Spieler {
             }
         }
 
-        for (var entry : handkarten.entrySet()){
+        //suche nach Karte mit derselben Zahl, falls keine mit passender Farbe gefunden
+        if (!passendeFarbe) {
+            for (var entry : handkarten.entrySet()){
 
-            for (var secondEntry : entry.getValue().entrySet()){
-                if (secondEntry.getValue().get(0).getZahl() == obersteKarte.getZahl()){
-                    passendeZahl = true;
-                    passendeKarte = secondEntry.getValue().get(0);
+                for (var secondEntry : entry.getValue().entrySet()){
+                    if (secondEntry.getValue().size() != 0) {
+                        if (secondEntry.getValue().get(0).getZahl() == obersteKarte.getZahl()){
+                            passendeZahl = true;
+                            passendeKarte = secondEntry.getValue().get(0);
+                        }
+                    }
                 }
             }
         }
+
         if (!passendeFarbe && !passendeZahl){
             throw new NichtAblegenException();
         }

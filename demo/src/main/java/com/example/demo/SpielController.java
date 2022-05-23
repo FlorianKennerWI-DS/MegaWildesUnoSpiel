@@ -51,12 +51,14 @@ public class SpielController  implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        spiel = new Spiel(3);
+        spiel = new Spiel(1);
+
+        //bind UI elements to observables
         moderationText.textProperty().bind(  spiel.aktuellerSpielerName);
         kartenStand.textProperty().bind(spiel.getKartenStand);
-        //boxBeideStapel.getChildren().addAll(spiel.showLetzteKarte());
         Bindings.bindContent(boxHandkarten.getChildren(), spiel.spielerButtons);
         Bindings.bindContent(boxBeideStapel.getChildren(), spiel.spielObersteKarteBeobachten);
+
         boxHandkarten.setSpacing(2);
     }
 }
