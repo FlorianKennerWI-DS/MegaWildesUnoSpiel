@@ -10,5 +10,7 @@ import java.util.ArrayList;
 public class Testing {
     public static void main(String[] args) {
         HighscoreTable.einlesen();
+        HighscoreTable.berechneDurchschnittsPosition();
+        System.out.println(HighscoreTable.getAlleDurschnittsPositionen());
     }
 }

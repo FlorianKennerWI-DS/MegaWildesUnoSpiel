@@ -15,11 +15,11 @@ import java.util.*;
 public class   HighscoreTable {
     private static HashMap<String, ArrayList<Integer>> alleSpieler = new HashMap<String, ArrayList<Integer>>();
 
-    public static HashMap<String, Integer> getAlleDurschnittsPositionen() {
+    public static HashMap<Integer, String> getAlleDurschnittsPositionen() {
         return alleDurschnittsPositionen;
     }
 
-    private static HashMap<String, Integer> alleDurschnittsPositionen = new HashMap<String, Integer>();
+    private static HashMap<Integer, String> alleDurschnittsPositionen = new HashMap<Integer, String>();
 
     public static void einlesen() {
         String zeile;
@@ -62,7 +62,7 @@ public class   HighscoreTable {
                 positionsSumme = positionsSumme + aktuellerPlatz;
             }
             int einzelneDurchschnittsPosition = positionsSumme / entry.getValue().size();
-            alleDurschnittsPositionen.put(name, einzelneDurchschnittsPosition);
+            alleDurschnittsPositionen.put(einzelneDurchschnittsPosition, name);
         }
     }
 

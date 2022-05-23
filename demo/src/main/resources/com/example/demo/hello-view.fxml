@@ -20,6 +20,6 @@
         </items>
       </MenuButton>
       <Button layoutX="280.0" layoutY="353.0" mnemonicParsing="false" onAction="#switchToGameScene" text="Start" />
-      <Button fx:id="highScoreSceneButton" layoutX="184.0" layoutY="46.0" mnemonicParsing="false" onAction="#switchToHighScoreScene" prefHeight="26.0" prefWidth="232.0" text="Highscore Liste anzeigen" />
+      <Button fx:id="highScoreSceneButton" layoutX="184.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchToHighScoreScene" prefHeight="26.0" prefWidth="232.0" text="Highscore Liste anzeigen" />
    </children>
 </AnchorPane>

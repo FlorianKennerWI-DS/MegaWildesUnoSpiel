@@ -17,7 +17,7 @@ public class HighscoreController implements Initializable {
         HighscoreTable.berechneDurchschnittsPosition();
 
         for (var entry : HighscoreTable.getAlleDurschnittsPositionen().entrySet()){
-            highScoreListView.getItems().add(String.format(entry.getKey() + ": " + entry.getValue()));}
+            highScoreListView.getItems().add(String.format(entry.getValue() + ": " + entry.getKey()));}
     }
 
     @Override

@@ -39,6 +39,18 @@ public class SceneController {
     private static Spiel spiel;
     long lastRefreshTime = 0;
 
+    private int spielerZahl;
+
+    public int getSpielerZahl() {
+        return spielerZahl;
+    }
+
+    public String getSpielerName() {
+        return spielerName;
+    }
+
+    private String spielerName;
+
 
     @FXML
 
@@ -53,7 +65,7 @@ public class SceneController {
         });
         stage.setScene(scene);
         stage.show();
-        spiel = new Spiel(2);
+
     }
     public void switchToHighScoreScene (ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("highScoreScene.fxml"))));
