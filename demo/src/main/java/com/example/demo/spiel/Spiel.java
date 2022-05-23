@@ -43,10 +43,10 @@ public class Spiel {
     int anfang = 0; //0 or spielerliste.size() falls Reihenfolge falschrum
 
 
-    public Spiel(int spielerAnzahl) {
+    public Spiel(int spielerAnzahl, String spielerName) {
 
         ziehenStapel.generieren();
-        generiereSpieler(spielerAnzahl);
+        generiereSpieler(spielerAnzahl, spielerName);
         kartenAusteilen();
         getKartenStand.setValue(setKartenStand());
         //menschlicherSpielerKarten.setValue(spielerButtons);
@@ -138,9 +138,9 @@ public class Spiel {
         }
     }
 
-    private void generiereSpieler(int spielerAnzahl) {
+    private void generiereSpieler(int spielerAnzahl, String spielerName) {
 
-        menschlicherSpieler = new Spieler("");
+        menschlicherSpieler = new Spieler(spielerName);
         spielerListe.add(menschlicherSpieler);
         for (int i = 0; i < spielerAnzahl; i++) {
             spielerListe.add(new Computer(i)); //add computergegner
@@ -174,7 +174,7 @@ public class Spiel {
     public void spielen () {
         Platform.runLater(() -> {
             try {
-                Thread.sleep(100);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

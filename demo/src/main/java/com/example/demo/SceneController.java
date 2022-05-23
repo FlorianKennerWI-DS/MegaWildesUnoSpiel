@@ -45,13 +45,20 @@ public class SceneController implements Initializable {
     private Label welcomeText;
     private Stage stage;
     private Scene scene;
-    private static Spiel spiel;
+
     long lastRefreshTime = 0;
 
     private static int spielerZahl;
 
     private static String spielerName;
 
+    public static int getSpielerZahl() {
+        return spielerZahl;
+    }
+
+    public static String getSpielerName() {
+        return spielerName;
+    }
 
     @FXML
 

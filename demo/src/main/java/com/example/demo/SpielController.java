@@ -51,7 +51,7 @@ public class SpielController  implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        spiel = new Spiel(1);
+        spiel = new Spiel(SceneController.getSpielerZahl(), SceneController.getSpielerName());
 
         //bind UI elements to observables
         moderationText.textProperty().bind(  spiel.aktuellerSpielerName);
