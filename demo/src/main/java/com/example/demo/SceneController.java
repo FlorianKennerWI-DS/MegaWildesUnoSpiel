@@ -36,7 +36,6 @@ public class SceneController {
     private Label welcomeText;
     private Stage stage;
     private Scene scene;
-    private static Spiel spiel;
     long lastRefreshTime = 0;
 
 
@@ -53,6 +52,5 @@ public class SceneController {
         });
         stage.setScene(scene);
         stage.show();
-        spiel = new Spiel(2);
     }
 }

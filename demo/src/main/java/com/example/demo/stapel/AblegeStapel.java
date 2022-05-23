@@ -1,11 +1,13 @@
 package com.example.demo.stapel;
 
 import com.example.demo.karten.Karte;
+import javafx.beans.value.ObservableValue;
 
 
 public class AblegeStapel {
     private int count;
     private Karte obersteKarte;
+    //public ObservableValue<Karte> obersteKarteView = (ObservableValue<Karte>) new Karte("Gruen", 4);
 
     public Karte getObersteKarte() {
         return obersteKarte;
@@ -18,5 +20,6 @@ public class AblegeStapel {
     public void setObersteKarte(Karte obersteKarte) {
         higherCount();
         this.obersteKarte = obersteKarte;
+        //obersteKarteView.
     }
 }

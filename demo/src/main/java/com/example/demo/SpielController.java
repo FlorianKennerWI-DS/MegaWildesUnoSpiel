@@ -41,6 +41,12 @@ public class SpielController implements Initializable {
 
     public void ziehenButton(){
         spiel.menschlicherSpielerZiehen();
+        updateHandkartenView();
+    }
+
+    public void updateHandkartenView() {
+        boxHandkarten.getChildren().removeAll();
+        boxHandkarten.getChildren().setAll(spiel.buttonsFuerMenschlichenSpieler());
     }
 
 
@@ -50,7 +56,6 @@ public class SpielController implements Initializable {
         moderationText.textProperty().bind(  spiel.aktuellerSpielerName);
         kartenStand.textProperty().bind(spiel.getKartenStand);
         boxBeideStapel.getChildren().addAll(spiel.showLetzteKarte());
-        boxHandkarten.
         ObservableList<Node> buttonsHandkarten = spiel.buttonsFuerMenschlichenSpieler();
         Platform.runLater(()-> {
             boxHandkarten.getChildren().removeAll();
