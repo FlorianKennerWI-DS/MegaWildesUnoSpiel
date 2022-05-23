@@ -70,6 +70,10 @@ public class Spiel {
                     spieler.ziehen(ziehenStapel.nehmen());
                 } catch (Stapelleer e) {
                     System.out.println(e.getMessage());
+                    System.exit(0);
+                    if((spieler.kartenZaehlen())>(Computer.kartenZaehlen())) {
+                        System.out.println("Unentschieden");
+                    }
                 }
             }
         }
@@ -105,6 +109,8 @@ public class Spiel {
                 }
                 } catch (Stapelleer e) {
                     System.out.println(e.getMessage());
+                    System.exit(0);
+                    System.out.println("Unentschieden");
                 }
                 }else {
                     ablegeStapel.ablegen(amZug.ablegen()); //TODO spieler.ablegen returned karte
