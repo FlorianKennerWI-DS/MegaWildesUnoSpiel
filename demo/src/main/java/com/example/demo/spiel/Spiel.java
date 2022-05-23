@@ -100,8 +100,11 @@ public class Spiel {
     }
 
     public void menschlicherSpielerZiehen(){
-        //  if (!(spielerListe.get(derzeitigerSpielerIndex) instanceof Computer)){
-        menschlicherSpieler.ziehen(new Karte("Blau", 1));//}
+        try {
+            menschlicherSpieler.ziehen(ziehenStapel.nehmen());
+        } catch (StapelLeerException e) {
+            e.printStackTrace();
+        }
         menschlicherSpieler.handKartenToArrayList();
         naechsterSpieler();
     }
@@ -169,20 +172,27 @@ public class Spiel {
     }
 
     public void spielen () {
-        Spieler amZug = spielerListe.get(derzeitigerSpielerIndex);
-        if (amZug instanceof Computer) {
+        Platform.runLater(() -> {
             try {
-                ablegeStapel.setObersteKarte(((Computer) amZug).karteFinden(ablegeStapel.getObersteKarte()));
-            } catch (NichtAblegenException e){
-                e.getMessage();
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Spieler amZug = spielerListe.get(derzeitigerSpielerIndex);
+            if (amZug instanceof Computer) {
                 try {
-                    amZug.ziehen(ziehenStapel.nehmen());
-                } catch (StapelLeerException e2) {
-                    e2.getMessage();
+                    ablegeStapel.setObersteKarte(((Computer) amZug).karteFinden(ablegeStapel.getObersteKarte()));
+                } catch (NichtAblegenException e){
+                    e.getMessage();
+                    try {
+                        amZug.ziehen(ziehenStapel.nehmen());
+                    } catch (StapelLeerException e2) {
+                        e2.getMessage();
+                    }
                 }
             }
-        }
-        naechsterSpieler();
+            naechsterSpieler();
+        });
     }
 
     public void spielen2 () {
