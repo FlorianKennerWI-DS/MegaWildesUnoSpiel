@@ -31,9 +31,11 @@ public class Spiel {
 
     public StringProperty aktuellerSpielerName = new SimpleStringProperty();
     public StringProperty getKartenStand = new SimpleStringProperty();
-    public ListProperty menschlicherSpielerKarten = new SimpleListProperty();
-
     public ObservableList<Node> spielerButtons = FXCollections.observableArrayList();
+    public SimpleListProperty spielObersteKarteBeobachten = new SimpleListProperty<>();
+    //public ObservableList<Karte> spielObersteKarteBeobachten = FXCollections.observableArrayList();
+
+
     Spieler menschlicherSpieler;
     int derzeitigerSpieler = 0;
     int step = 1; //direction in which to work through arraylist
@@ -46,7 +48,7 @@ public class Spiel {
         generiereSpieler(spielerAnzahl);
         kartenAusteilen();
         getKartenStand.setValue(setKartenStand());
-        menschlicherSpielerKarten.setValue(spielerButtons);
+        //menschlicherSpielerKarten.setValue(spielerButtons);
         try {
             ablegeStapel.setObersteKarte(ziehenStapel.nehmen());
             System.out.println(ablegeStapel.getObersteKarte());
@@ -54,7 +56,12 @@ public class Spiel {
         catch(Exception e){
             e.printStackTrace();
         }
-        //menschlicherSpielerKarten.setValue(buttonsFuerMenschlichenSpieler());
+
+        //observables setzen
+        getKartenStand.setValue(setKartenStand());
+        buttonsFuerMenschlichenSpieler();
+        spielObersteKarteBeobachten.setValue(ablegeStapel.obersteKarteBeobachten);
+
     }
 
     private String getAktSpieler() {
@@ -76,7 +83,7 @@ public class Spiel {
 
     public void buttonsFuerMenschlichenSpieler() {
         spielerButtons.clear();
-        System.out.println(menschlicherSpieler.getHandkartenArrayList());
+        //System.out.println(menschlicherSpieler.getHandkartenArrayList());
         for (Karte karte: menschlicherSpieler.getHandkartenArrayList()){
             Button button = new Button(Integer.toString(karte.getZahl()));
             button.setOnAction(actionEvent -> {
@@ -95,15 +102,14 @@ public class Spiel {
         //  if (!(spielerListe.get(derzeitigerSpieler) instanceof Computer)){
         menschlicherSpieler.ziehen(new Karte("Blau", 1));//}
         menschlicherSpieler.handKartenToArrayList();
-        System.out.println(menschlicherSpieler.getHandkartenArrayList());
-        menschlicherSpieler.handKartenToArrayList();
-
         naechsterSpieler();
     }
 
     public void amZugPruefen(Karte karte){
         if (!(spielerListe.get(derzeitigerSpieler) instanceof Computer)){
             ablegeStapel.setObersteKarte(menschlicherSpieler.ablegen(karte));
+            naechsterSpieler();
+            //buttonsFuerMenschlichenSpieler();
         }
     }
 
@@ -114,8 +120,11 @@ public class Spiel {
         } else {
             derzeitigerSpieler = derzeitigerSpieler + step;
         }
+
+        //observables updaten
         aktuellerSpielerName.setValue(getAktSpieler());
         getKartenStand.setValue(setKartenStand());
+        buttonsFuerMenschlichenSpieler();
     }
 
     private void generiereSpieler(int spielerAnzahl) {

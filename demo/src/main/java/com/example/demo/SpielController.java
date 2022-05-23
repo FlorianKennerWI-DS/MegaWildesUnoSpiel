@@ -11,7 +11,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.beans.binding.Bindings;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SpielController  {
+public class SpielController  implements Initializable{
     @FXML
     private HBox boxBeideStapel;
     @FXML
@@ -41,22 +41,22 @@ public class SpielController  {
 
     public void ziehenButton(){
         spiel.menschlicherSpielerZiehen();
+        updateHandkartenView();
     }
 
-/*
+    public void updateHandkartenView() {
+        boxHandkarten.getChildren().removeAll();
+        boxHandkarten.getChildren().setAll(spiel.spielerButtons);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         spiel = new Spiel(3);
         moderationText.textProperty().bind(  spiel.aktuellerSpielerName);
         kartenStand.textProperty().bind(spiel.getKartenStand);
-        boxBeideStapel.getChildren().addAll(spiel.showLetzteKarte());
-        ObservableList<Node> buttonsHandkarten = spiel.buttonsFuerMenschlichenSpieler();
-        Platform.runLater(()-> {
-            boxHandkarten.getChildren().removeAll();
-            boxHandkarten.getChildren().setAll(buttonsHandkarten);
-            System.out.println("ran");
-        });
-        //boxHandkarten.getChildren().addAll(spiel.buttonsFuerMenschlichenSpieler());
+        //boxBeideStapel.getChildren().addAll(spiel.showLetzteKarte());
+        Bindings.bindContent(boxHandkarten.getChildren(), spiel.spielerButtons);
+        Bindings.bindContent(boxBeideStapel.getChildren(), spiel.spielObersteKarteBeobachten);
         boxHandkarten.setSpacing(2);
-    }*/
+    }
 }
