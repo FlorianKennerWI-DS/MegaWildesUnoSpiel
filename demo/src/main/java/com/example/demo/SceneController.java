@@ -48,9 +48,9 @@ public class SceneController implements Initializable {
     private static Spiel spiel;
     long lastRefreshTime = 0;
 
-    private int spielerZahl;
+    private static int spielerZahl;
 
-    private String spielerName;
+    private static String spielerName;
 
 
     @FXML
@@ -70,7 +70,7 @@ public class SceneController implements Initializable {
 
     }
     public void switchToHighScoreScene (ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("highScoreScene.fxml"))));
+         Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("highScoreScene.fxml"))));
         stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
