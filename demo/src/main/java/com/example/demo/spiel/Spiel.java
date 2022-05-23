@@ -1,6 +1,7 @@
 package com.example.demo.spiel;
 
 
+import com.example.demo.UpdateThread;
 import com.example.demo.customExceptions.NichtAblegenException;
 
 import com.example.demo.karten.Karte;
@@ -10,6 +11,10 @@ import com.example.demo.spieler.Spieler;
 import com.example.demo.stapel.AblegeStapel;
 import com.example.demo.stapel.ZiehenStapel;
 import com.example.demo.customExceptions.StapelLeerException;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -19,12 +24,20 @@ import javafx.scene.text.Font;
 import java.util.ArrayList;
 
 public class Spiel {
-    public ArrayList<Spieler> spielerListe = new ArrayList<Spieler>();
-    public AblegeStapel ablegeStapel = new AblegeStapel();
-    public ZiehenStapel ziehenStapel = new ZiehenStapel();
+    private ArrayList<Spieler> spielerListe = new ArrayList<Spieler>();
+    private AblegeStapel ablegeStapel = new AblegeStapel();
+    private ZiehenStapel ziehenStapel = new ZiehenStapel();
+
+
+    public StringProperty aktuellerSpielerName = new SimpleStringProperty();
+    public StringProperty getKartenStand = new SimpleStringProperty();
+    public ListProperty menschlicherSpielerKarten = new SimpleListProperty();
+
+
     Spieler menschlicherSpieler;
     int derzeitigerSpieler = 0;
     int step = 1; //direction in which to work through arraylist
+    int anfang = 0; //0 or spielerliste.size() falls Reihenfolge falschrum
 
 
     public Spiel(int spielerAnzahl) {
@@ -32,17 +45,19 @@ public class Spiel {
         ziehenStapel.generieren();
         generiereSpieler(spielerAnzahl);
         kartenAusteilen();
+        getKartenStand.setValue(setKartenStand());
+        menschlicherSpielerKarten.setValue(buttonsFuerMenschlichenSpieler());
         try {
             ablegeStapel.setObersteKarte(ziehenStapel.nehmen());
         }
         catch(Exception e){}
     }
 
-    public String getSpielerName() {
-        return spielerListe.get(derzeitigerSpieler).getName();
+    public String getAktSpieler() {
+        return "Spieler "+spielerListe.get(derzeitigerSpieler).getName()+" ist dran.";
     }
 
-    public String getKartenStand() {
+    public String setKartenStand() {
         StringBuilder result = new StringBuilder();
         for (Spieler spieler: spielerListe) {
             result.append("Spieler "+spieler.getName()+": "+spieler.kartenZaehlen()+" Karten");
@@ -61,7 +76,11 @@ public class Spiel {
         System.out.println(menschlicherSpieler.getHandkartenArrayList());
         for (Karte karte: menschlicherSpieler.getHandkartenArrayList()){
             Button button = new Button(Integer.toString(karte.getZahl()));
-            button.setOnAction(actionEvent -> amZugPruefen(karte));
+            button.setOnAction(actionEvent -> {
+                amZugPruefen(karte);
+                UpdateThread update = new UpdateThread(button);
+                update.start();
+            });
             button.setDisable(!ablegeStapel.getObersteKarte().kompatibilitaetPruefen(karte));
             button.setMinSize(60, 100);
             button.setFont(new Font(20));
@@ -78,12 +97,25 @@ public class Spiel {
         menschlicherSpieler.ziehen(new Karte("Blau", 1));//}
         menschlicherSpieler.handKartenToArrayList();
         System.out.println(menschlicherSpieler.getHandkartenArrayList());
+
+        naechsterSpieler();
     }
 
     public void amZugPruefen(Karte karte){
         if (!(spielerListe.get(derzeitigerSpieler) instanceof Computer)){
             ablegeStapel.setObersteKarte(menschlicherSpieler.ablegen(karte));
         }
+    }
+
+    private void naechsterSpieler() {
+        //int anfang + spielerliste.size()*step == derzeitigerSpieler -> fuer aktionskarte
+        if (derzeitigerSpieler == (spielerListe.size()-1)) {
+            derzeitigerSpieler = anfang;
+        } else {
+            derzeitigerSpieler = derzeitigerSpieler + step;
+        }
+        aktuellerSpielerName.setValue(getAktSpieler());
+        getKartenStand.setValue(setKartenStand());
     }
 
     private void generiereSpieler(int spielerAnzahl) {

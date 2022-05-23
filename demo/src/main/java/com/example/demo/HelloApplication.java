@@ -17,7 +17,7 @@ public class HelloApplication extends Application {
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, 600, 420);
         scene.getStylesheets().addAll(this.getClass().getResource("hello-view-style.css").toExternalForm());
-        stage.setTitle("Welcome to UNO!");
+        stage.setTitle("Lets play UNO!");
         stage.setScene(scene);
         stage.show();
     }

@@ -74,6 +74,7 @@ public class Spieler {
     }
 
     public void handKartenToArrayList(){
+        handkartenArrayList.clear();
         for (var entry : handkarten.entrySet()){
             for (var secondEntry : entry.getValue().entrySet()){
                 for (int i = 0; i < secondEntry.getValue().size(); i ++){
