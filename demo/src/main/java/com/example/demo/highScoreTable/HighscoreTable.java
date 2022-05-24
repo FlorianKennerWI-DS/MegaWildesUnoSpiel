@@ -14,8 +14,8 @@ import java.util.*;
 // von Florian
 public class   HighscoreTable {
     private static HashMap<String, ArrayList<Integer>> alleSpieler = new HashMap<String, ArrayList<Integer>>();
-    private static HashMap<Integer, String> alleDurschnittsPositionen = new HashMap<Integer, String>();
-    public static HashMap<Integer, String> getAlleDurschnittsPositionen() {
+    private static HashMap<Float, String> alleDurschnittsPositionen = new HashMap<Float, String>();
+    public static HashMap<Float, String> getAlleDurschnittsPositionen() {
         return alleDurschnittsPositionen;
     }
 
@@ -59,7 +59,7 @@ public class   HighscoreTable {
             for (int aktuellerPlatz : entry.getValue()){
                 positionsSumme = positionsSumme + aktuellerPlatz;
             }
-            int einzelneDurchschnittsPosition = positionsSumme / entry.getValue().size();
+            float einzelneDurchschnittsPosition = (float)positionsSumme / entry.getValue().size();
             alleDurschnittsPositionen.put(einzelneDurchschnittsPosition, name);
         }
     }
