@@ -5,6 +5,7 @@ import com.example.demo.highScoreTable.HighscoreTable;
 import com.example.demo.spiel.Spiel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,6 +25,7 @@ import java.util.ResourceBundle;
 
 // Malena und Florian
 public class SpielController  implements Initializable{
+
     @FXML
     private HBox boxBeideStapel;
     @FXML
@@ -39,6 +41,12 @@ public class SpielController  implements Initializable{
     private Scene scene;
     private Spiel spiel;
 
+    private static String gewinner;
+
+    public static String getGewinner() {
+        return gewinner;
+    }
+
     @FXML
 
     public void ziehenButton(){
@@ -53,7 +61,7 @@ public class SpielController  implements Initializable{
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
                 System.out.println("fertig");
-                HighscoreTable.spielAbspeichern(spiel.getSpielerListe());
+                gewinner = HighscoreTable.spielAbspeichern(spiel.getSpielerListe());
                 try {
                     switchToEndScene();
                 } catch (IOException e) {
@@ -73,6 +81,7 @@ public class SpielController  implements Initializable{
 
     public void switchToEndScene() throws IOException {
         System.out.println("wechsel");
+        HighscoreTable.spielAbspeichern(spiel.getSpielerListe());
         Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("endScene.fxml"))));
         stage =(Stage) moderationText.getScene().getWindow();
         scene = new Scene(root);

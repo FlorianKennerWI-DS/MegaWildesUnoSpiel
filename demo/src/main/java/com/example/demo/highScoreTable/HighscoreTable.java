@@ -64,22 +64,22 @@ public class   HighscoreTable {
         }
     }
 
-    public static void spielAbspeichern(ArrayList<Spieler> spielende){
+    public static String spielAbspeichern(ArrayList<Spieler> spielerListe){
         Path meineDatei = Paths.get("./GameData.csv");
         int Position = 0;
         String name = "";
-        // sorting the spielende ArrayList by the number of Cards on their hands
-        spielende.sort(Comparator.comparingInt(s -> s.kartenZaehlen())); // implemented getHandkarten to Spieler Klasse
-        System.out.println(spielende);
+        // sorting the spielerListe ArrayList by the number of Cards on their hands
+        spielerListe.sort(Comparator.comparingInt(s -> s.kartenZaehlen())); // implemented getHandkarten to Spieler Klasse
+        System.out.println(spielerListe);
         dateiPfadPruefen(meineDatei);
         try {
             BufferedWriter writer = Files.newBufferedWriter(meineDatei, StandardOpenOption.APPEND);
 
             // searching the position of the human player
-            for (int index = 0; index < spielende.size(); index++){
-                if (!(spielende.get(index) instanceof Computer)){
+            for (int index = 0; index < spielerListe.size(); index++){
+                if (!(spielerListe.get(index) instanceof Computer)){
                     Position = index + 1;
-                    name = spielende.get(index).getName();
+                    name = spielerListe.get(index).getName();
                 }
             }
 
@@ -89,6 +89,7 @@ public class   HighscoreTable {
         }catch (Exception e){
             e.printStackTrace();
         }
+        return spielerListe.get(0).getName();
     }
 
     public static void dateiPfadPruefen(Path pfad){

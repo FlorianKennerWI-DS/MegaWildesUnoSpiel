@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.SpielController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.endSceneController">
    <children>
-      <Label layoutX="286.0" layoutY="165.0" text="LaFertigbel" />
+      <Label fx:id="gewinnerLabel" layoutX="7.0" layoutY="160.0" prefHeight="79.0" prefWidth="587.0" text="test" textAlignment="JUSTIFY">
+         <font>
+            <Font size="40.0" />
+         </font></Label>
+      <Button fx:id="zumStartBildschirm" layoutX="32.0" layoutY="22.0" mnemonicParsing="false" onAction="#zumStartbildSchirm" prefHeight="52.0" prefWidth="124.0" text="Zurück zum &#10;Startbildschirm" />
+      <Button fx:id="zurHighScoreTabelle" layoutX="443.0" layoutY="22.0" mnemonicParsing="false" onAction="#zurHighScoreTabelle" prefHeight="52.0" prefWidth="124.0" text="Zur &#10;Highscore-Tabelle" />
    </children>
 </AnchorPane>
