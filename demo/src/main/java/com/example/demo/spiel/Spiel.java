@@ -102,13 +102,14 @@ public class Spiel {
     }
 
     public void menschlicherSpielerZiehen(){
+        if (!(spielerListe.get(derzeitigerSpielerIndex) instanceof Computer)){
         try {
             menschlicherSpieler.ziehen(ziehenStapel.nehmen());
         } catch (StapelLeerException e) {
             e.printStackTrace();
         }
         menschlicherSpieler.handKartenToArrayList();
-        naechsterSpieler();
+        naechsterSpieler();}
     }
 
     public void amZugPruefen(Karte karte){
@@ -181,7 +182,7 @@ public class Spiel {
                     e.getMessage();
                     try {
                         amZug.ziehen(ziehenStapel.nehmen());
-                    } catch (StapelLeerException e2) {cd 
+                    } catch (StapelLeerException e2) {
                         e2.getMessage();
                     }
                 }
