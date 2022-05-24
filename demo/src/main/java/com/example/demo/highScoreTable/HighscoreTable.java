@@ -5,6 +5,7 @@ import com.example.demo.spieler.Spieler;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,7 +24,7 @@ public class   HighscoreTable {
         String zeile;
         Path meineDatei = Paths.get("./demo/src/main/resources/com/example/demo/highScoreData/GameData.csv");
         try {
-        // check if file with highscoredata exists, if not create it and write first line
+            // existiert die Datei schon? Wenn nicht -> kreieren und erste Zeile schreiben
         dateiPfadPruefen(meineDatei);
         BufferedReader meinReader = Files.newBufferedReader(meineDatei);
         meinReader.readLine();
@@ -34,19 +35,20 @@ public class   HighscoreTable {
             String spielerName = zeilenToken.nextToken();
             int position = Integer.parseInt(zeilenToken.nextToken().toString());
 
-            // check if name already exists in alleSpieler
+            // existiert der Name schon in der Liste?
             if (alleSpieler.containsKey(spielerName)){
                 alleSpieler.get(spielerName).add(position);
             }
 
-            // else add name as key and position as value
+            // Wenn nicht -> Name als key und Position als value hinzufügen
             else {
                 alleSpieler.put(spielerName, new ArrayList<>());
                 alleSpieler.get(spielerName).add(position);
             }
             zeile = meinReader.readLine();
         }
-        meinReader.close();}catch (Exception e){
+        meinReader.close();}
+        catch (IOException e){
             e.printStackTrace();
         }
 
@@ -68,14 +70,14 @@ public class   HighscoreTable {
         Path meineDatei = Paths.get("./demo/src/main/resources/com/example/demo/highScoreData/GameData.csv");
         int Position = 0;
         String name = "";
-        // sorting the spielerListe ArrayList by the number of Cards on their hands
-        spielerListe.sort(Comparator.comparingInt(s -> s.kartenZaehlen())); // implemented getHandkarten to Spieler Klasse
+        // Sortierung der spielerliste nach der Kartenanzahl auf der Hand
+        spielerListe.sort(Comparator.comparingInt(s -> s.kartenZaehlen())); // implemeniert getHandkarten zu Spieler Klasse
         System.out.println(spielerListe);
         dateiPfadPruefen(meineDatei);
         try {
             BufferedWriter writer = Files.newBufferedWriter(meineDatei, StandardOpenOption.APPEND);
 
-            // searching the position of the human player
+            // sucht Position des Spielers
             for (int index = 0; index < spielerListe.size(); index++){
                 if (!(spielerListe.get(index) instanceof Computer)){
                     Position = index + 1;
@@ -83,7 +85,7 @@ public class   HighscoreTable {
                 }
             }
 
-            // writing the player name and position in the GameData.csv file
+            // Spieler und Position eintragen in GameData.csv
             writer.write("\n" +name + "," + Position);
             writer.close();
         }catch (Exception e){

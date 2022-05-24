@@ -3,6 +3,7 @@ package com.example.demo.karten;
 
 // von Kim
 public class Aktionskarte extends Karte  {
+   //besondere Karten in UNO, leider nicht fertig mit der Implementierung
    private int id;
 
    public Aktionskarte(String farbe, int zahl, Action action) {

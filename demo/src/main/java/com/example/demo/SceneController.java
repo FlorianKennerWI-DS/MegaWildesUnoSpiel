@@ -79,6 +79,7 @@ public class SceneController implements Initializable {
         spielerZahlChoiceBox.getItems().add(4);
         spielerZahlChoiceBox.getItems().add(5);
 
+        //man kann Spiel erst starten, wenn Anzahl der Gegenspieler ausgewaehlt
         BooleanBinding startDiabled = spielerZahlChoiceBox.getSelectionModel().selectedItemProperty().isNull();
         startButton.disableProperty().bind(startDiabled);
         //mitspielerLabel.setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, CornerRadii.EMPTY, Insets.EMPTY)));;

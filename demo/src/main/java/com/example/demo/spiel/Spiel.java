@@ -48,11 +48,12 @@ public class Spiel {
 
     public Spiel(int spielerAnzahl, String spielerName) {
 
+        //Spiel vorbereiten
         ziehenStapel.generieren();
         generiereSpieler(spielerAnzahl, spielerName);
         kartenAusteilen();
-        //getKartenStand.setValue(setKartenStand());
-        //menschlicherSpielerKarten.setValue(spielerButtons);
+
+        //Anfangskarte auf dem Ablegestapel legen
         try {
             ablegeStapel.setObersteKarte(ziehenStapel.nehmen());
             System.out.println(ablegeStapel.getObersteKarte());
@@ -63,15 +64,6 @@ public class Spiel {
         updateObservables();
     }
 
-    private void updateObservables() {
-        letzteAktionUndKarte.setValue(letzteAktion);
-        aktuellerSpielerName.setValue(getAktSpieler());
-        getKartenStand.setValue(setKartenStand());
-        buttonsFuerMenschlichenSpieler();
-        spielObersteKarteBeobachten.setValue(ablegeStapel.obersteKarteBeobachten);
-        spielZuEnde.setValue(jemandIstFertigOderKeineKartenMehr());
-    }
-
     private String getAktSpieler() {
         return spielerListe.get(derzeitigerSpielerIndex).getName()+" ist dran.";
     }
@@ -80,6 +72,17 @@ public class Spiel {
         return spielerListe;
     }
 
+    private void updateObservables() {
+        //Properties updaten, an die die UI Elemente gebunden sind
+        letzteAktionUndKarte.setValue(letzteAktion);
+        aktuellerSpielerName.setValue(getAktSpieler());
+        getKartenStand.setValue(setKartenStand());
+        buttonsFuerMenschlichenSpieler();
+        spielObersteKarteBeobachten.setValue(ablegeStapel.obersteKarteBeobachten);
+        spielZuEnde.setValue(jemandIstFertigOderKeineKartenMehr());
+    }
+
+    //Anzahl der Spieler pro Karten aktualisieren
     private String setKartenStand() {
         StringBuilder result = new StringBuilder();
         for (Spieler spieler: spielerListe) {
@@ -89,9 +92,9 @@ public class Spiel {
         return result.toString();
     }
 
-    public void buttonsFuerMenschlichenSpieler() {
+    private void buttonsFuerMenschlichenSpieler() {
+        //karten in Form von Buttons, die später auf UI zu sehen sind
         spielerButtons.clear();
-        //System.out.println(menschlicherSpieler.getHandkartenArrayList());
         for (Karte karte: menschlicherSpieler.getHandkartenArrayList()){
             Button button = new Button(Integer.toString(karte.getZahl()));
             button.setOnAction(actionEvent -> {
@@ -107,9 +110,9 @@ public class Spiel {
     }
 
     public void menschlicherSpielerZiehen(){
-        if (!(spielerListe.get(derzeitigerSpielerIndex) instanceof Computer)){
+        if (!(spielerListe.get(derzeitigerSpielerIndex) instanceof Computer)){ //checken, das auch wirklich Mensch am Zug ist
         try {
-            letzteAktion = menschlicherSpieler.getName() + "" +menschlicherSpieler.ziehen(ziehenStapel.nehmen());
+            letzteAktion = menschlicherSpieler.getName() + "" +menschlicherSpieler.ziehen(ziehenStapel.nehmen()); //
         } catch (StapelLeerException e) {
             e.printStackTrace();
         }
@@ -117,17 +120,16 @@ public class Spiel {
         naechsterSpieler();}
     }
 
-    public void amZugPruefen(Karte karte){
+    private void amZugPruefen(Karte karte){
         if (!(spielerListe.get(derzeitigerSpielerIndex) instanceof Computer)){
             ablegeStapel.setObersteKarte(menschlicherSpieler.ablegen(karte));
             letzteAktion = menschlicherSpieler.getName() + " hat " + ablegeStapel.getObersteKarte() + " abgelegt." ;
             naechsterSpieler();
-            //buttonsFuerMenschlichenSpieler();
         }
     }
 
     private void naechsterSpieler() {
-        //int anfang + spielerliste.size()*step == derzeitigerSpielerIndex -> fuer aktionskarte
+        //zum naechsten Spieler weitergehen, dabei wieder von vorne anfangen, wenn letzer Spieler
         if (derzeitigerSpielerIndex == (spielerListe.size()-1)) {
             derzeitigerSpielerIndex = anfang;
         } else {
@@ -136,12 +138,10 @@ public class Spiel {
 
         //observables updaten
         updateObservables();
-        System.out.println(spielZuEnde);
 
         //Zug des Computer-Gegners iniziieren
         if (spielerListe.get(derzeitigerSpielerIndex) instanceof Computer && !jemandIstFertigOderKeineKartenMehr()) {
-            System.out.println("Computer is now playing");
-            spielen();
+            computerSpielt();
         }
     }
 
@@ -168,7 +168,7 @@ public class Spiel {
     }
 
     private boolean jemandIstFertigOderKeineKartenMehr() {
-
+        //pruefen, ob Spiel zu Ende ist
         for (Spieler spieler:spielerListe) {
             if (!spieler.hatKarten()){
                 return true;
@@ -180,8 +180,8 @@ public class Spiel {
         return false;
     }
 
-    public void spielen () {
-        PauseTransition pause = new PauseTransition(Duration.millis(2000));
+    public void computerSpielt() {
+        PauseTransition pause = new PauseTransition(Duration.millis(2000)); //UI freeze vermeiden
         pause.setOnFinished((event) -> {
             Spieler amZug = spielerListe.get(derzeitigerSpielerIndex);
             if (amZug instanceof Computer) {
@@ -202,35 +202,6 @@ public class Spiel {
         });
         pause.play();
     }
-
-    public void spielen2 () {
-        Spieler amZug = spielerListe.get(derzeitigerSpielerIndex);
-        while (!jemandIstFertigOderKeineKartenMehr() && amZug instanceof Computer){
-            if (amZug instanceof Computer) {
-                    try {
-                        //computer.waehleAktion()
-                        ablegeStapel.setObersteKarte(((Computer) amZug).karteFinden(ablegeStapel.getObersteKarte()));
-                        }
-
-                        catch(NichtAblegenException e){
-                            System.out.println(e.getMessage());
-                            try {
-                                amZug.ziehen(ziehenStapel.nehmen());}
-                            catch (StapelLeerException stapelLeerExceptionE){
-                                stapelLeerExceptionE.getMessage();
-                    }}
-                naechsterSpieler();
-            } /*else {
-                Platform.runLater(() -> System.out.println("new Thread"));
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }*/
-            amZug = spielerListe.get(derzeitigerSpielerIndex);
-            }
-        }
-    }
+}
 
 

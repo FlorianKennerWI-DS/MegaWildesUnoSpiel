@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 public class AblegeStapel {
     private int count;
     private Karte obersteKarte;
-    public ObservableList<Karte> obersteKarteBeobachten = FXCollections.observableArrayList();
+    public ObservableList<Karte> obersteKarteBeobachten = FXCollections.observableArrayList(); //fuer UI
 
     public Karte getObersteKarte() {
         return obersteKarte;
