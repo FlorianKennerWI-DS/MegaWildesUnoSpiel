@@ -79,6 +79,7 @@ public class SpielController  implements Initializable{
         boxHandkarten.setSpacing(2);
     }
 
+    @FXML
     public void switchToEndScene() throws IOException {
         System.out.println("wechsel");
         HighscoreTable.spielAbspeichern(spiel.getSpielerListe());
