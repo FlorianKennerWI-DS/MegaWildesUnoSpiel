@@ -5,7 +5,6 @@ import com.example.demo.highScoreTable.HighscoreTable;
 import com.example.demo.spiel.Spiel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -57,16 +56,13 @@ public class SpielController  implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         spiel = new Spiel(SceneController.getSpielerZahl(), SceneController.getSpielerName());
-        spiel.spielZuEnde.addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                System.out.println("fertig");
-                gewinner = HighscoreTable.spielAbspeichern(spiel.getSpielerListe());
-                try {
-                    switchToEndScene();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        spiel.spielZuEnde.addListener((observableValue, aBoolean, t1) -> {
+            System.out.println("fertig");
+            HighscoreTable.spielAbspeichern(spiel.getSpielerListe());
+            try {
+                switchToEndScene();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
 
@@ -77,6 +73,7 @@ public class SpielController  implements Initializable{
         Bindings.bindContent(boxBeideStapel.getChildren(), spiel.spielObersteKarteBeobachten);
 
         boxHandkarten.setSpacing(2);
+        moderationText.getScene().getStylesheets().addAll(this.getClass().getResource("startSceneStyle.css").toExternalForm());
     }
 
     @FXML
