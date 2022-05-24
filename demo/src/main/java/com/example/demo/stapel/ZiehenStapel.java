@@ -39,6 +39,12 @@ public class ZiehenStapel {
         }
         kartenStack =  gemischterStapel;
     }
+    public boolean stapelLeer(){
+        if (kartenStack.isEmpty()){
+            return true;
+        }
+        return false;
+    }
 }
 
 
