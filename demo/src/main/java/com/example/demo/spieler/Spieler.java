@@ -4,6 +4,7 @@ import com.example.demo.karten.Karte;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+// annika und Florian
 public class Spieler {
     private String name;
     //Handkarten aus Klasse Karten
@@ -16,6 +17,9 @@ public class Spieler {
 
     public ArrayList<Karte> getHandkartenArrayList() {
         return handkartenArrayList;
+    }
+    public HashMap<String, HashMap<Integer, ArrayList<Karte>>> getHandkarten() {
+        return handkarten;
     }
 
     public Spieler (String name) {
@@ -45,10 +49,6 @@ public class Spieler {
         System.out.println(getHandkartenArrayList());
         handKartenToArrayList();
         return abgelegteKarte;
-    }
-
-    public HashMap<String, HashMap<Integer, ArrayList<Karte>>> getHandkarten() {
-        return handkarten;
     }
 
     public boolean hatKarten(){
@@ -84,8 +84,5 @@ public class Spieler {
                 }
             }
         }}
-
-
-    // TODO: get Kartenzahl
 }
 

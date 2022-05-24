@@ -1,5 +1,7 @@
 package com.example.demo.karten;
 
+
+// von Kim
 public class Aktionskarte extends Karte  {
    private int id;
 

@@ -7,7 +7,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.util.HashMap;
-
+ // Kim und Malena
 public class Karte extends Parent {
 
     String farbe;

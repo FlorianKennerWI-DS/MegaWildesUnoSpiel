@@ -1,5 +1,7 @@
 package com.example.demo.customExceptions;
 
+// beide vom Kim
+
 public class NichtAblegenException extends RuntimeException{
 
     public NichtAblegenException() {

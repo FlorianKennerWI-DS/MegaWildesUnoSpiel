@@ -1,13 +1,10 @@
 package com.example.demo.stapel;
 
 import com.example.demo.karten.Karte;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
+// Florian
 public class AblegeStapel {
     private int count;
     private Karte obersteKarte;
@@ -26,6 +23,5 @@ public class AblegeStapel {
         this.obersteKarte = obersteKarte;
         obersteKarteBeobachten.clear();
         obersteKarteBeobachten.add(obersteKarte);
-        //obersteKarteView.
     }
 }

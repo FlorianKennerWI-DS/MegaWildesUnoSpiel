@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
-
+// von Florian
 public class   HighscoreTable {
     private static HashMap<String, ArrayList<Integer>> alleSpieler = new HashMap<String, ArrayList<Integer>>();
     private static HashMap<Integer, String> alleDurschnittsPositionen = new HashMap<Integer, String>();

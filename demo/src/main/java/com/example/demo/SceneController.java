@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-
+// Malena
 public class SceneController implements Initializable {
     public TextField nameFeld;
     public ChoiceBox spielerZahlChoiceBox ;

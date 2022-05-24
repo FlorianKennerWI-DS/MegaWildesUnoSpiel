@@ -1,14 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.karten.Karte;
+
 import com.example.demo.spiel.Spiel;
-import javafx.application.Platform;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleSetProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.beans.binding.Bindings;
@@ -21,6 +14,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+// Malena und Florian
 public class SpielController  implements Initializable{
     @FXML
     private HBox boxBeideStapel;

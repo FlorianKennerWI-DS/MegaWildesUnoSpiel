@@ -1,7 +1,6 @@
 package com.example.demo.spiel;
 
 
-import com.example.demo.UpdateThread;
 import com.example.demo.customExceptions.NichtAblegenException;
 
 import com.example.demo.karten.Karte;
@@ -12,12 +11,9 @@ import com.example.demo.stapel.AblegeStapel;
 import com.example.demo.stapel.ZiehenStapel;
 import com.example.demo.customExceptions.StapelLeerException;
 import javafx.animation.PauseTransition;
-import javafx.application.Platform;
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -27,6 +23,7 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 
+// Malena und Florian
 public class Spiel {
     private ArrayList<Spieler> spielerListe = new ArrayList<Spieler>();
     private AblegeStapel ablegeStapel = new AblegeStapel();
@@ -78,10 +75,6 @@ public class Spiel {
             result.append(System.getProperty("line.separator"));
         }
         return result.toString();
-    }
-
-    public Karte showLetzteKarte() {
-        return ablegeStapel.getObersteKarte();
     }
 
     public void buttonsFuerMenschlichenSpieler() {
@@ -148,7 +141,6 @@ public class Spiel {
     }
 
     private void kartenAusteilen() {
-
         for (Spieler spieler:spielerListe) {
             for (int j =0; j<7;j++) {
                 try {

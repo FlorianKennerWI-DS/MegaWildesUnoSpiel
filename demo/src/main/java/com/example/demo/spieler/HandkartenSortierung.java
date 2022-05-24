@@ -3,6 +3,7 @@ package com.example.demo.spieler;
 import java.util.ArrayList;
 import com.example.demo.karten.Karte;
 
+// von Annika
 public class HandkartenSortierung {
 
     public static void sort(ArrayList<Karte> elements) {

@@ -5,6 +5,7 @@ import com.example.demo.customExceptions.NichtAblegenException;
 
 public class Computer extends Spieler {
 
+    // Annika und Florian
     public Computer(int i) {
         super("com" + Integer.toString(i));
     }
