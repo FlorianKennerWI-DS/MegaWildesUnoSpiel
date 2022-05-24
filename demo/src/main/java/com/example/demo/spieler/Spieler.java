@@ -48,6 +48,7 @@ public class Spieler {
         handKartenToArrayList();
         System.out.println(getHandkartenArrayList());
         handKartenToArrayList();
+        System.out.println(getName() + " legt " + karte.toString());
         return abgelegteKarte;
     }
 
