@@ -3,14 +3,10 @@ package com.example.demo;
 
 import com.example.demo.highScoreTable.HighscoreTable;
 import com.example.demo.spiel.Spiel;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.beans.binding.Bindings;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,6 +21,7 @@ import java.util.ResourceBundle;
 
 // Malena und Florian
 public class SpielController  implements Initializable{
+    //wir haben in den meisten Faellen dieses Interface implementiert, um die initialize-Methode verwenden zu koennen
 
     public Label letzteAktion;
     @FXML
