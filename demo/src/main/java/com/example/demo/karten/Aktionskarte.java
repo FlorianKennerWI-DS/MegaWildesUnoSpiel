@@ -19,10 +19,4 @@ public class Aktionskarte extends Karte  {
    }
 
    public Action action;
-    public Aktionskarte (Action action){
-       super();
-       this.action = action;
-    }
-
-
 }

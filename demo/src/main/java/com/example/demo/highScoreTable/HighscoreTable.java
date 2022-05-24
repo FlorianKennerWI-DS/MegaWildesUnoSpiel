@@ -14,12 +14,10 @@ import java.util.*;
 
 public class   HighscoreTable {
     private static HashMap<String, ArrayList<Integer>> alleSpieler = new HashMap<String, ArrayList<Integer>>();
-
+    private static HashMap<Integer, String> alleDurschnittsPositionen = new HashMap<Integer, String>();
     public static HashMap<Integer, String> getAlleDurschnittsPositionen() {
         return alleDurschnittsPositionen;
     }
-
-    private static HashMap<Integer, String> alleDurschnittsPositionen = new HashMap<Integer, String>();
 
     public static void einlesen() {
         String zeile;

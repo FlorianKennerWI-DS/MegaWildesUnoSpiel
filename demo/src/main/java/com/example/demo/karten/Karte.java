@@ -33,9 +33,6 @@ public class Karte extends Parent {
         hexColors.put("Schwarz", "#000000");
     }
 
-    public Karte() {
-    }
-
     public Color getFarbeUI() {
         return farbeUI;
     }
