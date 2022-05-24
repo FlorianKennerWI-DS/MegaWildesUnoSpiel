@@ -1,17 +1,25 @@
 package com.example.demo;
 
 
+import com.example.demo.highScoreTable.HighscoreTable;
 import com.example.demo.spiel.Spiel;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.beans.binding.Bindings;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 // Malena und Florian
@@ -23,7 +31,7 @@ public class SpielController  implements Initializable{
     @FXML
     private HBox boxHandkarten;
     @FXML
-    private Label moderationText;
+    public Label moderationText;
     @FXML
     private Label kartenStand;
     @FXML
@@ -41,6 +49,18 @@ public class SpielController  implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         spiel = new Spiel(SceneController.getSpielerZahl(), SceneController.getSpielerName());
+        spiel.spielZuEnde.addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                System.out.println("fertig");
+                HighscoreTable.spielAbspeichern(spiel.getSpielerListe());
+                try {
+                    switchToEndScene();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         //bind UI elements to observables
         moderationText.textProperty().bind(  spiel.aktuellerSpielerName);
@@ -49,5 +69,14 @@ public class SpielController  implements Initializable{
         Bindings.bindContent(boxBeideStapel.getChildren(), spiel.spielObersteKarteBeobachten);
 
         boxHandkarten.setSpacing(2);
+    }
+
+    public void switchToEndScene() throws IOException {
+        System.out.println("wechsel");
+        Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("endScene.fxml"))));
+        stage =(Stage) moderationText.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

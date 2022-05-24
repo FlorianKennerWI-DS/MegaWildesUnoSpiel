@@ -8,7 +8,6 @@ import java.util.Stack;
 // Florian
 public class ZiehenStapel {
     public Stack<Karte> kartenStack = new Stack<>();
-    public int laenge;
 
     public Karte nehmen() throws StapelLeerException {
 

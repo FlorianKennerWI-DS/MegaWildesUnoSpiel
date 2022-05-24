@@ -11,6 +11,7 @@ import com.example.demo.stapel.AblegeStapel;
 import com.example.demo.stapel.ZiehenStapel;
 import com.example.demo.customExceptions.StapelLeerException;
 import javafx.animation.PauseTransition;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -33,6 +34,7 @@ public class Spiel {
     public StringProperty getKartenStand = new SimpleStringProperty();
     public ObservableList<Node> spielerButtons = FXCollections.observableArrayList();
     public SimpleListProperty spielObersteKarteBeobachten = new SimpleListProperty<>();
+    public SimpleBooleanProperty spielZuEnde = new SimpleBooleanProperty();
 
     private Spieler menschlicherSpieler;
     private int derzeitigerSpielerIndex = 0;
@@ -45,7 +47,7 @@ public class Spiel {
         ziehenStapel.generieren();
         generiereSpieler(spielerAnzahl, spielerName);
         kartenAusteilen();
-        getKartenStand.setValue(setKartenStand());
+        //getKartenStand.setValue(setKartenStand());
         //menschlicherSpielerKarten.setValue(spielerButtons);
         try {
             ablegeStapel.setObersteKarte(ziehenStapel.nehmen());
@@ -62,10 +64,15 @@ public class Spiel {
         getKartenStand.setValue(setKartenStand());
         buttonsFuerMenschlichenSpieler();
         spielObersteKarteBeobachten.setValue(ablegeStapel.obersteKarteBeobachten);
+        spielZuEnde.setValue(jemandIstFertig());
     }
 
     private String getAktSpieler() {
         return spielerListe.get(derzeitigerSpielerIndex).getName()+" ist dran.";
+    }
+
+    public ArrayList<Spieler> getSpielerListe() {
+        return spielerListe;
     }
 
     private String setKartenStand() {
@@ -123,6 +130,7 @@ public class Spiel {
 
         //observables updaten
         updateObservables();
+        System.out.println(spielZuEnde);
 
         //Zug des Computer-Gegners iniziieren
         if (spielerListe.get(derzeitigerSpielerIndex) instanceof Computer) {
@@ -142,7 +150,7 @@ public class Spiel {
 
     private void kartenAusteilen() {
         for (Spieler spieler:spielerListe) {
-            for (int j =0; j<7;j++) {
+            for (int j =0; j<1;j++) {
                 try {
                     spieler.ziehen(ziehenStapel.nehmen());
                 } catch (StapelLeerException e) {

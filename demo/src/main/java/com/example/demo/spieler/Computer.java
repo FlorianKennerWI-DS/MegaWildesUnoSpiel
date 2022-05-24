@@ -21,6 +21,7 @@ public class Computer extends Spieler {
             if (entry.getValue().size() > 0){
                 passendeFarbe = true;
                 passendeKarte = entry.getValue().get(0);
+                break;
             }
         }
 
@@ -33,6 +34,7 @@ public class Computer extends Spieler {
                         if (secondEntry.getValue().get(0).getZahl() == obersteKarte.getZahl()){
                             passendeZahl = true;
                             passendeKarte = secondEntry.getValue().get(0);
+                            break;
                         }
                     }
                 }
