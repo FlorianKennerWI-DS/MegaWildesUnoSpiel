@@ -14,7 +14,7 @@
          <font>
             <Font size="36.0" />
          </font></Label>
-      <Button layoutX="280.0" layoutY="353.0" mnemonicParsing="false" onAction="#switchToGameScene" text="Start" />
+      <Button fx:id="startButton" layoutX="280.0" layoutY="353.0" mnemonicParsing="false" onAction="#switchToGameScene" text="Start" />
       <Button fx:id="highScoreSceneButton" layoutX="184.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchToHighScoreScene" prefHeight="26.0" prefWidth="232.0" text="Highscore Liste anzeigen" />
       <TextField fx:id="nameFeld" layoutX="233.0" layoutY="278.0" text="Name eingeben" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />

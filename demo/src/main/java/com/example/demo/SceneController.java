@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.spiel.Spiel;
+import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,35 +28,15 @@ public class SceneController implements Initializable {
     public TextField nameFeld;
     public ChoiceBox spielerZahlChoiceBox ;
     public Label mitspielerLabel;
-    @FXML
-    private HBox boxBeideStapel;
-    @FXML
-    private Button testButton;
-    @FXML
-    private Button ziehenButton;
-    @FXML
-    private HBox boxHandkarten;
-    @FXML
-    private Label moderationText;
-    @FXML
-    private Button bindButton;
-    @FXML
-    private Label kartenStand;
-    @FXML
-    private Label welcomeText;
+    public Button startButton;
     private Stage stage;
     private Scene scene;
 
-    long lastRefreshTime = 0;
-
     private static int spielerZahl;
-
     private static String spielerName;
-
     public static int getSpielerZahl() {
         return spielerZahl;
     }
-
     public static String getSpielerName() {
         return spielerName;
     }
@@ -67,11 +48,6 @@ public class SceneController implements Initializable {
         Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("spielScene.fxml"))));
         stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        scene.addPreLayoutPulseListener(() -> {
-            long refreshTime = System.nanoTime();
-            //System.out.println(refreshTime - lastRefreshTime);
-            lastRefreshTime = refreshTime;
-        });
         stage.setScene(scene);
         stage.show();
 
@@ -101,7 +77,9 @@ public class SceneController implements Initializable {
         spielerZahlChoiceBox.getItems().add(3);
         spielerZahlChoiceBox.getItems().add(4);
         spielerZahlChoiceBox.getItems().add(5);
-        //mitspielerLabel.setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, CornerRadii.EMPTY, Insets.EMPTY)));;
 
+        BooleanBinding startDiabled = spielerZahlChoiceBox.getSelectionModel().selectedItemProperty().isNull();
+        startButton.disableProperty().bind(startDiabled);
+        //mitspielerLabel.setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, CornerRadii.EMPTY, Insets.EMPTY)));;
     }
 }

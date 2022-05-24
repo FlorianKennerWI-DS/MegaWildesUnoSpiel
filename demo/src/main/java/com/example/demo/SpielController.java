@@ -41,13 +41,8 @@ public class SpielController  implements Initializable{
 
     public void ziehenButton(){
         spiel.menschlicherSpielerZiehen();
-        updateHandkartenView();
     }
 
-    public void updateHandkartenView() {
-        boxHandkarten.getChildren().removeAll();
-        boxHandkarten.getChildren().setAll(spiel.spielerButtons);
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

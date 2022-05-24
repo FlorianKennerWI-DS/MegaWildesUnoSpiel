@@ -5,21 +5,20 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.SpielController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="917.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.SpielController">
    <children>
-      <Button fx:id="ziehenButton" layoutX="498.0" layoutY="253.0" mnemonicParsing="false" onAction="#ziehenButton" prefHeight="40.0" prefWidth="75.0" text="Ziehen" />
-      <Label fx:id="kartenStand" layoutX="14.0" layoutY="14.0" text="Label" />
-      <Label fx:id="moderationText" layoutX="286.0" layoutY="14.0" text="Label" />
-      <HBox fx:id="boxBeideStapel" layoutY="98.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="600.0" />
-      <HBox fx:id="boxHandkarten" layoutY="292.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="94.0" prefWidth="600.0">
+      <Button fx:id="ziehenButton" layoutX="827.0" layoutY="233.0" mnemonicParsing="false" onAction="#ziehenButton" prefHeight="40.0" prefWidth="75.0" text="Ziehen" />
+      <Label fx:id="kartenStand" layoutX="20.0" layoutY="22.0" text="Label" />
+      <Label fx:id="moderationText" contentDisplay="CENTER" layoutX="278.0" layoutY="21.0" prefHeight="18.0" prefWidth="361.0" text="Label">
+         <font>
+            <Font size="32.0" />
+         </font></Label>
+      <HBox fx:id="boxBeideStapel" layoutX="408.0" layoutY="113.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="101.0" />
+      <HBox fx:id="boxHandkarten" alignment="CENTER" layoutY="292.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="94.0" prefWidth="917.0">
          <children>
             <ButtonBar fx:id="test" prefHeight="94.0" prefWidth="90.0" />
          </children></HBox>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0">
-        <buttons>
-          <Button mnemonicParsing="false" text="Button" />
-        </buttons>
-      </ButtonBar>
    </children>
 </AnchorPane>

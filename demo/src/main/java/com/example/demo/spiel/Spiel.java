@@ -11,6 +11,7 @@ import com.example.demo.spieler.Spieler;
 import com.example.demo.stapel.AblegeStapel;
 import com.example.demo.stapel.ZiehenStapel;
 import com.example.demo.customExceptions.StapelLeerException;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -22,6 +23,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 
@@ -34,13 +36,11 @@ public class Spiel {
     public StringProperty getKartenStand = new SimpleStringProperty();
     public ObservableList<Node> spielerButtons = FXCollections.observableArrayList();
     public SimpleListProperty spielObersteKarteBeobachten = new SimpleListProperty<>();
-    //public ObservableList<Karte> spielObersteKarteBeobachten = FXCollections.observableArrayList();
 
-
-    Spieler menschlicherSpieler;
-    int derzeitigerSpielerIndex = 0;
-    int step = 1; //direction in which to work through arraylist
-    int anfang = 0; //0 or spielerliste.size() falls Reihenfolge falschrum
+    private Spieler menschlicherSpieler;
+    private int derzeitigerSpielerIndex = 0;
+    private int step = 1; //direction in which to work through arraylist
+    private int anfang = 0; //0 or spielerliste.size() falls Reihenfolge falschrum
 
 
     public Spiel(int spielerAnzahl, String spielerName) {
@@ -57,16 +57,18 @@ public class Spiel {
         catch(Exception e){
             e.printStackTrace();
         }
+        updateObservables();
+    }
 
-        //observables setzen
+    private void updateObservables() {
+        aktuellerSpielerName.setValue(getAktSpieler());
         getKartenStand.setValue(setKartenStand());
         buttonsFuerMenschlichenSpieler();
         spielObersteKarteBeobachten.setValue(ablegeStapel.obersteKarteBeobachten);
-
     }
 
     private String getAktSpieler() {
-        return "Spieler "+spielerListe.get(derzeitigerSpielerIndex).getName()+" ist dran.";
+        return spielerListe.get(derzeitigerSpielerIndex).getName()+" ist dran.";
     }
 
     private String setKartenStand() {
@@ -126,10 +128,7 @@ public class Spiel {
         }
 
         //observables updaten
-        aktuellerSpielerName.setValue(getAktSpieler());
-        getKartenStand.setValue(setKartenStand());
-        buttonsFuerMenschlichenSpieler();
-        spielObersteKarteBeobachten.setValue(ablegeStapel.obersteKarteBeobachten);
+        updateObservables();
 
         //Zug des Computer-Gegners iniziieren
         if (spielerListe.get(derzeitigerSpielerIndex) instanceof Computer) {
@@ -172,12 +171,8 @@ public class Spiel {
     }
 
     public void spielen () {
-        Platform.runLater(() -> {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        PauseTransition pause = new PauseTransition(Duration.millis(2000));
+        pause.setOnFinished((event) -> {
             Spieler amZug = spielerListe.get(derzeitigerSpielerIndex);
             if (amZug instanceof Computer) {
                 try {
@@ -186,13 +181,14 @@ public class Spiel {
                     e.getMessage();
                     try {
                         amZug.ziehen(ziehenStapel.nehmen());
-                    } catch (StapelLeerException e2) {
+                    } catch (StapelLeerException e2) {cd 
                         e2.getMessage();
                     }
                 }
             }
             naechsterSpieler();
         });
+        pause.play();
     }
 
     public void spielen2 () {
