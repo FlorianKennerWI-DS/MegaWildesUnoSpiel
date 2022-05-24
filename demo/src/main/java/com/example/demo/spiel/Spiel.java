@@ -143,7 +143,7 @@ public class Spiel {
         menschlicherSpieler = new Spieler(spielerName);
         spielerListe.add(menschlicherSpieler);
         for (int i = 0; i < spielerAnzahl; i++) {
-            spielerListe.add(new Computer(i)); //add computergegner
+            spielerListe.add(new Computer(i +1)); //add computergegner
         }
     }
 
