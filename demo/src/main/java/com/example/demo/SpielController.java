@@ -71,6 +71,7 @@ public class SpielController  implements Initializable{
         boxHandkarten.setSpacing(2);
     }
 
+    @FXML
     public void switchToEndScene() throws IOException {
         System.out.println("wechsel");
         Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("endScene.fxml"))));
