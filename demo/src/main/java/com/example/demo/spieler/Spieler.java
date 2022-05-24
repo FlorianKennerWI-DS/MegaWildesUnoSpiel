@@ -32,13 +32,14 @@ public class Spieler {
         handkarten.put("Schwarz", new HashMap<Integer, ArrayList<Karte>>());
     }
 
-    public void ziehen(Karte karte) {
+    public String ziehen(Karte karte) {
 
         if (!handkarten.get(karte.getFarbe()).containsKey(karte.getZahl())) {
             handkarten.get(karte.getFarbe()).put(karte.getZahl(), new ArrayList<Karte>());
         }
         handkarten.get(karte.getFarbe()).get(karte.getZahl()).add(karte);
         handKartenToArrayList();
+        return " hat gezogen.";
     }
 
     public Karte ablegen(Karte karte) {
@@ -48,6 +49,7 @@ public class Spieler {
         handKartenToArrayList();
         System.out.println(getHandkartenArrayList());
         handKartenToArrayList();
+        //getName() + " legt " + karte.toString());
         return abgelegteKarte;
     }
 

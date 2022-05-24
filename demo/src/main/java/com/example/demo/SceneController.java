@@ -48,6 +48,7 @@ public class SceneController implements Initializable {
         Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("spielScene.fxml"))));
         stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        scene.getStylesheets().addAll(this.getClass().getResource("spielSceneStyle.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
 

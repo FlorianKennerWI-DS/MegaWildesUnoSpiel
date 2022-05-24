@@ -5,6 +5,7 @@ import com.example.demo.highScoreTable.HighscoreTable;
 import com.example.demo.spiel.Spiel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,6 +26,7 @@ import java.util.ResourceBundle;
 // Malena und Florian
 public class SpielController  implements Initializable{
 
+    public Label letzteAktion;
     @FXML
     private HBox boxBeideStapel;
     @FXML
@@ -73,7 +75,8 @@ public class SpielController  implements Initializable{
         Bindings.bindContent(boxBeideStapel.getChildren(), spiel.spielObersteKarteBeobachten);
 
         boxHandkarten.setSpacing(2);
-        moderationText.getScene().getStylesheets().addAll(this.getClass().getResource("startSceneStyle.css").toExternalForm());
+
+        letzteAktion.textProperty().bind(spiel.letzteAktionUndKarte);
     }
 
     @FXML
@@ -83,6 +86,7 @@ public class SpielController  implements Initializable{
         Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("endScene.fxml"))));
         stage =(Stage) moderationText.getScene().getWindow();
         scene = new Scene(root);
+        scene.getStylesheets().addAll(this.getClass().getResource("endSceneStyle.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }

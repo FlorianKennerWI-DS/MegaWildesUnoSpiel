@@ -32,6 +32,10 @@ public class Spiel {
 
     public StringProperty aktuellerSpielerName = new SimpleStringProperty();
     public StringProperty getKartenStand = new SimpleStringProperty();
+
+    public StringProperty letzteAktionUndKarte = new SimpleStringProperty();
+
+    public String letzteAktion;
     public ObservableList<Node> spielerButtons = FXCollections.observableArrayList();
     public SimpleListProperty spielObersteKarteBeobachten = new SimpleListProperty<>();
     public SimpleBooleanProperty spielZuEnde = new SimpleBooleanProperty();
@@ -60,6 +64,7 @@ public class Spiel {
     }
 
     private void updateObservables() {
+        letzteAktionUndKarte.setValue(letzteAktion);
         aktuellerSpielerName.setValue(getAktSpieler());
         getKartenStand.setValue(setKartenStand());
         buttonsFuerMenschlichenSpieler();
@@ -104,7 +109,7 @@ public class Spiel {
     public void menschlicherSpielerZiehen(){
         if (!(spielerListe.get(derzeitigerSpielerIndex) instanceof Computer)){
         try {
-            menschlicherSpieler.ziehen(ziehenStapel.nehmen());
+            letzteAktion = menschlicherSpieler.getName() + "" +menschlicherSpieler.ziehen(ziehenStapel.nehmen());
         } catch (StapelLeerException e) {
             e.printStackTrace();
         }
@@ -115,6 +120,7 @@ public class Spiel {
     public void amZugPruefen(Karte karte){
         if (!(spielerListe.get(derzeitigerSpielerIndex) instanceof Computer)){
             ablegeStapel.setObersteKarte(menschlicherSpieler.ablegen(karte));
+            letzteAktion = menschlicherSpieler.getName() + " hat " + ablegeStapel.getObersteKarte() + " abgelegt." ;
             naechsterSpieler();
             //buttonsFuerMenschlichenSpieler();
         }
@@ -133,7 +139,7 @@ public class Spiel {
         System.out.println(spielZuEnde);
 
         //Zug des Computer-Gegners iniziieren
-        if (spielerListe.get(derzeitigerSpielerIndex) instanceof Computer) {
+        if (spielerListe.get(derzeitigerSpielerIndex) instanceof Computer && !jemandIstFertigOderKeineKartenMehr()) {
             System.out.println("Computer is now playing");
             spielen();
         }
@@ -181,10 +187,12 @@ public class Spiel {
             if (amZug instanceof Computer) {
                 try {
                     ablegeStapel.setObersteKarte(((Computer) amZug).karteFinden(ablegeStapel.getObersteKarte()));
+                    letzteAktion = amZug.getName() + " hat " + ablegeStapel.getObersteKarte().toString() + " abgelegt.";
                 } catch (NichtAblegenException e){
                     e.getMessage();
                     try {
-                        amZug.ziehen(ziehenStapel.nehmen());
+                        letzteAktion = amZug.getName()  + amZug.ziehen(ziehenStapel.nehmen());
+
                     } catch (StapelLeerException e2) {
                         e2.getMessage();
                     }
