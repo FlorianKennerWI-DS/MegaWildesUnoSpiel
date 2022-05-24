@@ -48,8 +48,6 @@ public class Spieler {
         handkarten.get(karte.getFarbe()).get(karte.getZahl()).remove(0);
         handKartenToArrayList();
         System.out.println(getHandkartenArrayList());
-        handKartenToArrayList();
-        //getName() + " legt " + karte.toString());
         return abgelegteKarte;
     }
 
