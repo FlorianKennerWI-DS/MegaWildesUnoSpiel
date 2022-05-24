@@ -64,7 +64,7 @@ public class Spiel {
         getKartenStand.setValue(setKartenStand());
         buttonsFuerMenschlichenSpieler();
         spielObersteKarteBeobachten.setValue(ablegeStapel.obersteKarteBeobachten);
-        spielZuEnde.setValue(jemandIstFertig());
+        spielZuEnde.setValue(jemandIstFertigOderKeineKartenMehr());
     }
 
     private String getAktSpieler() {
@@ -161,12 +161,15 @@ public class Spiel {
         }
     }
 
-    private boolean jemandIstFertig() {
+    private boolean jemandIstFertigOderKeineKartenMehr() {
 
         for (Spieler spieler:spielerListe) {
             if (!spieler.hatKarten()){
                 return true;
             }
+        }
+        if (ziehenStapel.stapelLeer()){
+            return true;
         }
         return false;
     }
@@ -194,7 +197,7 @@ public class Spiel {
 
     public void spielen2 () {
         Spieler amZug = spielerListe.get(derzeitigerSpielerIndex);
-        while (!jemandIstFertig() && amZug instanceof Computer){
+        while (!jemandIstFertigOderKeineKartenMehr() && amZug instanceof Computer){
             if (amZug instanceof Computer) {
                     try {
                         //computer.waehleAktion()
