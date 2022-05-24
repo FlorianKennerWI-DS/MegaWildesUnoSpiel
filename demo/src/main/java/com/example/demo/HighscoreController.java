@@ -39,10 +39,10 @@ public class HighscoreController implements Initializable {
     }
 
     public void backToStartScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("hello-view.fxml"))));
+        Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("startScene.fxml"))));
         stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        scene.getStylesheets().addAll(this.getClass().getResource("hello-view-style.css").toExternalForm());
+        scene.getStylesheets().addAll(this.getClass().getResource("startSceneStyle.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
 
