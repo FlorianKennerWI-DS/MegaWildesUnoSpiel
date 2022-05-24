@@ -26,6 +26,7 @@ import java.util.ResourceBundle;
 // Malena und Florian
 public class SpielController  implements Initializable{
 
+    public Label letzteAktion;
     @FXML
     private HBox boxBeideStapel;
     @FXML
@@ -77,6 +78,8 @@ public class SpielController  implements Initializable{
         Bindings.bindContent(boxBeideStapel.getChildren(), spiel.spielObersteKarteBeobachten);
 
         boxHandkarten.setSpacing(2);
+
+        letzteAktion.textProperty().bind(spiel.letzteAktionUndKarte);
     }
 
     @FXML

@@ -21,7 +21,7 @@ public class   HighscoreTable {
 
     public static void einlesen() {
         String zeile;
-        Path meineDatei = Paths.get("./demo/src/main/resources/com/example/demo/highScoreDataGameData.csv");
+        Path meineDatei = Paths.get("./demo/src/main/resources/com/example/demo/highScoreData/GameData.csv");
         try {
         // check if file with highscoredata exists, if not create it and write first line
         dateiPfadPruefen(meineDatei);
@@ -65,7 +65,7 @@ public class   HighscoreTable {
     }
 
     public static String spielAbspeichern(ArrayList<Spieler> spielerListe){
-        Path meineDatei = Paths.get("./demo/src/main/resources/com/example/demo/highScoreDataGameData.csv");
+        Path meineDatei = Paths.get("./demo/src/main/resources/com/example/demo/highScoreData/GameData.csv");
         int Position = 0;
         String name = "";
         // sorting the spielerListe ArrayList by the number of Cards on their hands
