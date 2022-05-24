@@ -58,16 +58,13 @@ public class SpielController  implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         spiel = new Spiel(SceneController.getSpielerZahl(), SceneController.getSpielerName());
-        spiel.spielZuEnde.addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                System.out.println("fertig");
-                gewinner = HighscoreTable.spielAbspeichern(spiel.getSpielerListe());
-                try {
-                    switchToEndScene();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        spiel.spielZuEnde.addListener((observableValue, aBoolean, t1) -> {
+            System.out.println("fertig");
+            HighscoreTable.spielAbspeichern(spiel.getSpielerListe());
+            try {
+                switchToEndScene();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
 
@@ -89,6 +86,7 @@ public class SpielController  implements Initializable{
         Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("endScene.fxml"))));
         stage =(Stage) moderationText.getScene().getWindow();
         scene = new Scene(root);
+        scene.getStylesheets().addAll(this.getClass().getResource("endSceneStyle.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }

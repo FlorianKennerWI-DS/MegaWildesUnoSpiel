@@ -139,7 +139,7 @@ public class Spiel {
         System.out.println(spielZuEnde);
 
         //Zug des Computer-Gegners iniziieren
-        if (spielerListe.get(derzeitigerSpielerIndex) instanceof Computer) {
+        if (spielerListe.get(derzeitigerSpielerIndex) instanceof Computer && !jemandIstFertigOderKeineKartenMehr()) {
             System.out.println("Computer is now playing");
             spielen();
         }
