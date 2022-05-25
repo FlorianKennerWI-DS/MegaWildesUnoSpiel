@@ -42,15 +42,14 @@ public class   HighscoreTable {
             int position = Integer.parseInt(zeilenToken.nextToken().toString());
 
             // check if name already exists in alleSpieler
-            if (alleSpieler.containsKey(spielerName)){
-                alleSpieler.get(spielerName).add(position);
-            }
-
-            // Wenn nicht -> Name als key und Position als value hinzufügen
-            else {
+            // Wenn nicht -> anlegen
+            if (!alleSpieler.containsKey(spielerName)){
                 alleSpieler.put(spielerName, new ArrayList<>());
-                alleSpieler.get(spielerName).add(position);
             }
+            //Position von dieser Spielrunde hinzufuegen
+            alleSpieler.get(spielerName).add(position);
+
+
             zeile = meinReader.readLine();
         }
         meinReader.close();}
