@@ -24,7 +24,7 @@ public class Spieler {
 
     public Spieler (String name) {
         this.name = name;
-
+        //verschachtelte Hashmap initialisieren
         handkarten.put("Blau", new HashMap<Integer, ArrayList<Karte>>());
         handkarten.put("Gruen", new HashMap<Integer, ArrayList<Karte>>());
         handkarten.put("Rot", new HashMap<Integer, ArrayList<Karte>>());
@@ -76,6 +76,7 @@ public class Spieler {
     }
 
     public void handKartenToArrayList(){
+        //handkarten in geordnete Arraylist überführen, damit Spieler sortierte Handkarten hat
         handkartenArrayList.clear();
         for (var entry : handkarten.entrySet()){
             for (var secondEntry : entry.getValue().entrySet()){

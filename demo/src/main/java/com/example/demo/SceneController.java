@@ -1,21 +1,14 @@
 package com.example.demo;
 
-import com.example.demo.spiel.Spiel;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -79,6 +72,7 @@ public class SceneController implements Initializable {
         spielerZahlChoiceBox.getItems().add(4);
         spielerZahlChoiceBox.getItems().add(5);
 
+        //man kann Spiel erst starten, wenn Anzahl der Gegenspieler ausgewaehlt
         BooleanBinding startDiabled = spielerZahlChoiceBox.getSelectionModel().selectedItemProperty().isNull();
         startButton.disableProperty().bind(startDiabled);
         //mitspielerLabel.setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, CornerRadii.EMPTY, Insets.EMPTY)));;

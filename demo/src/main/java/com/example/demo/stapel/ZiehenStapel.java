@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.Stack;
 // Florian
 public class ZiehenStapel {
+    //Stack als Datenstruktur, weil LIFO hier passend
     public Stack<Karte> kartenStack = new Stack<>();
 
+    //gibt die oberste Karte zurueck
     public Karte nehmen() throws StapelLeerException {
 
         if (kartenStack.size() == 0) {

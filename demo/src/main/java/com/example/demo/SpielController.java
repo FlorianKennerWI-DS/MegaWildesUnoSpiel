@@ -3,14 +3,10 @@ package com.example.demo;
 
 import com.example.demo.highScoreTable.HighscoreTable;
 import com.example.demo.spiel.Spiel;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.beans.binding.Bindings;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,6 +21,7 @@ import java.util.ResourceBundle;
 
 // Malena und Florian
 public class SpielController  implements Initializable{
+    //wir haben in den meisten Faellen dieses Interface implementiert, um die initialize-Methode verwenden zu koennen
 
     public Label letzteAktion;
     @FXML
@@ -58,9 +55,10 @@ public class SpielController  implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         spiel = new Spiel(SceneController.getSpielerZahl(), SceneController.getSpielerName());
+
+        //zur EndScene wechseln, sobald Spiel zu Ende ist
         spiel.spielZuEnde.addListener((observableValue, aBoolean, t1) -> {
-            System.out.println("fertig");
-            HighscoreTable.spielAbspeichern(spiel.getSpielerListe());
+            gewinner = HighscoreTable.spielAbspeichern(spiel.getSpielerListe());
             try {
                 switchToEndScene();
             } catch (IOException e) {
@@ -68,7 +66,7 @@ public class SpielController  implements Initializable{
             }
         });
 
-        //bind UI elements to observables
+        //UI Elemente an Observables binden, damit UI aktuell bleibt
         moderationText.textProperty().bind(  spiel.aktuellerSpielerName);
         kartenStand.textProperty().bind(spiel.getKartenStand);
         Bindings.bindContent(boxHandkarten.getChildren(), spiel.spielerButtons);
@@ -81,10 +79,9 @@ public class SpielController  implements Initializable{
 
     @FXML
     public void switchToEndScene() throws IOException {
-        System.out.println("wechsel");
         HighscoreTable.spielAbspeichern(spiel.getSpielerListe());
         Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("endScene.fxml"))));
-        stage =(Stage) moderationText.getScene().getWindow();
+        stage =(Stage) moderationText.getScene().getWindow(); //auf aktuelle Scene zugreifen
         scene = new Scene(root);
         scene.getStylesheets().addAll(this.getClass().getResource("endSceneStyle.css").toExternalForm());
         stage.setScene(scene);

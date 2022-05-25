@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import com.example.demo.spiel.Spiel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

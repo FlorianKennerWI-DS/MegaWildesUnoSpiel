@@ -33,11 +33,7 @@ public class Karte extends Parent {
         hexColors.put("Schwarz", "#000000");
     }
 
-    public Color getFarbeUI() {
-        return farbeUI;
-    }
-
-    public String getFarbe() {
+     public String getFarbe() {
         return farbe;
     }
 
@@ -50,6 +46,7 @@ public class Karte extends Parent {
         this.zahl =  zahl;
         this.farbeUI = colors.get(farbe);
 
+        //Aussehen auf UI erstellen
         Rectangle bg = new Rectangle(CARD_WIDTH, CARD_HEIGHT);
         bg.setArcWidth(20);
         bg.setArcHeight(20);

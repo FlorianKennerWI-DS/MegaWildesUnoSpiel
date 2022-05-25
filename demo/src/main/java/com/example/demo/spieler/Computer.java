@@ -8,9 +8,9 @@ public class Computer extends Spieler {
     // Malena, Annika und Florian
     public Computer(int i) {
         super("com" + Integer.toString(i));
-    }
+    } //erzeugt Computergegner mit Namen
 
-    public Karte karteFinden(Karte obersteKarte) throws NichtAblegenException {
+    public Karte karteFinden(Karte obersteKarte) throws NichtAblegenException { //sucht Karte, die abgelegt werden kann
 
         boolean passendeFarbe = false;
         boolean passendeZahl = false;
@@ -21,7 +21,7 @@ public class Computer extends Spieler {
             if (entry.getValue().size() > 0){
                 passendeFarbe = true;
                 passendeKarte = entry.getValue().get(0);
-                break;
+                break; //for-Schleife beenden, sobald passende Karte gefunden -> Laufzeitoptimierung
             }
         }
 
@@ -45,27 +45,4 @@ public class Computer extends Spieler {
             throw new NichtAblegenException();
         }
         return ablegen(passendeKarte);
-
-        /**
-
-        if (!nochNeuereHandkarten.get(obersteKarte.getFarbe()).containsKey(obersteKarte.getZahl())) {
-            throw new Exception();
-        }
-        else if (nochNeuereHandkarten.get(obersteKarte.getFarbe()).get(obersteKarte.getZahl()).size() == 0) {
-            throw new Exception();
-        }
-        return ablegen(nochNeuereHandkarten.get(obersteKarte.getFarbe()).get(obersteKarte.getZahl()).get(0));
-        // alle durchgehen
-        //if(AblegeStapel.getObersteKarte().getFarbe().equals(handkarten.get(0))) {
-        //    ablegen(handkarten.get()); }
-        // macht es hier mehr Sinn die Farbe und dann evtl Zahl der obersten Karte abzufragen oder
-        // die Karte mit der kompatibleFarbe und kompatibleZahl aus AblegeStapel zu vergleichen?
-    }**/
 }}
-    /**
-    public Karte ablegen() throws Exception{
-        Karte abgelegteKarte = null;
-        if (handkarten.get())
-    }
-}
-*/

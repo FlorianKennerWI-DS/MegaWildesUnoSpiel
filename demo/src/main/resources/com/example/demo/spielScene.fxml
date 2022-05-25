@@ -21,5 +21,6 @@
             <ButtonBar fx:id="test" prefHeight="94.0" prefWidth="90.0" />
          </children></HBox>
       <Label fx:id="letzteAktion" layoutX="278.0" layoutY="68.0" prefHeight="40.0" prefWidth="229.0" text="Label" />
+      <Button fx:id="testBUtton" layoutX="570.0" layoutY="88.0" mnemonicParsing="false" text="Button" />
    </children>
 </AnchorPane>
