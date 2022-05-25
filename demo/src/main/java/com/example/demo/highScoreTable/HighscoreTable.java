@@ -31,11 +31,17 @@ public class   HighscoreTable {
         zeile = meinReader.readLine();
 
         while (zeile != null){
+
+            // check, ob leerzeile in der csv Datei enthalten ist
+            if ("".equals(zeile)){
+                zeile=meinReader.readLine();
+            }
+
             StringTokenizer zeilenToken = new StringTokenizer(zeile, ",");
             String spielerName = zeilenToken.nextToken();
             int position = Integer.parseInt(zeilenToken.nextToken().toString());
 
-            // existiert der Name schon in der Liste?
+            // check if name already exists in alleSpieler
             if (alleSpieler.containsKey(spielerName)){
                 alleSpieler.get(spielerName).add(position);
             }
