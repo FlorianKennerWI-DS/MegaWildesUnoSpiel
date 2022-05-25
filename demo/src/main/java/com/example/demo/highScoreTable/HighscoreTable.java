@@ -20,6 +20,7 @@ public class   HighscoreTable {
     }
 
     public static void einlesen() {
+        alleDurschnittsPositionen.clear();
         String zeile;
         Path meineDatei = Paths.get("./GameData.csv");
         try {
