@@ -56,7 +56,8 @@ public class SceneController implements Initializable {
     }
 
     public void setSpielerZahlundName() {
-        spielerName = nameFeld.getText();
+        spielerName = nameFeld.getText().trim();
+        spielerName = spielerName.substring(0, 1).toUpperCase() + spielerName.substring(1);
         spielerZahl = (int ) spielerZahlChoiceBox.getValue();
         System.out.println(spielerName);
         System.out.println(spielerZahl);
